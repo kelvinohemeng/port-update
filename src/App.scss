@@ -1,10 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400&family=Montserrat:wght@400;500;600&family=Poppins:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@900&family=Climate+Crisis&family=Goldman:wght@700&family=Staatliches&family=Tektur:wght@400;800&family=Zen+Dots&display=swap");
 $text: #e1d7d2;
 $background: #262623;
 $primary: #5ebd53;
 $secondary: #dcd9d6;
-$accent: #c44401;
+$accent: #f67b10;
 
+$display-font1: "Big Shoulders Text", cursive;
+$display-font2: "Climate Crisis", cursive;
+$display-font3: "Goldman", cursive;
+$display-font4: "Staatliches", cursive;
+$display-font5: "Tektur", cursive;
+$display-font6: "Zen Dots", cursive;
+
+::selection {
+  background-color: $accent;
+  color: $secondary;
+}
+a:hover {
+  color: $accent !important;
+}
+h1,
+h2 {
+  font-family: $display-font1;
+}
+h1 {
+  color: $accent;
+  text-transform: uppercase;
+}
 h1,
 h2,
 h3,
@@ -18,6 +41,7 @@ div {
   padding-bottom: 4rem;
 }
 main {
+  background: url("/grid-white-d3047602.svg");
   background-color: $background !important;
 }
 html {
@@ -35,22 +59,10 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Adjust as needed to cover the viewport */
-  background-color: #f0f0f0; /* Background color for the preloader */
-
-  .loader {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #3498db; /* Color of the loader animation */
-    border-top: none;
-    border-radius: 50%;
-  }
+  height: 100vh;
+  background-color: $background !important;
 }
 .final-abt {
-  img {
-    max-width: 100%;
-    height: 100%;
-  }
 }
 .left-abt {
   :where(div) .abt-btn {
@@ -215,10 +227,10 @@ div {
 }
 .heading-tags {
   font-size: 3.5rem;
-  font-family: "Bebas Neue", sans-serif;
+  font-family: $display-font1;
   font-weight: 600;
   letter-spacing: -0.05rem;
-  line-height: 60%;
+  line-height: 100%;
   padding-block: 20px;
   span {
     font-family: "Poppins", sans-serif;
@@ -243,10 +255,26 @@ div {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  background: $accent;
+  transform-origin: bottom;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slidein2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: #0d0d0d;
   transform-origin: bottom;
   z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .slideout {
   position: fixed;
@@ -257,6 +285,9 @@ div {
   background: #0d0d0d;
   transform-origin: top;
   z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 p,
 a,
@@ -299,7 +330,7 @@ div {
           width: fit-content;
           height: fit-content;
           padding: 1px 10px;
-          border: 0.5px solid black;
+          border: 0.5px solid $secondary;
         }
       }
     }
@@ -325,7 +356,6 @@ div {
     inset: 0;
     transform: scale(1.05);
     background: rgba(220, 217, 214, 0.05);
-    border-radius: 10px;
   }
   h2 {
     font-size: 1.3rem;
@@ -549,7 +579,7 @@ footer {
   font-family: "Inter", sans-serif;
 }
 .title {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: $display-font1;
   font-weight: 600;
   /* font-size: clamp(2.5rem, 2.1053rem + 1.8042vw, 5rem); */
   letter-spacing: -1px;
@@ -641,7 +671,7 @@ footer {
     transform: scale(0);
     top: 0;
     right: -50px;
-    background: rgba(220, 217, 214, 0.0949);
+    background: $accent;
     transition: 300ms ease-out;
     border-radius: 100%;
   }
@@ -666,12 +696,12 @@ footer {
     border: 0.5px solid rgba(220, 217, 214, 0.0949);
 
     svg {
-      fill: $primary;
+      fill: $background;
     }
     .main-text-btn {
       div {
         transform: translateY(-40%);
-        color: $primary;
+        color: $background;
       }
     }
     &::before {
@@ -698,7 +728,8 @@ footer {
 // .abt-sum {
 // }
 .prof-img {
-  background: url("https://res.cloudinary.com/base-data/image/upload/v1691740868/images/me.png");
+  background: url("https://res.cloudinary.com/base-data/image/upload/v1693450299/images/about-img.png");
+  filter: grayscale(2);
   background-position: center right;
   background-attachment: scroll;
   background-size: cover;
@@ -716,7 +747,7 @@ footer {
   line-height: 100%;
 }
 .hero-text {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: $display-font1;
   font-size: clamp(6.5rem, 5.9231rem + 3.0769vw, 8rem);
   /* opacity: 0.8; */
   letter-spacing: -2.5px;
@@ -768,11 +799,6 @@ footer {
   width: 100%;
   min-height: 80vh;
 }
-.n-img {
-  background: url("/mygif.gif") no-repeat;
-  background-position: center;
-  background-size: cover;
-}
 
 // projects
 // projects
@@ -783,7 +809,9 @@ footer {
   letter-spacing: -3.8px;
 }
 .box {
-  background: $secondary;
+  div {
+    color: $secondary;
+  }
   .wid-tags {
     display: flex;
     flex-direction: row;
@@ -794,30 +822,30 @@ footer {
       width: fit-content;
       height: fit-content;
       padding: 3px 10px;
-      border: 0.5px solid $background;
-      color: $background;
+      border: 0.5px solid $secondary;
+      color: $secondary;
     }
   }
   :where(.abt-btn) {
-    border: 0.5px solid $background;
+    border: 0.5px solid $secondary;
     .main-text-btn {
       div {
-        color: $background;
+        color: $secondary;
       }
     }
     svg {
-      fill: $background;
+      fill: $secondary;
     }
     &:hover {
-      border: 0.5px solid $background;
+      border: 0.5px solid $secondary;
 
       svg {
-        fill: $background;
+        fill: $secondary;
       }
       .main-text-btn {
         div {
           transform: translateY(-40%);
-          color: $background;
+          color: $secondary;
         }
       }
       &::before {
@@ -828,7 +856,6 @@ footer {
 }
 
 .home-bg {
-  /* background: url("/recent1.webp"); */
   background-position: center;
   background-size: cover;
 }
@@ -838,16 +865,6 @@ footer {
   height: 100%;
   transition: 200ms ease-out;
   border-radius: 20px;
-}
-.recent1 {
-  background: url("/recent1.webp");
-  background-position: center;
-  background-size: cover;
-}
-.recent2 {
-  background: url("/recent2.webp");
-  background-position: center;
-  background-size: cover;
 }
 
 .for-services {
@@ -889,7 +906,6 @@ footer {
 }
 .images-box {
   background: rgba(220, 217, 214, 0.05);
-  border-radius: 15px;
 }
 .intro {
   .wid-tags {
@@ -905,5 +921,27 @@ footer {
       padding: 1px 10px;
       border: 0.5px solid $secondary;
     }
+  }
+}
+
+.disp-som {
+  background: #2f2b284a;
+}
+
+.arc-items {
+  &:nth-child(1) {
+    flex-basis: content;
+  }
+  &:nth-child(2) {
+    flex-basis: content;
+  }
+  &:nth-child(3) {
+    flex-basis: content;
+  }
+  &:nth-child(4) {
+    flex-basis: auto;
+  }
+  &:nth-child(5) {
+    flex-basis: content;
   }
 }

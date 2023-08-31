@@ -64,7 +64,6 @@ const About = ({ footer }) => {
         slide.style.transform = `translate(${-x},)`;
       });
       slideImage[1].style.transform = `translate(${-x * 5},)`;
-      console.log(slideImage);
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => {
@@ -103,8 +102,17 @@ const About = ({ footer }) => {
       >
         <div className=" flex flex-col w-full items-end space-y-10">
           <div className=" flex flex-col   justify-between w-full ">
-            <h2 className="heading-tags flex flex-col order-first text-[40vw] md:text-[8vw]">
-              Kelvin
+            <h2 className="heading-tags flex flex-col order-first ">
+              <div className=" overflow-hidden py-0">
+                <motion.h1
+                  initial={{ y: 300 }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 1 }}
+                  className="heading-tags text-[25vw] md:text-[14vw]"
+                >
+                  Kelvin
+                </motion.h1>
+              </div>
               <span className=" text-[20px]">Developer/Designer</span>
             </h2>
             <div className="">
@@ -115,9 +123,9 @@ const About = ({ footer }) => {
           </div>
           <div className=" flex flex-col w-full space-y-5">
             <div className=" flex justify-end relative">
-              <div className=" images-box p-3 relative w-[30%] h-full">
+              <div className=" images-box p-3 relative md:max-w-[30%] h-full overflow-hidden">
                 <Image
-                  className="  aspect-[1.5/2]  object-cover "
+                  className=" w-full  aspect-[1.5/2]  object-cover "
                   publicId="/portfolio%20images/mew_d1jf8j.jpg"
                   quality="20"
                 />
@@ -159,7 +167,15 @@ const About = ({ footer }) => {
                   muted
                   preload
                 >
-                  <source src="https://res.cloudinary.com/base-data/video/upload/v1693279416/portfolio%20images/mew_iwch8c.ogv" />
+                  <source
+                    className=" hidden md:block"
+                    src="https://res.cloudinary.com/base-data/video/upload/c_scale,q_81,w_376/v1693279416/portfolio%20images/mew_iwch8c.ogv"
+                  />
+                  <source
+                    className=" block md:hidden"
+                    src="https://res.cloudinary.com/base-data/video/upload/c_scale,q_81,w_376/v1693279416/portfolio%20images/mew_iwch8c.mp4"
+                  />
+                  <source src="https://res.cloudinary.com/base-data/video/upload/c_scale,q_81,w_376/v1693279416/portfolio%20images/mew_iwch8c.webm" />
                 </video>
               </div>
 
@@ -191,16 +207,16 @@ const About = ({ footer }) => {
             </div>
           </div>
         </section>
-        <section className=" final-abt h-screen flex justify-between">
-          <div>
+        <section className=" final-abt md:h-screen flex flex-col md:flex-row justify-between">
+          <div className="">
             <Image
-              className=" w-full h-full object-cover grayscale"
+              className=" md:max-w-[400px] object-cover grayscale images-box p-4"
               publicId="https://res.cloudinary.com/base-data/image/upload/v1693280147/portfolio%20images/IMG-20220414-WA0061_bvesug.jpg"
               quality="20"
             />
           </div>
           <div className=" flex flex-col justify-end items-center">
-            <h2 className="heading-tags max-w-[50%] leading-[100%]">
+            <h2 className="heading-tags md:max-w-[50%] leading-[100%]">
               The urge to do something I am told I cannot.
             </h2>
           </div>

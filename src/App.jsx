@@ -3,49 +3,29 @@ import { CloudinaryContext } from "cloudinary-react";
 import cloudinaryConfig from "./components/cloudinaryConfig";
 
 import { Navbar } from "./components/navbar";
-import { Footer } from "./components/Footer";
-
-import { projectData } from "./projectData";
-
-import ScrollToTop from "./components/ScrollToTop";
 import { IconContext } from "@phosphor-icons/react";
 import AnimatedRoute from "./components/AnimatedRoute";
 import Preloader from "./components/Preloader";
 
 function App() {
-  // const [darkMode, setDarkMode] = useState(false);
-  // const toggleDarkMode = () => {
-  //   setDarkMode(!darkMode);
-  // };
   const [projects, setProjects] = useState([]);
   const [selectedProjects, setSelectedProjects] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    window.onload = () => {
-      setIsLoading(false);
-    };
-    fetch("http://localhost:3002/projects")
+    window.onload = setIsLoading(false);
+
+    fetch("https://kelvinohemeng.github.io/api-endpoint/projectData.json")
       .then((response) => response.json())
       .then((data) => {
-        setProjects(data);
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 5000);
+        setProjects(data.projects);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+        setIsLoading(false);
       });
-    window.onload = null;
   }, []);
 
-  // Simulate loading effect whenever route changes
-  // useEffect(() => {
-  //   const loadingTimeout = setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 2000);
-
-  //   return () => clearTimeout(loadingTimeout);
-  // }, []);
   return (
     <>
       {isLoading ? (
@@ -59,10 +39,12 @@ function App() {
             mirrored: false,
           }}
         >
-          <CloudinaryContext cloudName={cloudinaryConfig.cloudName}>
-            {/* <ScrollToTop /> */}
+          <CloudinaryContext
+            cloudName={cloudinaryConfig.cloudName}
+            quality="auto:good"
+          >
             <Navbar />
-            <main className="  w-full   bg-white">
+            <main className="w-full bg-white overscroll-x-contain">
               <AnimatedRoute
                 projectData={projects}
                 selectedProjects={selectedProjects}

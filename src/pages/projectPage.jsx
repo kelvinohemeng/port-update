@@ -17,14 +17,16 @@ const ProjectPage = ({ projects, footer }) => {
         className=" container mx-auto px-4 pb-[20vh] pt-[20vh] w-full  "
       >
         <div className="  flex flex-col items-end pb-10">
-          <Tween
-            from={{ y: 200, delay: 2.5 }}
-            wrapper={<div className=" overflow-hidden py-3" />}
-          >
-            <h1 className="heading-tags text-[18vw] md:text-[14vw]">
+          <div className="overflow-hidden py-3">
+            <motion.h1
+              initial={{ y: 300 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 1 }}
+              className="heading-tags text-[18vw] md:text-[14vw]"
+            >
               My works
-            </h1>
-          </Tween>
+            </motion.h1>
+          </div>
           <BtnDefNativeNoLink pointDown>scroll down</BtnDefNativeNoLink>
         </div>
         <div className=" flex flex-col justify-center w-full gap-20">
@@ -32,7 +34,7 @@ const ProjectPage = ({ projects, footer }) => {
             <Link
               key={index}
               to={"/projects/" + item.title}
-              className=" relative box w-full h-[80vh] flex flex-col md:flex-row items-center  md:justify-stretch md:items-end  aspect-square overflow-hidden"
+              className=" relative box w-full h-[80vh] flex flex-col md:flex-row items-start images-box  md:justify-stretch md:items-end  aspect-square overflow-hidden"
             >
               <Image
                 className=" flex-1 w-full h-full aspect-square"
@@ -80,6 +82,9 @@ const ProjectPage = ({ projects, footer }) => {
               {/* <h2 className=" max-w-2xl">{item.stack}</h2> */}
             </Link>
           ))}
+        </div>
+        <div className=" py-20 flex justify-center">
+          <BtnDefNativeNoLink>More coming soon</BtnDefNativeNoLink>
         </div>
       </motion.div>
       {footer}

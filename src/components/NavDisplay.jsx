@@ -25,7 +25,7 @@ const NavDisplay = ({ isOpen, setIsOpen }) => {
 
   return (
     <div
-      className={`absolute navv   w-screen h-screen flex flex-col justify-center items-center transition-[200ms] -z-10 ${
+      className={`absolute navv   w-screen h-screen flex flex-col justify-center items-center transition-[200ms] px-8 -z-10 ${
         !isOpen ? "hidden" : "block"
       } `}
     >

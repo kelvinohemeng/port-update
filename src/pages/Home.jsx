@@ -29,16 +29,90 @@ import {
   Cube,
 } from "@phosphor-icons/react";
 import { BtnDefNative, BtnDef, BtnDefNativeNoLink } from "../components/BtnDef";
+import { DisplaySomething } from "../components/DisplaySomething.jsx";
 
 const Home = ({ footer }) => {
   const selected = selectedProjectData;
   const [position, setPosition] = useState({ x: 0 });
+  const [activeLinkIndex, setActiveLinkIndex] = useState(null);
+  const openDisplay = (index) => {
+    setActiveLinkIndex(index);
+  };
+  const reverse = () => {
+    setActiveLinkIndex(null);
+  };
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
   const ref4 = useRef(null);
   const imgRef = useRef(null);
 
+  const archieveLinks = [
+    {
+      imageUrl:
+        "https://res.cloudinary.com/base-data/image/upload/v1693439614/images/bottle.png",
+      content: [
+        {
+          image:
+            "https://res.cloudinary.com/base-data/image/upload/v1693439614/images/bottle.png",
+        },
+      ],
+    },
+    {
+      imageUrl:
+        "https://res.cloudinary.com/base-data/image/upload/v1693439612/images/poster.jpg",
+      content: [
+        {
+          image:
+            "https://res.cloudinary.com/base-data/image/upload/v1693439612/images/poster.jpg",
+        },
+      ],
+    },
+    {
+      imageUrl:
+        "https://res.cloudinary.com/base-data/image/upload/v1693439618/images/shoe2-image.png",
+      content: [
+        {
+          video:
+            "https://res.cloudinary.com/base-data/video/upload/v1693439641/images/shoe2-video.mp4",
+        },
+      ],
+    },
+    {
+      imageUrl:
+        "https://res.cloudinary.com/base-data/image/upload/v1693438903/images/midsem-202142593_sahxnw.png",
+      content: [
+        {
+          image:
+            "https://res.cloudinary.com/base-data/image/upload/v1693438903/images/midsem-202142593_sahxnw.png",
+        },
+      ],
+    },
+    {
+      imageUrl:
+        "https://res.cloudinary.com/base-data/image/upload/v1693439154/images/isometric.png",
+      content: [
+        {
+          video:
+            "https://res.cloudinary.com/base-data/video/upload/v1693439142/images/0001-0130_addhza.mp4",
+        },
+      ],
+    },
+    {
+      imageUrl:
+        "https://res.cloudinary.com/base-data/image/upload/v1691740360/images/shoe_iipc7s.webp",
+      content: [
+        {
+          image:
+            "https://res.cloudinary.com/base-data/image/upload/v1691740360/images/shoe_iipc7s.webp",
+        },
+      ],
+    },
+    {
+      imageUrl: "/images/recent1.webp",
+      content: [{ image: "/images/recent1.webp" }],
+    },
+  ];
   useEffect(() => {
     const scrubUp = document.querySelectorAll(".ddp-text");
     scrubUp.forEach((srubb) => {
@@ -122,11 +196,12 @@ const Home = ({ footer }) => {
   return (
     <>
       {/* {navDisplay ? navDisplay : ""} */}
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className=""
+        className="relative"
       >
         <section className=" w-full h-full home-bg">
           <div className=" container mx-auto px-4 py-10 pt-40 w-full flex flex-col md:justify-end ">
@@ -138,10 +213,9 @@ const Home = ({ footer }) => {
               >
                 <SplitChars
                   wrapper={
-                    <h2
-                      className=" text-[18vw] md:text-[16vw] tracking-[-0.4rem] md:tracking-[-0.2rem]"
+                    <h1
+                      className=" text-[18vw] md:text-[16vw] tracking-[0rem] md:tracking-[-0.2rem]"
                       style={{
-                        fontFamily: '"Bebas Neue", sans-serif',
                         display: "inline-block",
                         fontWeight: "600",
                       }}
@@ -153,78 +227,85 @@ const Home = ({ footer }) => {
               </Tween>
             </Reveal>
           </div>
-          <GsapScrollZoom>
-            <div className="flex flex-col md:flex-row justify-center h-screen  md:h-full  bg-gray-300">
-              <div className="left-abt flex flex-col gap-8 justify-between flex-1 p-4">
-                <Reveal repeat>
-                  <Tween
-                    from={{ y: "50px", opacity: "0" }}
-                    stagger={0.2}
-                    duration={3.5}
-                    ease="back.out(1.7)"
-                    wrapper={
-                      <div
-                        style={{
-                          maxWidth: "80%",
-                        }}
-                      />
-                    }
+          <div className=" pt-[20vh] md:pt-0">
+            <GsapScrollZoom>
+              <div className="flex flex-col md:flex-row justify-center h-screen  md:h-full  bg-gray-300">
+                <div className="left-abt flex flex-col gap-8 justify-between flex-1 p-4">
+                  <ScrollTrigger
+                    start="-200px center"
+                    end="800px center"
+                    scrub={1.5}
                   >
-                    <SplitWords
-                      delimiter=" "
+                    <Tween
+                      from={{ y: "50px", opacity: "0" }}
+                      stagger={0.2}
+                      duration={3.5}
+                      ease="back.out(1.7)"
                       wrapper={
                         <div
                           style={{
-                            display: "inline-flex",
-                            overflow: "hidden",
-                            padding: "5px",
+                            maxWidth: "80%",
                           }}
-                          className="ab-tag"
                         />
                       }
                     >
-                      Hi, I am kelvin, I build brands and website with the
-                      vision of the future
-                    </SplitWords>
-                  </Tween>
-                </Reveal>
-                <div className=" flex flex-col md:flex-row gap-5">
-                  <BtnDef linkTo="/about" showIcon>
-                    Read more
-                  </BtnDef>
-                  <BtnDef linkTo="/about" showIcon>
-                    Download resume
-                  </BtnDef>
+                      <SplitWords
+                        delimiter=" "
+                        wrapper={
+                          <div
+                            style={{
+                              display: "inline-flex",
+                              overflow: "hidden",
+                              padding: "5px",
+                            }}
+                            className="ab-tag"
+                          />
+                        }
+                      >
+                        Hi, I am kelvin, I build brands and website with the
+                        vision of the future
+                      </SplitWords>
+                    </Tween>
+                  </ScrollTrigger>
+                  <div className=" flex flex-col md:flex-row gap-5">
+                    <BtnDef linkTo="/about" showIcon>
+                      Read more
+                    </BtnDef>
+                    <BtnDef linkTo="/about" showIcon>
+                      Download resume
+                    </BtnDef>
+                  </div>
                 </div>
+                <div className="prof-img flex-1 md:h-[80vh] "></div>
               </div>
-              <div className="prof-img flex-1 md:h-[80vh] "></div>
-            </div>
-          </GsapScrollZoom>
+            </GsapScrollZoom>
+          </div>
         </section>
         <section className=" global-padding">
           <ScrollTrigger start="-200px center" end="800px center" scrub={1.5}>
-            <Tween
-              to={{
-                x: "-80%",
-              }}
-              wrapper={
-                <div
-                  className="overflow-hidden px-2 text-[18vw] md:text-[16vw]"
-                  style={{
-                    fontFamily: '"Bebas Neue", sans-serif',
-                    width: "max-content",
-                    display: "flex",
-                    gap: "20px",
-                    fontWeight: "600",
-                  }}
-                />
-              }
-            >
-              <h1 className="text-center">Deigner Developer</h1>
-              <h1 className="text-center">Deigner Developer</h1>
-              <h1 className="text-center">Deigner Developer</h1>
-              <h1 className="text-center">Deigner Developer</h1>
-            </Tween>
+            <div className="relative overflow-hidden h-[50vh]">
+              <Tween
+                to={{
+                  x: "-80%",
+                }}
+                wrapper={
+                  <div
+                    className="absolute overflow-hidden px-2 text-[18vw] md:text-[16vw]"
+                    style={{
+                      width: "max-content",
+                      display: "flex",
+                      gap: "20px",
+                      fontWeight: "600",
+                    }}
+                  />
+                }
+              >
+                <h1 className="text-center">Deigner Developer</h1>
+                <h1 className="text-center">Deigner Developer</h1>
+                <h1 className="text-center">Deigner Developer</h1>
+                <h1 className="text-center">Deigner Developer</h1>
+              </Tween>
+            </div>
           </ScrollTrigger>
         </section>
 
@@ -237,15 +318,23 @@ const Home = ({ footer }) => {
                   muted
                   preload
                 >
-                  <source src="https://res.cloudinary.com/base-data/video/upload/v1693269920/portfolio%20images/projects/0001-0130_alpcuo.ogv" />
+                  <source
+                    className=" block md:hidden"
+                    src="https://res.cloudinary.com/base-data/video/upload/c_scale,e_noise:17,q_60,w_428/v1693439142/images/0001-0130_addhza.ogv"
+                  />
+                  <source
+                    className=" block md:hidden"
+                    src="https://res.cloudinary.com/base-data/video/upload/c_scale,e_noise:17,q_60,w_428/v1693439142/images/0001-0130_addhza.mp4"
+                  />
+                  <source src="https://res.cloudinary.com/base-data/video/upload/c_scale,e_noise:17,q_60,w_428/v1693439142/images/0001-0130_addhza.webm" />
                 </video>
               </div>
               <div className=" ddp">
                 <div className="ddp-text  h-full flex items-end justify-end">
-                  <h1 className="heading-tags-alt relative text-left md:max-w-[70%] cursor-pointer">
+                  <h3 className="heading-tags-alt relative text-left md:max-w-[70%] cursor-pointer">
                     A box where i have carefully horned my talent and skills,
                     coming to form the ultinmate box - designbox
-                  </h1>
+                  </h3>
                 </div>
               </div>
             </div>
@@ -349,11 +438,11 @@ const Home = ({ footer }) => {
         <div className=" h-full global-padding" id="projects">
           <GsapScrollXPin>
             {selected.map((item, index) => (
-              <div className="images-box p-2">
+              <div className="images-box p-2 rounded-none">
                 <Link
                   key={index}
                   to={`/projects/${item.title}`}
-                  className=" relative box w-[80vw] h-[80vh] flex flex-col md:flex-row items-center  md:justify-stretch md:items-end  aspect-square  overflow-hidden"
+                  className=" relative box w-[80vw] h-[80vh] flex flex-col md:flex-row items-start  md:justify-stretch md:items-end  aspect-square  overflow-hidden"
                 >
                   <Image
                     className=" flex-1 w-full h-full aspect-square"
@@ -366,7 +455,7 @@ const Home = ({ footer }) => {
                     <Reveal
                       repeat
                       trigger={
-                        <div className="  flex flex-col md:block items-start justify-between h-full  space-y-2" />
+                        <div className="  flex flex-col md:block items-start justify-end md:justify-between h-full  space-y-2" />
                       }
                     >
                       <Tween
@@ -378,7 +467,7 @@ const Home = ({ footer }) => {
                         <SplitWords
                           wrapper={
                             <div
-                              className="tag title text-6xl text-center text-bg-black "
+                              className="tag title text-6xl text-center  "
                               style={{ display: "inline-block" }}
                             />
                           }
@@ -420,7 +509,7 @@ const Home = ({ footer }) => {
             <div className="content container mx-auto px-4 flex-col md:flex-row-reverse md:justify-between md:flex-end">
               <div className="vid flex justify-end ">
                 <video className=" object-cover " muted preload>
-                  <source src="https://res.cloudinary.com/base-data/video/upload/v1693160126/0827_fhzd3a.mp4" />
+                  <source src="https://res.cloudinary.com/base-data/video/upload/c_scale,w_600/v1693160126/0827_fhzd3a.mp4" />
                 </video>
               </div>
               <div className=" ddp flex flex-col gap-10 items-center  justify-end w-full h-full  ">
@@ -435,10 +524,10 @@ const Home = ({ footer }) => {
                     src="https://i.pinimg.com/originals/e6/85/eb/e685ebb3543ecabc29c1126e54f15898.jpg"
                   />
                   <div className="ddp-text space-y-5">
-                    <h1 className=" heading-tags-alt relative text-left   cursor-pointer">
+                    <h3 className=" heading-tags-alt relative text-left   cursor-pointer">
                       A box where i have carefully horned my talent and skills,
                       coming to form the ultinmate box - designbox
-                    </h1>
+                    </h3>
                     <RevealNative className="cursor-pointer">
                       <BtnDefNative linkTo="#archieves" pointDown>
                         Archieves
@@ -452,82 +541,54 @@ const Home = ({ footer }) => {
         </section>
 
         <div
-          className=" container mx-auto px-4  h-[80vh] flex items-center justify-stretch "
+          className=" container mx-auto px-4  h-full flex flex-col items-center justify-stretch "
           id="archieves"
         >
-          <div className="flex flex-col w-full gap-5 " id="archieve">
-            <div className=" grid grid-cols-1 h-full ">
-              <Link to="https://ramadannigeria2023.mx4.app" target="_blank">
-                <div className=" w-full flex justify-between items center px-5 py-3 archieves-box">
-                  <h3>Poster Design</h3>
-                  <ArrowRight weight="light" size={28} fill="white" />
-                  <img
-                    src="https://res.cloudinary.com/base-data/image/upload/q_50/v1691740360/images/shoe_iipc7s.webp"
-                    alt=""
+          <Reveal repeat trigger={<div className=" text-left" />}>
+            <Tween
+              from={{ y: "200px", opacity: "0" }}
+              stagger={0.1}
+              wrapper={<div className="overflow-hidden px-2" />}
+            >
+              <SplitWords
+                wrapper={
+                  <h1
+                    className=" max-w-max  text-[14vw] mx-2 md:text-[12vw] tracking-[0rem] md:tracking-[-0.2rem]"
+                    style={{
+                      fontWeight: "600",
+                      gap: "50px",
+                      display: "inline-block",
+                    }}
                   />
-                </div>
-              </Link>
-              <Link to="https://ramadannigeria2023.mx4.app" target="_blank">
-                <div className=" w-full flex justify-between items center px-5 py-3 archieves-box">
-                  <h3>Meta website</h3>
-                  <ArrowRight weight="light" size={28} fill="white" />
-                  <img
-                    src="https://res.cloudinary.com/base-data/image/upload/q_50/v1691740360/images/shoe_iipc7s.webp"
-                    alt=""
-                  />
-                </div>
-              </Link>
-              <Link to="https://myfavshoe-2.netlify.app/" target="_blank">
-                <div className=" w-full flex justify-between items center px-5 py-3 archieves-box">
-                  <h3>ThreeJS Shoe</h3>
-                  <ArrowRight weight="light" size={28} fill="white" />
-                  <img
-                    src="https://res.cloudinary.com/base-data/image/upload/q_50/v1691740360/images/shoe_iipc7s.webp"
-                    alt=""
-                  />
-                </div>
-              </Link>
-              <Link
-                to="https://www.tiktok.com/@kelvinsdesignbox/video/7228723476062850310?is_from_webapp=1&sender_device=pc"
-                target="_blank"
+                }
               >
-                <div className=" w-full flex justify-between items center px-5 py-3 archieves-box">
-                  <h3>Apex legends Animation</h3>
-                  <ArrowRight weight="light" size={28} fill="white" />
-                  <img
-                    src="https://res.cloudinary.com/base-data/image/upload/q_50/v1691740360/images/shoe_iipc7s.webp"
-                    alt=""
-                  />
-                </div>
-              </Link>
-              <Link
-                to="https://www.tiktok.com/@kelvinsdesignbox/video/7228587619255422214?is_from_webapp=1&sender_device=pc"
-                target="_blank"
+                Just for fun
+              </SplitWords>
+            </Tween>
+          </Reveal>
+          <div
+            className=" flex flex-wrap items-center justify-around w-full gap-5 "
+            id="archieve"
+          >
+            {archieveLinks.map((archieves, index) => (
+              <div
+                key={index}
+                className=" arc-items h-[300px] images-box p-2 rounded-none cursor-pointer"
+                onClick={() => openDisplay(index)}
               >
-                <div className=" w-full flex justify-between items center px-5 py-3 archieves-box">
-                  <h3>Doctors Office Animation</h3>
-                  <ArrowRight weight="light" size={28} fill="white" />
-                  <img
-                    src="https://res.cloudinary.com/base-data/image/upload/q_50/v1691740360/images/shoe_iipc7s.webp"
-                    alt=""
-                  />
-                </div>
-              </Link>
-              <Link
-                to="https://www.tiktok.com/@kelvinsdesignbox/video/7228590762923920646?is_from_webapp=1&sender_device=pc"
-                target="_blank"
-              >
-                <div className=" w-full flex justify-between items center px-5 py-3 archieves-box border-b-2">
-                  <h3>Room Animation</h3>
-                  <ArrowRight weight="light" size={28} fill="white" />
-                  <img
-                    src="https://res.cloudinary.com/base-data/image/upload/q_50/v1691740360/images/shoe_iipc7s.webp"
-                    alt=""
-                  />
-                </div>
-              </Link>
-            </div>
+                <Image
+                  className=" h-full object-cover grayscale hover:grayscale-0"
+                  publicId={archieves.imageUrl}
+                />
+              </div>
+            ))}
           </div>
+          {activeLinkIndex !== null && (
+            <DisplaySomething
+              toDisplay={archieveLinks[activeLinkIndex].content}
+              reverse={reverse}
+            />
+          )}
         </div>
         <section className=" flex justify-center py-10">
           <BtnDefNativeNoLink target linkTo="#exp" pointDown>

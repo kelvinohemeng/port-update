@@ -1,26 +1,34 @@
+import { delay } from "framer-motion";
 import React from "react";
-import { motion } from "framer-motion";
+import { Tween, SplitChars, Timeline, PlayState } from "react-gsap";
 
 const Preloader = () => {
-  const loaderVariants = {
-    animation: {
-      y: [0, -10, 0],
-      transition: {
-        y: {
-          repeat: Infinity,
-          duration: 0.5,
-        },
-      },
-    },
-  };
-
   return (
     <div className="preloader">
-      <motion.div
-        className="loader"
-        variants={loaderVariants}
-        animate="animation"
-      />
+      <div className=" overflow-hidden">
+        <Timeline
+          repeat
+          target={
+            <SplitChars
+              wrapper={
+                <h1
+                  className=" text-[18vw] md:text-[16vw] tracking-[0rem] md:tracking-[-0.2rem]"
+                  style={{
+                    display: "inline-block",
+                    fontWeight: "600",
+                  }}
+                />
+              }
+            >
+              Designbox
+            </SplitChars>
+          }
+        >
+          <Tween from={{ y: "500px", opacity: "0" }} />
+          <Tween to={{ y: "0", opacity: "1" }} />
+          <Tween to={{ y: "-500px", opacity: "0" }} />
+        </Timeline>
+      </div>
     </div>
   );
 };

@@ -54,7 +54,7 @@ export const Navbar = ({}) => {
             <div className="">
               <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
             </div>
-            <div>
+            <div className="hidden md:block">
               <a href="#">Download resume</a>
             </div>
           </div>

@@ -6,6 +6,7 @@ import { Image } from "cloudinary-react";
 import { BtnDef, BtnDefNative } from "../components/BtnDef";
 import { motion } from "framer-motion";
 import { GsapScrollZoom } from "../components/GsapScroll";
+import { Tween, Reveal, ScrollTrigger } from "react-gsap";
 
 const ProjectDetails = ({ projects, footer }) => {
   const params = useParams();
@@ -46,72 +47,101 @@ const ProjectDetails = ({ projects, footer }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className=" container mx-auto px-4 pb-[20vh] pt-[20vh] w-full  min-h-[300vh]"
+          className="  min-h-[300vh]"
         >
-          <div className="global-padding pt-[20vh] h-full">
-            <GsapScrollZoom>
-              <Image
-                className=" w-full aspect-video object-cover images-box p-4"
-                publicId={project.imageUrl}
-              />
-            </GsapScrollZoom>
-          </div>
-          <div className=" intro global-padding flex flex-col items-end">
-            <div className=" md:w-[50%] images-box p-8">
-              <div className="wid-tags">
-                {project.category.map((cat, index) => (
-                  <span key={index}>{cat}</span>
-                ))}
+          <div className=" pt-[20vh]">
+            <ScrollTrigger start="-200px center" end="800px center" scrub={1.5}>
+              <div className="relative overflow-hidden h-[50vh]">
+                <Tween
+                  to={{
+                    x: "-80%",
+                  }}
+                  wrapper={
+                    <div
+                      className="absolute overflow-hidden px-2 text-[18vw] md:text-[16vw]"
+                      style={{
+                        width: "max-content",
+                        display: "flex",
+                        gap: "20px",
+                        fontWeight: "600",
+                      }}
+                    />
+                  }
+                >
+                  <h1 className="text-center">{project.title}</h1>
+                  <h1 className="text-center">{project.title}</h1>
+                  <h1 className="text-center">{project.title}</h1>
+                  <h1 className="text-center">{project.title}</h1>
+                </Tween>
               </div>
-              <div className="py-8">
-                <h1 className=" heading-tags ">{project.title}</h1>
-                <p className="heading-tags-alt opacity-60">
+            </ScrollTrigger>
+            <div className=" container mx-auto px-4 gap-10 intro global-padding flex flex-col md:flex-row justify-between items-start">
+              <div className=" w-full md:max-w-[50%] images-box rounded-none p-8">
+                <div className="wid-tags pb-8">
+                  {project.category.map((cat, index) => (
+                    <span key={index}>{cat}</span>
+                  ))}
+                </div>
+
+                <div>
+                  <div className="hr-line"></div>
+                  <div className=" py-5">
+                    <p className=" text-[1.6rem]">Project Date</p>
+                    <p>{project.date}</p>
+                  </div>
+                  <div className="hr-line"></div>
+                  {project.client ? (
+                    <>
+                      <div className=" py-5">
+                        <p className=" text-[1.6rem]">Client</p>
+                        <p>{project.client}</p>
+                      </div>
+                      <div className="hr-line"></div>
+                    </>
+                  ) : (
+                    ""
+                  )}
+                  <div className=" py-5">
+                    <p className=" text-[1.6rem]">Location</p>
+                    <p>{project.location}</p>
+                  </div>
+                  <div className="hr-line"></div>
+                </div>
+                <div className="py-8">
+                  <BtnDefNative target showIcon linkTo={project.live}>
+                    {project.status == "online"
+                      ? "explore live site"
+                      : "not online yet"}
+                  </BtnDefNative>
+                </div>
+              </div>
+              <div className="md:max-w-[50%] ">
+                <p className="heading-tags-alt opacity-60 max-w-[600px]">
                   {project.description}
                 </p>
               </div>
-              <div>
-                <div className="hr-line"></div>
-                <div className=" py-5">
-                  <p className=" text-[1.6rem]">Project Date</p>
-                  <p>{project.date}</p>
-                </div>
-                <div className="hr-line"></div>
-                <div className=" py-5">
-                  <p className=" text-[1.6rem]">Client</p>
-                  <p>{project.client}</p>
-                </div>
-                <div className="hr-line"></div>
-                <div className=" py-5">
-                  <p className=" text-[1.6rem]">Location</p>
-                  <p>{project.location}</p>
-                </div>
-                <div className="hr-line"></div>
-              </div>
-              <div className="py-8">
-                <BtnDefNative target showIcon linkTo={project.live}>
-                  explore live site
-                </BtnDefNative>
-              </div>
             </div>
           </div>
-          <section className="global-padding w-full flex flex-col justify-center md:justify-between items-start gap-5">
-            {project.images.map((image, index) => (
-              <div className=" p-4 flex items-center justify-center w-full h-full images-box ">
-                <Image
-                  key={index}
-                  className=" md:max-w-[580px] h-auto"
-                  publicId={image}
-                />
-              </div>
-            ))}
-          </section>
-          <div className=" flex gap-5">
-            {currentIndex > 0 && (
-              <BtnDef onClick={goToPreviousProject}>Prvevious</BtnDef>
-            )}
-            {currentIndex < projects.length - 1 && (
-              <BtnDef onClick={goToNextProject}>next</BtnDef>
-            )}
+          <div className="container mx-auto px-4 pb-[20vh]">
+            <section className="global-padding w-full flex flex-col justify-center md:justify-between items-start gap-5">
+              {project.images.map((image, index) => (
+                <div className=" p-4 flex items-center justify-center w-full h-full images-box ">
+                  <Image
+                    key={index}
+                    className=" md:max-w-[580px] h-auto"
+                    publicId={image}
+                  />
+                </div>
+              ))}
+            </section>
+            <div className=" flex gap-5 justify-between">
+              {currentIndex > 0 && (
+                <BtnDef onClick={goToPreviousProject}>Prvevious project</BtnDef>
+              )}
+              {currentIndex < projects.length - 1 && (
+                <BtnDef onClick={goToNextProject}>Next project</BtnDef>
+              )}
+            </div>
           </div>
         </motion.div>
         {footer}
