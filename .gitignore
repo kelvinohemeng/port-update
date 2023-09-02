@@ -26,6 +26,3 @@ dist-ssr
 
 .env.production
 .env.development
-
-projectData.json
-selectedProjectData.json
