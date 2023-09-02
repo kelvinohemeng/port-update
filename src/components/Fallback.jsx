@@ -7,29 +7,28 @@ const Fallback = () => {
 
   useEffect(() => {
     const loadingBar = document.querySelector(".logo");
-    gsap.set(loadingBar, { scale: 0.8 });
+    gsap.set(loadingBar, { scale: 0.5 });
     const tl = gsap.timeline({
       repeat: -1,
     });
     tl.from(loadingBar, {
-      x: "-200%",
+      x: "-250%",
       duration: 1,
-      rotate: -250,
+      rotate: -360,
     })
       .to(loadingBar, {
         x: "0%",
+        rotate: 0,
         duration: 1,
       })
-      .to(
-        loadingBar,
-        {
-          scale: 1,
-        },
-        1
-      )
       .to(loadingBar, {
-        scale: 15,
-        opacity: 0,
+        rotate: -50,
+        duration: 1,
+      })
+      .to(loadingBar, {
+        x: "250%",
+        rotate: 250,
+        duration: 0.5,
       });
 
     setTimeout(() => {
