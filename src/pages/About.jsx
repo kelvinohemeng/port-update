@@ -160,11 +160,7 @@ const About = ({ footer }) => {
               innovation into every project. Let's collaborate and craft
               something extraordinary together! 🤝✨
             </p>
-            <BtnDef
-              target
-              linkTo="https://drive.google.com/file/d/1vIBuV7jen7agCMaCiXBydLlXMN52uYsr/view?usp=share_link"
-              showIcon
-            >
+            <BtnDef target linkTo="https://bit.ly/resume-kelvin" showIcon>
               Download Resume
             </BtnDef>
           </div>

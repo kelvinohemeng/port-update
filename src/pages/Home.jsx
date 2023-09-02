@@ -311,7 +311,7 @@ const Home = ({ footer, selected }) => {
                       Read more
                     </BtnDef>
                     <BtnDef
-                      linkTo="https://drive.google.com/file/d/1vIBuV7jen7agCMaCiXBydLlXMN52uYsr/view?usp=share_link"
+                      linkTo="https://bit.ly/resume-kelvin"
                       showIcon
                       target
                     >

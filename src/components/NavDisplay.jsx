@@ -49,10 +49,7 @@ const NavDisplay = ({ isOpen, setIsOpen }) => {
           <span></span>
         </div>
         <div className=" nav-btns">
-          <BtnDefNativeNavLink
-            target
-            linkTo="https://drive.google.com/file/d/1vIBuV7jen7agCMaCiXBydLlXMN52uYsr/view?usp=share_link"
-          >
+          <BtnDefNativeNavLink target linkTo="https://bit.ly/resume-kelvin">
             Resume
           </BtnDefNativeNavLink>
           <span></span>
