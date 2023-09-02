@@ -7,7 +7,7 @@ import { BtnDef } from "./BtnDef";
 import { ArrowElbowDownRight } from "@phosphor-icons/react";
 gsap.registerPlugin(ScrollTrigger);
 
-export const Footer = () => {
+const Footer = () => {
   const ref = useRef(null);
   const containerRef = useRef(null);
 
@@ -59,14 +59,14 @@ export const Footer = () => {
     // };
   }, []);
   return (
-    <footer className="  w-screen h-screen py-[5vh] flex items-center overflow-hidden">
+    <footer className="footer  w-screen  h-screen py-[5vh] flex items-center overflow-hidden">
       <div
         ref={containerRef}
-        className="container w-[95%] md:w-[80%]  h-[80%] mx-auto px-8 pr-10 md:pr-0 md:px-0  flex justify-center items-center  "
+        className="container  w-[95%] md:w-[80%]  h-[80%] mx-auto px-8  md:px-0  flex justify-center items-center  "
       >
         <div
           ref={ref}
-          className="w-full px-4 h-full flex flex-col p-8 justify-between items-center bg-white  "
+          className="fot-fot w-full px-4 h-full flex flex-col p-8 justify-between items-center "
         >
           <div className=" flex flex-col md:flex-row items-center gap-8 md:justify-between w-full">
             <div className="">
@@ -77,13 +77,13 @@ export const Footer = () => {
                 Portfolio 2022-2023
               </p>
             </div>
-            <div className=" hidden md:block">Designbox</div>
+            <p className=" hidden md:block">Designbox</p>
             <div>
               <p className="text-sm md:text-1xl text-center md:text-right ">
                 Available for freelance works
               </p>
               <p className="text-sm md:text-1xl text-center md:text-right ">
-                October 2023
+                Designed and developed by me
               </p>
             </div>
           </div>
@@ -91,7 +91,7 @@ export const Footer = () => {
             <h1 className="text">
               Convinced?
               <span className="hov-span">
-                <a href="/" target="_blank">
+                <a href="mailto:kelvinohemeng59@gmail.com" target="_blank">
                   LET'S CONNECT
                 </a>
               </span>
@@ -99,8 +99,8 @@ export const Footer = () => {
             <div className=" footer-cta hidden md:flex flex-col items-center">
               <p>Drop me an email</p>
               <Link
-                to="/"
-                className="  flex gap-3  items-center hover:opacity-50 transition"
+                to="mailto:kelvinohemeng59@gmail.com"
+                className="  flex gap-3  items-center transition"
               >
                 <ArrowElbowDownRight width={15} weight="fill" fill="black" />
                 kelvinohemeng59@gmail.com
@@ -108,7 +108,7 @@ export const Footer = () => {
             </div>
             <div className=" footer-cta flex md:hidden flex-col items-center">
               <Link
-                to="/"
+                to="mailto:kelvinohemeng59@gmail.com"
                 className="  flex gap-3 items-center hover:opacity-50 transition"
               >
                 <ArrowElbowDownRight width={15} weight="fill" fill="black" />
@@ -120,10 +120,10 @@ export const Footer = () => {
                 <li>
                   <BtnDef
                     target
-                    linkTo="https://www.instagram.com/kelvins_designbox/"
+                    linkTo="https://github.com/kelvinohemeng"
                     showIcon
                   >
-                    instagram
+                    Github
                   </BtnDef>
                 </li>
                 <li>
@@ -160,7 +160,7 @@ export const Footer = () => {
             </div>
           </div>
           <div className="w-full flex justify-center ">
-            <p className=" text-sm md:text-1xl text-center  opacity-30 ">
+            <p className=" text-sm md:text-1xl text-center  opacity-70 ">
               <a href="#top">Back to top</a> <br />© 2023 All rights reserved.
             </p>
           </div>
@@ -169,3 +169,4 @@ export const Footer = () => {
     </footer>
   );
 };
+export default Footer;

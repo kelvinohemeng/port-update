@@ -34,10 +34,10 @@ export const Navbar = ({}) => {
   }, [lastScrollY]);
   const navClasses = `navigation ${hideNav ? `hide-nav` : ""}`;
   return (
-    <nav className=" nav-bar fixed h-full ">
+    <nav className=" nav-bar fixed h-full bg-black ">
       <div ref={ref} className={navClasses}>
-        <div className=" relative flex items-center  w-full">
-          <div className=" relative container mx-auto  p-5 flex items-center gap-2 justify-between">
+        <div className=" relative flex items-center  w-full h-ful">
+          <div className=" relative container mx-auto  p-5 flex items-center gap-2 justify-between bg-white bg-opacity-10">
             <div className=" flex items-center gap-2">
               <Link to="/">
                 <Image

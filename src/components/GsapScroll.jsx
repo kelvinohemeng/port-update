@@ -29,10 +29,12 @@ export const GsapScrollZoom = ({ children }) => {
         // scale: 1,
         scale: 1.75,
         duration: 3,
+        opacity: 0,
       })
       .to(element, {
         scale: 1,
         duration: 1.5,
+        opacity: 1,
       });
   }, []);
   return (

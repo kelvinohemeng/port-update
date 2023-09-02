@@ -49,13 +49,20 @@ const NavDisplay = ({ isOpen, setIsOpen }) => {
           <span></span>
         </div>
         <div className=" nav-btns">
-          <BtnDefNativeNavLink linkTo="/notfound">Resume</BtnDefNativeNavLink>
+          <BtnDefNativeNavLink
+            target
+            linkTo="https://drive.google.com/file/d/1vIBuV7jen7agCMaCiXBydLlXMN52uYsr/view?usp=share_link"
+          >
+            Resume
+          </BtnDefNativeNavLink>
           <span></span>
         </div>
       </div>
-      <div className="images-box flex justify-between items-center h-[50px] w-full container mx-auto px-4 my-5">
-        <p>kelvin's portfolio</p>
-        <p>August 2023</p>
+      <div className="images-box flex flex-col md:flex-row space-y-2 justify-between md:items-center h-fit py-3 w-full container mx-auto px-4 my-5">
+        <p>Designed and developed by me</p>
+        <a href="mailto:kelvinohemeng59@gmail.com" className=" animate-pulse">
+          <p>Contact me</p>
+        </a>
       </div>
     </div>
   );

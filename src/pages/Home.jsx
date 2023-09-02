@@ -12,7 +12,6 @@ import {
 import { motion } from "framer-motion";
 import transition from "../components/transition.jsx";
 import VanillaTilt from "vanilla-tilt";
-import { selectedProjectData } from "../projectData.js";
 import { gsap } from "gsap";
 import {
   GsapScrollX,
@@ -20,19 +19,18 @@ import {
   GsapScrollZoom,
 } from "../components/GsapScroll";
 // import { gsap } from "gsap";
-
-import { Link } from "react-router-dom";
 import {
   PlayCircle,
   ArrowElbowDownRight,
   ArrowRight,
   Cube,
 } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 import { BtnDefNative, BtnDef, BtnDefNativeNoLink } from "../components/BtnDef";
 import { DisplaySomething } from "../components/DisplaySomething.jsx";
+import { PortArc } from "../components/PortArc.jsx";
 
-const Home = ({ footer }) => {
-  const selected = selectedProjectData;
+const Home = ({ footer, selected }) => {
   const [position, setPosition] = useState({ x: 0 });
   const [activeLinkIndex, setActiveLinkIndex] = useState(null);
   const openDisplay = (index) => {
@@ -70,27 +68,27 @@ const Home = ({ footer }) => {
     },
     {
       imageUrl:
-        "https://res.cloudinary.com/base-data/image/upload/v1693439618/images/shoe2-image.png",
+        "https://res.cloudinary.com/base-data/image/upload/q_50/v1693439618/images/shoe2-image.jpg",
       content: [
         {
           video:
-            "https://res.cloudinary.com/base-data/video/upload/v1693439641/images/shoe2-video.mp4",
+            "https://res.cloudinary.com/base-data/video/upload/q_30/v1693439641/images/shoe2-video.mp4",
         },
       ],
     },
     {
       imageUrl:
-        "https://res.cloudinary.com/base-data/image/upload/v1693438903/images/midsem-202142593_sahxnw.png",
+        "https://res.cloudinary.com/base-data/image/upload/q_30/v1693438903/images/midsem-202142593_sahxnw.jpg",
       content: [
         {
           image:
-            "https://res.cloudinary.com/base-data/image/upload/v1693438903/images/midsem-202142593_sahxnw.png",
+            "https://res.cloudinary.com/base-data/image/upload/q_30/v1693438903/images/midsem-202142593_sahxnw.jpg",
         },
       ],
     },
     {
       imageUrl:
-        "https://res.cloudinary.com/base-data/image/upload/v1693439154/images/isometric.png",
+        "https://res.cloudinary.com/base-data/image/upload/q_30/v1693439154/images/isometric.jpg",
       content: [
         {
           video:
@@ -100,19 +98,69 @@ const Home = ({ footer }) => {
     },
     {
       imageUrl:
-        "https://res.cloudinary.com/base-data/image/upload/v1691740360/images/shoe_iipc7s.webp",
+        "https://res.cloudinary.com/base-data/image/upload/q_40/v1691740360/images/shoe_iipc7s.webp",
       content: [
         {
           image:
-            "https://res.cloudinary.com/base-data/image/upload/v1691740360/images/shoe_iipc7s.webp",
+            "https://res.cloudinary.com/base-data/image/upload/q_40/v1691740360/images/shoe_iipc7s.webp",
         },
       ],
     },
     {
-      imageUrl: "/images/recent1.webp",
-      content: [{ image: "/images/recent1.webp" }],
+      imageUrl:
+        "https://res.cloudinary.com/base-data/image/upload/q_40/v1691740521/images/recent1.webp",
+      content: [
+        {
+          image:
+            "https://res.cloudinary.com/base-data/image/upload/q_40/v1691740521/images/recent1.webp",
+        },
+      ],
+    },
+    {
+      imageUrl:
+        "https://res.cloudinary.com/base-data/image/upload/q_20/v1693439166/images/0129_dwre2t.jpg",
+      content: [
+        {
+          video:
+            "https://res.cloudinary.com/base-data/video/upload/q_40/v1693439136/images/202142593_p1yjdl.mp4",
+        },
+      ],
     },
   ];
+  const portArc = [
+    {
+      imageUrl:
+        "https://res.cloudinary.com/base-data/image/upload/v1691740801/images/portfolio1_uwnn4s.webp",
+      text: "Portfolio V.0",
+      Url: "https://kelvin-studio.netlify.app/#",
+    },
+    {
+      imageUrl:
+        "https://res.cloudinary.com/base-data/image/upload/v1691740494/images/portfolio2_cti329.webp",
+      text: "Portfolio V.2",
+      Url: "https://officialkelvinohemeng.netlify.app/",
+    },
+    {
+      imageUrl:
+        "https://res.cloudinary.com/base-data/image/upload/q_50/v1693600003/images/recent-port_qvwied.gif",
+      text: "Portfolio V.2.3",
+      Url: "https://kelvinohemeng.vercel.app/",
+    },
+  ];
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      const slideImage = imgRef.current;
+
+      const x = (event.clientX * 500) / window.innerHeight + "px";
+
+      slideImage.style.left = x;
+      slideImage.style.transform = `translate(${x},)`;
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
   useEffect(() => {
     const scrubUp = document.querySelectorAll(".ddp-text");
     scrubUp.forEach((srubb) => {
@@ -157,18 +205,6 @@ const Home = ({ footer }) => {
       easing: "cubic-bezier(.03,.98,.52,.99)",
       perspective: 1000,
     });
-    const handleMouseMove = (event) => {
-      const slideImage = imgRef.current;
-
-      const x = (event.clientX * 500) / window.innerHeight + "px";
-
-      slideImage.style.left = x;
-      slideImage.style.transform = `translate(${x},)`;
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
   });
   useEffect(() => {
     const registerVideo = (bound, video) => {
@@ -195,8 +231,6 @@ const Home = ({ footer }) => {
   });
   return (
     <>
-      {/* {navDisplay ? navDisplay : ""} */}
-
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -214,7 +248,7 @@ const Home = ({ footer }) => {
                 <SplitChars
                   wrapper={
                     <h1
-                      className=" text-[18vw] md:text-[16vw] tracking-[0rem] md:tracking-[-0.2rem]"
+                      className=" text-[16vw] md:text-[16vw] tracking-[0rem] md:tracking-[-0.2rem]"
                       style={{
                         display: "inline-block",
                         fontWeight: "600",
@@ -225,11 +259,16 @@ const Home = ({ footer }) => {
                   Designbox
                 </SplitChars>
               </Tween>
+              <div className=" flex justify-center my-10 opacity-50">
+                <BtnDefNative linkTo="#next" pointDown>
+                  keep scrolling
+                </BtnDefNative>
+              </div>
             </Reveal>
           </div>
-          <div className=" pt-[20vh] md:pt-0">
+          <div className=" pt-[20vh] mx-auto md:pt-0" id="next">
             <GsapScrollZoom>
-              <div className="flex flex-col md:flex-row justify-center h-screen  md:h-full  bg-gray-300">
+              <div className="flex flex-col md:flex-row justify-center h-full  md:h-[90vh] max-w-[90vw]  bg-gray-300">
                 <div className="left-abt flex flex-col gap-8 justify-between flex-1 p-4">
                   <ScrollTrigger
                     start="-200px center"
@@ -271,12 +310,22 @@ const Home = ({ footer }) => {
                     <BtnDef linkTo="/about" showIcon>
                       Read more
                     </BtnDef>
-                    <BtnDef linkTo="/about" showIcon>
+                    <BtnDef
+                      linkTo="https://drive.google.com/file/d/1vIBuV7jen7agCMaCiXBydLlXMN52uYsr/view?usp=share_link"
+                      showIcon
+                      target
+                    >
                       Download resume
                     </BtnDef>
                   </div>
                 </div>
-                <div className="prof-img flex-1 md:h-[80vh] "></div>
+                <div className="prof-img h-full flex-1 ">
+                  <Image
+                    className=" w-full h-full object-cover"
+                    quality="50"
+                    publicId="https://res.cloudinary.com/base-data/image/upload/q_50/v1693450299/images/about-img.jpg"
+                  />
+                </div>
               </div>
             </GsapScrollZoom>
           </div>
@@ -290,11 +339,11 @@ const Home = ({ footer }) => {
                 }}
                 wrapper={
                   <div
-                    className="absolute overflow-hidden px-2 text-[18vw] md:text-[16vw]"
+                    className="absolute scroll-text overflow-hidden p-2 text-[18vw] md:text-[12vw]"
                     style={{
                       width: "max-content",
                       display: "flex",
-                      gap: "20px",
+                      gap: "50px",
                       fontWeight: "600",
                     }}
                   />
@@ -309,7 +358,7 @@ const Home = ({ footer }) => {
           </ScrollTrigger>
         </section>
 
-        <section className=" global-padding">
+        <section className=" global-padding hidden md:block">
           <div id="bound-three" className="scroll-bound">
             <div className="content container mx-auto px-4 flex-col md:flex-row md:justify-between md:flex-end">
               <div className="vid flex justify-start">
@@ -318,29 +367,48 @@ const Home = ({ footer }) => {
                   muted
                   preload
                 >
-                  <source
-                    className=" block md:hidden"
-                    src="https://res.cloudinary.com/base-data/video/upload/c_scale,e_noise:17,q_60,w_428/v1693439142/images/0001-0130_addhza.ogv"
-                  />
-                  <source
-                    className=" block md:hidden"
-                    src="https://res.cloudinary.com/base-data/video/upload/c_scale,e_noise:17,q_60,w_428/v1693439142/images/0001-0130_addhza.mp4"
-                  />
-                  <source src="https://res.cloudinary.com/base-data/video/upload/c_scale,e_noise:17,q_60,w_428/v1693439142/images/0001-0130_addhza.webm" />
+                  <source src="https://res.cloudinary.com/base-data/video/upload/c_scale,e_noise:17,q_60,w_428/v1693439142/images/0001-0130_addhza.ogv" />
+
+                  <source src="https://res.cloudinary.com/base-data/video/upload/c_scale,e_noise:17,q_60,w_428/v1693439142/images/0001-0130_addhza.mp4" />
                 </video>
               </div>
               <div className=" ddp">
                 <div className="ddp-text  h-full flex items-end justify-end">
                   <h3 className="heading-tags-alt relative text-left md:max-w-[70%] cursor-pointer">
-                    A box where i have carefully horned my talent and skills,
-                    coming to form the ultinmate box - designbox
+                    A skillfully curated space where my talents and expertise
+                    converge, giving rise to the epitome of creativity -
+                    DesignBox.
                   </h3>
                 </div>
               </div>
             </div>
           </div>
         </section>
-
+        <section className=" global-padding block md:hidden">
+          <div className="content container space-y-5 mx-auto px-4 flex-col md:flex-row md:justify-between md:flex-end">
+            <div className="vid flex justify-start">
+              <video
+                className=" object-cover w-screen h-full grayscale-[1]"
+                muted
+                preload="auto"
+                autoPlay
+                loop
+              >
+                <source src="https://res.cloudinary.com/base-data/video/upload/c_scale,e_noise:17,q_60,w_428/v1693439142/images/0001-0130_addhza.mp4" />
+                <source src="https://res.cloudinary.com/base-data/video/upload/c_scale,e_noise:17,q_60,w_428/v1693439142/images/0001-0130_addhza.webm" />
+              </video>
+            </div>
+            <div className=" ddp">
+              <div className="ddp-text  h-full flex items-end justify-end">
+                <h3 className="heading-tags-alt relative text-left md:max-w-[70%] cursor-pointer">
+                  A box where i have carefully horned my talent and skills,
+                  coming to form the ultinmate box - designbox
+                </h3>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div className="container mx-auto px-4 w-full bg-white h-[0.1px] bg-opacity-50"></div>
         {/* services section */}
         <section className=" global-padding">
           <div className="container flex flex-col md:flex-row mx-auto px-4 gap-20 ">
@@ -361,19 +429,24 @@ const Home = ({ footer }) => {
                   <h2 className="">Frontend Development</h2>
                 </div>
                 <p className=" text-sm">
-                  Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Doloribus, excepturi.
+                  Building extensive web application with the latest tools, and
+                  a knack for best practise implementation
                 </p>
                 <div>
                   <div className="wid-tags">
+                    <span>CSS</span>
+                    <span>HTML 5</span>
                     <span>tailwind</span>
                     <span>Scss</span>
                     <span>HTML</span>
                     <span>CSS 3</span>
                     <span>React</span>
                     <span>GSAP</span>
-                    <span>JavaScript</span>
+                    <span>Framer motion</span>
+                    <span>JavaScript(ES6+)</span>
                     <span>threejs</span>
+                    <span>Git</span>
+                    <span>Github</span>
                   </div>
                 </div>
               </div>
@@ -383,8 +456,9 @@ const Home = ({ footer }) => {
                   <h2 className=" ">Website with CMS</h2>
                 </div>
                 <p className=" text-sm">
-                  Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Doloribus, excepturi.
+                  As a multidiciplinary profession learning new tools to boost
+                  productivity, using cms like framer and webflow can really
+                  help speed up both the design and development
                 </p>
                 <div>
                   <div className="wid-tags">
@@ -401,8 +475,8 @@ const Home = ({ footer }) => {
                   <h2 className=" ">Graphic Design</h2>
                 </div>
                 <p className=" text-sm">
-                  Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Doloribus, excepturi.
+                  With my development skill, i also posses a strong knowledge
+                  for design, as u have design two brands and more
                 </p>
                 <div>
                   <div className="wid-tags">
@@ -411,6 +485,7 @@ const Home = ({ footer }) => {
                     <span>Page Design</span>
                     <span>Web Design</span>
                     <span>Consulting</span>
+                    <span>Adobe Creative Suite</span>
                   </div>
                 </div>
               </div>
@@ -420,14 +495,16 @@ const Home = ({ footer }) => {
                   <h2 className=" ">Motion Design</h2>
                 </div>
                 <p className=" text-sm">
-                  Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Doloribus, excepturi.
+                  I just happen to love the world of 3d and motion graphics, and
+                  i have merged this knowledge with all fields of expertise
                 </p>
                 <div>
                   <div className="wid-tags">
                     <span>VFX</span>
                     <span>3D animation</span>
                     <span>Blender</span>
+                    <span>threejs</span>
+                    <span>after effect</span>
                   </div>
                 </div>
               </div>
@@ -438,7 +515,10 @@ const Home = ({ footer }) => {
         <div className=" h-full global-padding" id="projects">
           <GsapScrollXPin>
             {selected.map((item, index) => (
-              <div className="images-box p-2 rounded-none">
+              <div
+                className="images-box p-2 
+              "
+              >
                 <Link
                   key={index}
                   to={`/projects/${item.title}`}
@@ -453,7 +533,6 @@ const Home = ({ footer }) => {
                   />
                   <div className="flex-1 flex flex-col p-10">
                     <Reveal
-                      repeat
                       trigger={
                         <div className="  flex flex-col md:block items-start justify-end md:justify-between h-full  space-y-2" />
                       }
@@ -504,12 +583,12 @@ const Home = ({ footer }) => {
           </div>
         </div>
 
-        <section className=" global-padding">
+        <section className=" global-padding hidden md:block">
           <div id="bound-four" className="scroll-bound">
             <div className="content container mx-auto px-4 flex-col md:flex-row-reverse md:justify-between md:flex-end">
               <div className="vid flex justify-end ">
                 <video className=" object-cover " muted preload>
-                  <source src="https://res.cloudinary.com/base-data/video/upload/c_scale,w_600/v1693160126/0827_fhzd3a.mp4" />
+                  <source src="https://res.cloudinary.com/base-data/video/upload/c_scale,q_40,w_736/v1693160126/0827_fhzd3a.mp4" />
                 </video>
               </div>
               <div className=" ddp flex flex-col gap-10 items-center  justify-end w-full h-full  ">
@@ -525,26 +604,63 @@ const Home = ({ footer }) => {
                   />
                   <div className="ddp-text space-y-5">
                     <h3 className=" heading-tags-alt relative text-left   cursor-pointer">
-                      A box where i have carefully horned my talent and skills,
-                      coming to form the ultinmate box - designbox
+                      What i mostly do on my free time, or when the meal is
+                      ready. <br />
+                      <em className=" text-xl">
+                        watching anime, playing video games, or learning
+                        something new
+                      </em>
                     </h3>
-                    <RevealNative className="cursor-pointer">
+                    <div className=" flex flex-col md:flex-row gap-5">
                       <BtnDefNative linkTo="#archieves" pointDown>
                         Archieves
                       </BtnDefNative>
-                    </RevealNative>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
+        <section className=" global-padding block md:hidden">
+          <div className="content container space-y-5 mx-auto px-4 flex-col md:flex-row md:justify-between md:flex-end">
+            <div className="vid flex justify-start">
+              <video
+                className=" object-cover w-screen h-full grayscale-[1]"
+                muted
+                preload="auto"
+                autoPlay
+                loop
+              >
+                <source src="https://res.cloudinary.com/base-data/video/upload/c_scale,q_40,w_736/v1693160126/0827_fhzd3a.mp4" />
+              </video>
+            </div>
+            <div className=" ddp">
+              <div className="ddp-text space-y-5">
+                <h3 className=" heading-tags-alt relative text-left   cursor-pointer">
+                  What i mostly do on my free time, or when the meal is ready.
+                  <br />
+                  <em className=" text-xl">
+                    watching anime, playing video games, or learning something
+                    new
+                  </em>
+                </h3>
+                <RevealNative className="cursor-pointer">
+                  <BtnDefNative linkTo="#archieves" pointDown>
+                    Archieves
+                  </BtnDefNative>
+                </RevealNative>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div className="container mx-auto px-4 w-full bg-white h-[0.1px] bg-opacity-50"></div>
 
         <div
-          className=" container mx-auto px-4  h-full flex flex-col items-center justify-stretch "
+          className=" container mx-auto px-4  h-full flex flex-col items-center justify-stretch global-padding"
           id="archieves"
         >
-          <Reveal repeat trigger={<div className=" text-left" />}>
+          <Reveal trigger={<div className=" text-left" />}>
             <Tween
               from={{ y: "200px", opacity: "0" }}
               stagger={0.1}
@@ -553,7 +669,7 @@ const Home = ({ footer }) => {
               <SplitWords
                 wrapper={
                   <h1
-                    className=" max-w-max  text-[14vw] mx-2 md:text-[12vw] tracking-[0rem] md:tracking-[-0.2rem]"
+                    className=" max-w-max  text-[18vw] mx-2 md:text-[18vw] tracking-[0rem] md:tracking-[-0.2rem]"
                     style={{
                       fontWeight: "600",
                       gap: "50px",
@@ -562,9 +678,12 @@ const Home = ({ footer }) => {
                   />
                 }
               >
-                Just for fun
+                Playground
               </SplitWords>
             </Tween>
+            <div className="flex justify-center pb-10">
+              <BtnDefNativeNoLink>click to view</BtnDefNativeNoLink>
+            </div>
           </Reveal>
           <div
             className=" flex flex-wrap items-center justify-around w-full gap-5 "
@@ -573,7 +692,7 @@ const Home = ({ footer }) => {
             {archieveLinks.map((archieves, index) => (
               <div
                 key={index}
-                className=" arc-items h-[300px] images-box p-2 rounded-none cursor-pointer"
+                className=" arc-items h-[300px] images-box p-2  cursor-pointer"
                 onClick={() => openDisplay(index)}
               >
                 <Image
@@ -590,8 +709,39 @@ const Home = ({ footer }) => {
             />
           )}
         </div>
+        <section className="global-padding container mx-auto px-4">
+          <Reveal trigger={<div className=" text-center" />}>
+            <Tween
+              from={{ y: "200px", opacity: "0" }}
+              stagger={0.1}
+              wrapper={<div className="overflow-hidden px-2" />}
+            >
+              <SplitWords
+                wrapper={
+                  <h1
+                    className=" max-w-max  heading-tags mx-2 tracking-[0rem] md:tracking-[-0.2rem]"
+                    style={{
+                      fontWeight: "600",
+                      gap: "50px",
+                      display: "inline-block",
+                    }}
+                  />
+                }
+              >
+                Those that came before
+              </SplitWords>
+            </Tween>
+          </Reveal>
+          <div>
+            {portArc.map((arc, index) => (
+              <div key={index}>
+                <PortArc src={arc.imageUrl} text={arc.text} linkTo={arc.Url} />
+              </div>
+            ))}
+          </div>
+        </section>
         <section className=" flex justify-center py-10">
-          <BtnDefNativeNoLink target linkTo="#exp" pointDown>
+          <BtnDefNativeNoLink target linkTo="#footer" pointDown>
             Reach out
           </BtnDefNativeNoLink>
         </section>

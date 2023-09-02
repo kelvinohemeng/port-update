@@ -11,6 +11,7 @@ export const DisplaySomething = ({ toDisplay, reverse }) => {
         {toDisplay[0].image ? (
           <Image
             className=" w-full md:max-w-[500px]"
+            quality="50"
             publicId={toDisplay[0].image}
           />
         ) : (
@@ -18,6 +19,7 @@ export const DisplaySomething = ({ toDisplay, reverse }) => {
             className=" w-full md:max-w-[500px]"
             controls
             autoPlay
+            quality="50"
             publicId={toDisplay[0].video}
             controlsList="nodownload"
           />

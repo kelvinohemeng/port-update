@@ -1,9 +1,14 @@
-import React from "react";
-import Home from "../pages/Home";
-import About from "../pages/About";
-import { Footer } from "./Footer";
-import ProjectDetails from "../pages/projectDetails";
-import ProjectPage from "../pages/projectPage";
+import React, { lazy } from "react";
+// import Home from "../pages/Home";
+// import About from "../pages/About";
+const Home = lazy(() => import("../pages/Home"));
+const About = lazy(() => import("../pages/About"));
+const ProjectPage = lazy(() => import("../pages/projectPage"));
+const ProjectDetails = lazy(() => import("../pages/ProjectDetails"));
+const Footer = lazy(() => import("./Footer"));
+// import { Footer } from "./Footer";
+// import ProjectDetails from "../pages/projectDetails";
+// import ProjectPage from "../pages/projectPage";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { CloudinaryContext } from "cloudinary-react";
@@ -41,5 +46,9 @@ function AnimatedRoute({ projectData, selectedProjects }) {
     </CloudinaryContext>
   );
 }
-
+function wait(time) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, time);
+  });
+}
 export default AnimatedRoute;

@@ -12,17 +12,19 @@ function App() {
   const [selectedProjects, setSelectedProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    window.onload = setIsLoading(false);
-
     fetch("https://kelvinohemeng.github.io/api-endpoint/projectData.json")
       .then((response) => response.json())
       .then((data) => {
         setProjects(data.projects);
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 5000);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 5000);
       });
   }, []);
 
@@ -44,10 +46,10 @@ function App() {
             quality="auto:good"
           >
             <Navbar />
-            <main className="w-full bg-white overscroll-x-contain">
+            <main className="w-full bg-white ">
               <AnimatedRoute
                 projectData={projects}
-                selectedProjects={selectedProjects}
+                selectedProjects={projects}
               />
             </main>
           </CloudinaryContext>

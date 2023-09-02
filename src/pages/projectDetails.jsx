@@ -1,18 +1,15 @@
 import transition from "../components/transition";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { selectedProjectData } from "../projectData.js";
 import { Image } from "cloudinary-react";
 import { BtnDef, BtnDefNative } from "../components/BtnDef";
 import { motion } from "framer-motion";
-import { GsapScrollZoom } from "../components/GsapScroll";
 import { Tween, Reveal, ScrollTrigger } from "react-gsap";
 
-const ProjectDetails = ({ projects, footer }) => {
+const ProjectDetails = ({ projects, selected, footer }) => {
   const params = useParams();
   const navigate = useNavigate();
   const projectId = params.projectId;
-  const selected = selectedProjectData;
 
   const project = projects.find((project) => project.title === projectId);
   const select = selected.find((selects) => selects.title === projectId);
@@ -49,19 +46,20 @@ const ProjectDetails = ({ projects, footer }) => {
           exit={{ opacity: 0 }}
           className="  min-h-[300vh]"
         >
-          <div className=" pt-[20vh]">
+          <div className=" pt-[20vh] ">
             <ScrollTrigger start="-200px center" end="800px center" scrub={1.5}>
-              <div className="relative overflow-hidden h-[50vh]">
+              <div className="relative overflow-hidden flex items-center h-[50vh]">
                 <Tween
                   to={{
                     x: "-80%",
                   }}
                   wrapper={
                     <div
-                      className="absolute overflow-hidden px-2 text-[18vw] md:text-[16vw]"
+                      className="absolute overflow-hidden px-2 text-[15vw] md:text-[10vw]"
                       style={{
                         width: "max-content",
                         display: "flex",
+                        alignItems: "center",
                         gap: "20px",
                         fontWeight: "600",
                       }}
@@ -72,11 +70,13 @@ const ProjectDetails = ({ projects, footer }) => {
                   <h1 className="text-center">{project.title}</h1>
                   <h1 className="text-center">{project.title}</h1>
                   <h1 className="text-center">{project.title}</h1>
+                  <h1 className="text-center">{project.title}</h1>
+                  <h1 className="text-center">{project.title}</h1>
                 </Tween>
               </div>
             </ScrollTrigger>
             <div className=" container mx-auto px-4 gap-10 intro global-padding flex flex-col md:flex-row justify-between items-start">
-              <div className=" w-full md:max-w-[50%] images-box rounded-none p-8">
+              <div className=" w-full md:max-w-[50%] images-box p-8">
                 <div className="wid-tags pb-8">
                   {project.category.map((cat, index) => (
                     <span key={index}>{cat}</span>
@@ -116,7 +116,7 @@ const ProjectDetails = ({ projects, footer }) => {
                 </div>
               </div>
               <div className="md:max-w-[50%] ">
-                <p className="heading-tags-alt opacity-60 max-w-[600px]">
+                <p className="heading-tags-alt max-w-[600px]">
                   {project.description}
                 </p>
               </div>

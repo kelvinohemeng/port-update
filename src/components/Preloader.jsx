@@ -1,34 +1,51 @@
-import { delay } from "framer-motion";
-import React from "react";
-import { Tween, SplitChars, Timeline, PlayState } from "react-gsap";
+import React, { useEffect, useState } from "react";
+import { gsap } from "gsap";
+// import "./Preloader.css"; // Import your CSS file for styling
 
 const Preloader = () => {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const loadingBar = document.querySelector(".loading-bar");
+
+    const tl = gsap.timeline({
+      repeat: 0, // No need for repetition
+      onComplete: () => {
+        setProgress(100); // Ensure the progress reaches 100 at the end
+      },
+    });
+
+    // Animate the loading bar's width from 0% to 100% over 5 seconds
+    tl.to(loadingBar, { width: "100%", duration: 5, ease: "linear" });
+
+    // Create a custom onUpdate function to incrementally update progress
+    function updateProgress() {
+      setProgress(
+        Math.round(
+          (loadingBar.offsetWidth / loadingBar.parentElement.offsetWidth) * 100
+        )
+      );
+    }
+
+    // Update the progress value incrementally from 0 to 100 in smaller steps
+    gsap.to(loadingBar, {
+      width: "100%", // End width
+      duration: 5, // Same duration as the loading bar animation
+      ease: "linear",
+      onUpdate: updateProgress, // Use the custom updateProgress function
+    });
+
+    setTimeout(() => {
+      return () => {
+        tl.kill();
+      };
+    }, 2000);
+  }, []);
+
   return (
-    <div className="preloader">
-      <div className=" overflow-hidden">
-        <Timeline
-          repeat
-          target={
-            <SplitChars
-              wrapper={
-                <h1
-                  className=" text-[18vw] md:text-[16vw] tracking-[0rem] md:tracking-[-0.2rem]"
-                  style={{
-                    display: "inline-block",
-                    fontWeight: "600",
-                  }}
-                />
-              }
-            >
-              Designbox
-            </SplitChars>
-          }
-        >
-          <Tween from={{ y: "500px", opacity: "0" }} />
-          <Tween to={{ y: "0", opacity: "1" }} />
-          <Tween to={{ y: "-500px", opacity: "0" }} />
-        </Timeline>
-      </div>
+    <div className="preloader flex flex-col">
+      <div className="loading-bar absolute invisible"></div>
+      <h1 className="progress text-[16vw]">{progress}%</h1>
     </div>
   );
 };
