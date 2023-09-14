@@ -27,10 +27,10 @@ function AnimatedRoute({ projectData, selectedProjects }) {
             element={<Home selected={selectedProjects} footer={<Footer />} />}
           />
           <Route path="/about" element={<About footer={<Footer />} />} />
-          <Route
+          {/* <Route
             path="/projects"
             element={<ProjectPage projects={projectData} footer={<Footer />} />}
-          />
+          /> */}
           <Route
             path="/projects/:projectId"
             element={
@@ -45,10 +45,5 @@ function AnimatedRoute({ projectData, selectedProjects }) {
       </AnimatePresence>
     </CloudinaryContext>
   );
-}
-function wait(time) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, time);
-  });
 }
 export default AnimatedRoute;

@@ -22,7 +22,7 @@ const ProjectPage = ({ projects, footer }) => {
               initial={{ y: 300 }}
               animate={{ y: 0 }}
               transition={{ duration: 1 }}
-              className="heading-tags text-[18vw] md:text-[14vw]"
+              className="heading-tags text-[18vw] md:text-[14vw] text-white"
             >
               My works
             </motion.h1>
@@ -31,56 +31,61 @@ const ProjectPage = ({ projects, footer }) => {
         </div>
         <div className=" flex flex-col justify-center w-full gap-20">
           {projects.map((item, index) => (
-            <Link
-              key={index}
-              to={"/projects/" + item.title}
-              className=" relative box w-full h-[80vh] flex flex-col md:flex-row items-start images-box  md:justify-stretch md:items-end  aspect-square overflow-hidden"
-            >
-              <Image
-                className=" flex-1 w-full h-full aspect-square"
-                publicId={item.imageUrl}
-                quality={50}
-                style={{ objectFit: "cover" }}
-                alt=""
-              />
-              <div className="flex-1 flex flex-col p-5 md:p-10">
-                <Reveal
-                  repeat
-                  trigger={
-                    <div className="  flex flex-col md:block items-start justify-end md:justify-between h-full  space-y-2" />
-                  }
-                >
-                  <Tween
-                    from={{ y: "200px" }}
-                    stagger={0.1}
-                    ease="circIn"
-                    wrapper={<div className=" overflow-hidden" />}
+            <div className="images-box overflow-hidden   ">
+              <Link
+                to={`/projects/${item.title}`}
+                className=" relative box w-full h-fit flex flex-col md:flex-row items-start justify-center  md:justify-stretch md:items-end   overflow-hidden"
+              >
+                <div className=" flex-1 w-full overflow-hidden">
+                  <Image
+                    className="  aspect-square object-center"
+                    publicId={item.imageUrl}
+                    quality={50}
+                    alt=""
+                  />
+                </div>
+                <div className=" flex-1 flex flex-col p-10">
+                  <Reveal
+                    trigger={
+                      <div className="  flex flex-col md:block items-start justify-end md:justify-between h-full  space-y-2" />
+                    }
                   >
-                    <SplitWords
-                      wrapper={
-                        <div
-                          className="tag text-6xl pb-2 md:py-5 text-bg-black "
-                          style={{ display: "inline-block" }}
-                        />
-                      }
+                    <Tween
+                      from={{ y: "200px" }}
+                      stagger={0.1}
+                      ease="circIn"
+                      wrapper={<div className=" overflow-hidden" />}
                     >
-                      {item.title}
-                    </SplitWords>
-                  </Tween>
-                  <div className="wid-tags">
-                    {item.category.map((cat, index) => (
-                      <span key={index}>{cat}</span>
-                    ))}
-                  </div>
-                  <div className=" pt-2">
-                    <BtnDef showIcon linkTo={`/projects/${item.title}`}>
-                      see case study
-                    </BtnDef>
-                  </div>
-                </Reveal>
-              </div>
-              {/* <h2 className=" max-w-2xl">{item.stack}</h2> */}
-            </Link>
+                      <SplitWords
+                        wrapper={
+                          <h2
+                            className="tag title text-6xl text-center text-white  "
+                            style={{ display: "inline-block" }}
+                          />
+                        }
+                      >
+                        {item.title}
+                      </SplitWords>
+                    </Tween>
+                    <div className="wid-tags">
+                      {item.category.map((cat, index) => (
+                        <span key={index}>{cat}</span>
+                      ))}
+                    </div>
+                    <Tween
+                      from={{ y: "200px" }}
+                      stagger={0.1}
+                      ease="circIn"
+                      wrapper={<div />}
+                    >
+                      <BtnDef showIcon linkTo={`/projects/${item.title}`}>
+                        see case stury
+                      </BtnDef>
+                    </Tween>
+                  </Reveal>
+                </div>
+              </Link>
+            </div>
           ))}
         </div>
         <div className=" py-20 flex justify-center">

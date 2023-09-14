@@ -11,34 +11,47 @@ export const GsapScrollZoom = ({ children }) => {
 
     const element = ref.current;
     const containerElement = containerRef.current;
-    const timeline = gsap.timeline({
+    // const timeline = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: containerElement,
+    //     pin: true,
+    //     scrub: 2,
+    //     start: "bottom center",
+    //     end: "30% center",
+    //     ease: "expo.out",
+    //     markers: true,
+    //     toggleActions: "play none none reset",
+    //   },
+    // });
+
+    gsap.from(element, {
+      scale: 2,
       scrollTrigger: {
-        trigger: containerElement,
-        pin: true,
+        trigger: element,
+        pin: containerElement,
         scrub: 2,
-        start: "top center",
-        end: "30% center",
+        start: "top top",
+        end: "center end",
         ease: "expo.out",
-        toggleActions: "play none none reset",
+        markers: true,
       },
     });
-
-    timeline
-      .from(element, {
-        // y: "800px",
-        // scale: 1,
-        scale: 1.75,
-        duration: 3,
-        opacity: 0,
-      })
-      .to(element, {
-        scale: 1,
-        duration: 1.5,
-        opacity: 1,
-      });
+    // timeline
+    //   .from(element, {
+    //     // y: "800px",
+    //     // scale: 1,
+    //     scale: 1,
+    //     duration: 3,
+    //     opacity: 0,
+    //   })
+    //   .to(element, {
+    //     scale: 2,
+    //     duration: 1.5,
+    //     opacity: 1,
+    //   });
   }, []);
   return (
-    <div className="w-full h-fit  overflow-hidden">
+    <div className="w-full h-full  overflow-hidden">
       <div ref={containerRef} className="">
         <div
           ref={ref}

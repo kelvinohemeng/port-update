@@ -11,55 +11,40 @@ const NavDisplay = ({ isOpen, setIsOpen }) => {
     setIsOpen(false);
     // pageRefresh();
   };
-  if (!isOpen) {
-    gsap.to(".nav", {
-      y: -1500,
-      duration: 1,
-    });
-  } else {
-    gsap.to(".nav", {
-      y: 10,
-      duration: 1,
+  if (isOpen) {
+    gsap.from(".nav", {
+      scale: 0,
+      transformOrigin: "top right",
+      duration: 0.5,
+      ease: "back",
     });
   }
 
   return (
     <div
-      className={`absolute navv   w-screen h-screen flex flex-col justify-center items-center transition-[200ms] px-8 -z-10 ${
+      className={`navv w-screen relative h-fit container mx-auto flex justify-end items-start  transition-[200ms] px-4 pointer-events-none  ${
         !isOpen ? "hidden" : "block"
       } `}
     >
-      <div className="nav images-box relative w-full container mx-auto p-4 ">
-        <div className="nav-btns">
-          <BtnDefNativeNavLink linkTo="/" onClick={resetNavigation}>
-            Home
-          </BtnDefNativeNavLink>
-          <span></span>
-        </div>
+      <div className="nav  absolute w-fit p-4 text-white pointer-events-auto mt-[5vh]">
         <div className="nav-btns">
           <BtnDefNativeNavLink linkTo="/about" onClick={resetNavigation}>
             About
           </BtnDefNativeNavLink>
-          <span></span>
+          {/* <span></span> */}
         </div>
         <div className="nav-btns">
           <BtnDefNativeNavLink linkTo="/projects" onClick={resetNavigation}>
             Projects
           </BtnDefNativeNavLink>
-          <span></span>
+          {/* <span></span> */}
         </div>
         <div className=" nav-btns">
           <BtnDefNativeNavLink target linkTo="https://bit.ly/resume-kelvin">
             Resume
           </BtnDefNativeNavLink>
-          <span></span>
+          {/* <span></span> */}
         </div>
-      </div>
-      <div className="images-box flex flex-col md:flex-row space-y-2 justify-between md:items-center h-fit py-3 w-full container mx-auto px-4 my-5">
-        <p>Designed and developed by me</p>
-        <a href="mailto:kelvinohemeng59@gmail.com" className=" animate-pulse">
-          <p>Contact me</p>
-        </a>
       </div>
     </div>
   );

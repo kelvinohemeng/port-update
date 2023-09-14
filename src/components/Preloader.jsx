@@ -30,7 +30,7 @@ const Preloader = () => {
     // Update the progress value incrementally from 0 to 100 in smaller steps
     gsap.to(loadingBar, {
       width: "100%", // End width
-      duration: 5, // Same duration as the loading bar animation
+      duration: 2, // Same duration as the loading bar animation
       ease: "linear",
       onUpdate: updateProgress, // Use the custom updateProgress function
     });

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
+import { Tween, Reveal } from "react-gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BtnDef } from "./BtnDef";
 // import { GsapScrollZoom } from "./GsapScroll";
@@ -59,37 +60,26 @@ const Footer = () => {
     // };
   }, []);
   return (
-    <footer className="footer  w-screen  h-screen py-[5vh] flex items-center overflow-hidden">
+    <footer className="footer flex-col  w-screen  h-screen py-[5vh] flex items-center overflow-hidden">
       <div
         ref={containerRef}
-        className="container  w-[95%] md:w-[80%]  h-[80%] mx-auto px-8  md:px-0  flex justify-center items-center  "
+        className="container  w-[95%] md:w-[60%]  h-[80%] mx-auto px-8  md:px-0  flex justify-center items-center  "
       >
         <div
           ref={ref}
-          className="fot-fot w-full px-4 h-full flex flex-col p-8 justify-between items-center "
+          className="fot-fot w-full px-4 h-full flex flex-col p-8 justify-between items-center gap-5"
         >
-          <div className=" flex flex-col md:flex-row items-center gap-8 md:justify-between w-full">
-            <div className="">
-              <p className="text-sm md:text-1xl text-center md:text-left ">
-                Designer and Developer
-              </p>
-              <p className="text-sm md:text-1xl text-center md:text-left ">
-                Portfolio 2022-2023
-              </p>
-            </div>
-            <p className=" hidden md:block">Designbox</p>
-            <div>
-              <p className="text-sm md:text-1xl text-center md:text-right ">
-                Available for freelance works
-              </p>
-              <p className="text-sm md:text-1xl text-center md:text-right ">
-                Designed and developed by me
-              </p>
-            </div>
+          <div className=" flex flex-col items-center gap-1 md:justify-between w-full">
+            <p className="text-sm md:text-1xl text-center md:text-right ">
+              Available for freelance works
+            </p>
+            <p className="text-sm md:text-1xl text-center md:text-right ">
+              Designed and developed by me
+            </p>
           </div>
           <div className=" space-y-10 flex flex-col  items-center">
             <h1 className="text">
-              Convinced?
+              Reach Out !
               <span className="hov-span">
                 <a href="mailto:kelvinohemeng59@gmail.com" target="_blank">
                   LET'S CONNECT
@@ -116,7 +106,7 @@ const Footer = () => {
               </Link>
             </div>
             <div className="text-center">
-              <ul className=" flex flex-wrap justify-center gap-5">
+              <ul className=" grid grid-cols-2 md:grid-flow-col justify-center gap-5">
                 <li>
                   <BtnDef
                     target
@@ -132,7 +122,7 @@ const Footer = () => {
                     linkTo="https://www.tiktok.com/@kelvinsdesignbox"
                     showIcon
                   >
-                    ticktok
+                    TikTok
                   </BtnDef>
                 </li>
                 {/* <li>
@@ -153,7 +143,7 @@ const Footer = () => {
                     linkTo="https://twitter.com/K_DesignBox"
                     showIcon
                   >
-                    twitter
+                    Twitter
                   </BtnDef>
                 </li>
               </ul>
@@ -165,6 +155,37 @@ const Footer = () => {
             </p>
           </div>
         </div>
+      </div>
+      <div className="sticky top-0 w-[80%] md:w-[65%] h-fit py-[0vh] md:py-[10vh]  overflow-hidden bg-[#bfea88] ">
+        <Tween
+          duration={30}
+          from={{
+            x: "0",
+            repeat: -1,
+            EasePack: "linear",
+          }}
+          to={{
+            x: "-100%",
+            repeat: -1,
+            EasePack: "linear",
+          }}
+          wrapper={
+            <div
+              className="scroll-text text-[18vw] mx-2 md:text-[12vw] tracking-[0rem] md:tracking-[-0.2rem] "
+              style={{
+                width: "max-content",
+                display: "flex",
+                gap: "50px",
+                fontWeight: "600",
+                paddingBlock: "0px",
+              }}
+            />
+          }
+        >
+          <h1 className="">let's work on something great</h1>
+          <h1 className="">let's work on something great</h1>
+          <h1 className="">let's work on something great</h1>
+        </Tween>
       </div>
     </footer>
   );

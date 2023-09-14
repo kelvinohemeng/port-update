@@ -13,51 +13,34 @@ export const Navbar = ({}) => {
 
   const ref = useRef(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-
-      if (scrollY > lastScrollY) {
-        setHideNav(true);
-      } else {
-        setHideNav(false);
-      }
-
-      setLastScrollY(scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]);
   const navClasses = `navigation ${hideNav ? `hide-nav` : ""}`;
   return (
-    <nav className=" nav-bar fixed h-full bg-black ">
-      <div ref={ref} className={navClasses}>
-        <div className=" relative flex items-center  w-full h-ful">
-          <div className=" relative container mx-auto  p-5 flex items-center gap-2 justify-between bg-white bg-opacity-10">
+    <nav className=" nav-bar fixed w-full p-5 h-fit ">
+      <div>
+        <div className=" relative flex items-center  w-full h-full z-[999999]">
+          <div className=" relative container mx-auto flex items-center gap-2 justify-between  ">
             <div className=" flex items-center gap-2">
               <Link to="/">
-                <Image
+                {/* <Image
                   className=" "
                   src="https://res.cloudinary.com/base-data/image/upload/v1691748184/portfolio%20images/designbox/white_s5ot3b.png"
                   width={30}
                   alt=""
-                />
+                /> */}
+                <h1 className=" text-3xl  text-bold text-1xl font-bold">
+                  Kelvin
+                </h1>
               </Link>
-              <p className=" hidden md:block text-bold text-1xl font-bold">
-                DesignBox/Kelvin
-              </p>
             </div>
-            <div className="">
-              <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
-            </div>
-            <div className="hidden md:block">
-              <a href="https://bit.ly/resume-kelvin" target="_blank">
-                Download resume
-              </a>
+            <div className=" flex flex-row-reverse items-center justify-center gap-5">
+              {/* <div className="">
+                <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
+              </div> */}
+              <div className="block">
+                <a href="https://bit.ly/resume-kelvin" target="_blank">
+                  <h1 className=" text-3xl">Resume</h1>
+                </a>
+              </div>
             </div>
           </div>
         </div>

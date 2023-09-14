@@ -137,13 +137,13 @@ const About = ({ footer }) => {
                   scrub={1.5}
                 >
                   <Tween to={{ y: -800 }}>
-                    <div className=" absolute inset-0 bg-[#1a1919]"></div>
+                    <div className=" absolute inset-0 bg-[#1a1b1b]"></div>
                   </Tween>
                 </ScrollTrigger>
               </div>
             </div>
             <p className=" max-w-2xl opacity-80 text-2xl">
-              <b>Meet kelvin</b> <br />
+              <b className=" text-[#bfea88]">Meet kelvin</b> <br />
               <br />
               Hey there! I'm Kelvin Ohemeng, and I'm passionate about bringing
               ideas to life through beautiful design and seamless web
@@ -275,77 +275,6 @@ const About = ({ footer }) => {
             </h2>
           </div>
         </section>
-        {/* <section className=" py-24" id="exp">
-          <div className=" flex flex-col  gap-3 ">
-            <div className="flex-1 flex flex-col justify-between items-start relative">
-              <div className="relative h-full">
-                <h1 className="heading-tags text-left">Stack</h1>
-              </div>
-            </div>
-            <div className="stack flex-1 flex h-full flex-col md:flex-row flex-wrap w-full gap-6 items-start">
-              <div
-                ref={ref1}
-                className="service1 flex-1 min-h-fit space-y-5 p-5"
-              >
-                <h2 className="">Frontend Development</h2>
-                <div>
-                  <div className="wid-tags">
-                    <span>tailwind</span>
-                    <span>Scss</span>
-                    <span>HTML</span>
-                    <span>CSS 3</span>
-                    <span>React</span>
-                    <span>JavaScript</span>
-                    <span>threejs</span>
-                  </div>
-                </div>
-              </div>
-              <div
-                ref={ref2}
-                className="service1 flex-1 min-h-fit  space-y-5 p-5"
-              >
-                <h2 className=" ">Website with CMS</h2>
-                <div>
-                  <div className="wid-tags">
-                    <span>Frammer</span>
-                    <span>Wordpress</span>
-                    <span>Webflow</span>
-                    <span>Figma</span>
-                  </div>
-                </div>
-              </div>
-              <div
-                ref={ref3}
-                className="service1 flex-1 min-h-fit space-y-5 p-5"
-              >
-                <h2 className=" ">Graphic Design</h2>
-                <div>
-                  <div className="wid-tags">
-                    <span>Branding</span>
-                    <span>Logo Design</span>
-                    <span>Page Design</span>
-                    <span>Web Design</span>
-                    <span>Consulting</span>
-                  </div>
-                </div>
-              </div>
-              <div
-                ref={ref4}
-                className="service1 flex-1 min-h-fit  space-y-5 p-5"
-              >
-                <h2 className=" ">Motion Design</h2>
-                <div>
-                  <div className="wid-tags">
-                    <span>VFX</span>
-                    <span>3D animation</span>
-                    <span>Blender</span>
-                    <span>Blender</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section> */}
         <section className=" flex justify-center py-10">
           <BtnDefNativeNoLink target linkTo="#exp" pointDown>
             Reach out

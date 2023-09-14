@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { CloudinaryContext } from "cloudinary-react";
 import cloudinaryConfig from "./components/cloudinaryConfig";
-
+import LocomotiveScroll from "locomotive-scroll";
 import { Navbar } from "./components/navbar";
 import { IconContext } from "@phosphor-icons/react";
 import AnimatedRoute from "./components/AnimatedRoute";
@@ -9,12 +9,12 @@ import Preloader from "./components/Preloader";
 
 function App() {
   const [projects, setProjects] = useState([]);
-  const [selectedProjects, setSelectedProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
+  const dataFetch = () => {
     fetch("https://kelvinohemeng.github.io/api-endpoint/projectData.json")
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setProjects(data.projects);
         setTimeout(() => {
           setIsLoading(false);
@@ -26,8 +26,19 @@ function App() {
           setIsLoading(false);
         }, 5000);
       });
-  }, []);
+  };
+  useEffect(() => {
+    dataFetch();
 
+    const intervalId = setInterval(dataFetch, 1 * 60 * 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+  useEffect(() => {
+    const locomotiveScroll = new LocomotiveScroll();
+  }, []);
   return (
     <>
       {isLoading ? (

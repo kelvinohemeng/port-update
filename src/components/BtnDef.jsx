@@ -125,7 +125,7 @@ export const BtnDefNativeNavLink = ({
     >
       <div className="main-text-btn ">
         <div>
-          <div>{children}</div>
+          <div className=" text-white">{children}</div>
         </div>
       </div>
       {showIcon ? (
