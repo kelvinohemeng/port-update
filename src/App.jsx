@@ -14,7 +14,6 @@ function App() {
     fetch("https://kelvinohemeng.github.io/api-endpoint/projectData.json")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setProjects(data.projects);
         setTimeout(() => {
           setIsLoading(false);
