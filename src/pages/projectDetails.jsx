@@ -43,7 +43,7 @@ const ProjectDetails = ({ projects, selected, footer }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="  min-h-[100vh]"
+          className="  min-h-[100vh] container mx-auto px-4 md:pxp-8"
         >
           <motion.div
             initial={{ y: "0%" }}
@@ -60,7 +60,7 @@ const ProjectDetails = ({ projects, selected, footer }) => {
                   duration: 1,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="text-[15vw] md:text-[10vw]"
+                className="text-[3rem] md:text-[5rem]"
               >
                 {project.title}
               </motion.h1>
@@ -68,7 +68,7 @@ const ProjectDetails = ({ projects, selected, footer }) => {
           </motion.div>
           <div className=" pt-[20vh] ">
             {project.video ? (
-              <div className=" w-screen h-full container mx-auto px-4">
+              <div className=" w-full h-full container mx-auto px-4">
                 <video className=" w-full h-fit " autoPlay muted loop>
                   <source src={project.video} />
                 </video>

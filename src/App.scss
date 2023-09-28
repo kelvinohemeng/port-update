@@ -21,6 +21,9 @@ $display-font6: "Zen Dots", cursive;
   background-color: $text;
   color: $background;
 }
+em {
+  color: $secondary;
+}
 .scroll-text {
   h1 {
     color: $accent;
@@ -75,12 +78,13 @@ html {
   position: relative;
   opacity: 0;
   transition: 500ms ease-out;
+}
+.this {
   &::before {
     content: "";
     position: absolute;
     inset: 0;
     background: $accent;
-    transform: rotate(-15deg);
     z-index: -1;
   }
 }
@@ -722,7 +726,7 @@ footer {
   position: relative;
   width: fit-content;
   padding: 5px 20px;
-  height: 2.8rem;
+  height: 3.8rem;
   border: 0.5px solid $secondary;
   border-radius: 5px;
   overflow: hidden;
@@ -761,7 +765,7 @@ footer {
       display: flex;
       gap: 9px;
       flex-direction: column;
-      font-size: 1.125rem;
+      font-size: 1.5rem;
     }
   }
 
@@ -782,7 +786,7 @@ footer {
     }
   }
   @media screen and (max-width: 450px) {
-    height: 2.5rem;
+    height: 3rem;
     padding-inline: 8px;
     gap: 9px;
     .main-text-btn {
@@ -793,7 +797,7 @@ footer {
         display: flex;
         gap: 9px;
         flex-direction: column;
-        font-size: 1rem;
+        font-size: 1.2rem;
       }
     }
   }

@@ -106,7 +106,7 @@ const Footer = () => {
               </Link>
             </div>
             <div className="text-center">
-              <ul className=" grid grid-cols-2 md:grid-flow-col justify-center gap-5">
+              <ul className=" grid grid-cols-2  justify-center gap-5">
                 <li>
                   <BtnDef
                     target
@@ -156,7 +156,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="sticky top-0 w-[80%] md:w-[65%] h-fit py-[0vh] md:py-[10vh]  overflow-hidden bg-[#bfea88] ">
+      <div className="sticky top-0 w-[80%] md:w-[65%] h-fit py-[8vh] md:py-[10vh]  overflow-hidden bg-[#bfea88] ">
         <Tween
           duration={30}
           from={{
@@ -182,9 +182,9 @@ const Footer = () => {
             />
           }
         >
-          <h1 className="">let's work on something great</h1>
-          <h1 className="">let's work on something great</h1>
-          <h1 className="">let's work on something great</h1>
+          <h1 className="">let's work together</h1>
+          <h1 className="">let's work together</h1>
+          <h1 className="">let's work together</h1>
         </Tween>
       </div>
     </footer>

@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 // import Image from "next/image";
-import { RevealNative } from "../components/Reveal.jsx";
+// import { RevealNative } from "../components/Reveal.jsx";
 import { Image, Video } from "cloudinary-react";
 import {
   Tween,
   SplitWords,
-  SplitChars,
+  // SplitChars,
   Reveal,
   ScrollTrigger,
 } from "react-gsap";
@@ -13,19 +13,19 @@ import { motion } from "framer-motion";
 import transition from "../components/transition.jsx";
 import VanillaTilt from "vanilla-tilt";
 import { gsap } from "gsap";
-import {
-  GsapScrollX,
-  GsapScrollXPin,
-  GsapScrollZoom,
-} from "../components/GsapScroll";
+// import {
+//   GsapScrollX,
+//   GsapScrollXPin,
+//   GsapScrollZoom,
+// } from "../components/GsapScroll";
 // import { gsap } from "gsap";
-import {
-  PlayCircle,
-  ArrowElbowDownRight,
-  ArrowRight,
-  Cube,
-} from "@phosphor-icons/react";
-import { Link } from "react-router-dom";
+// import {
+//   PlayCircle,
+//   ArrowElbowDownRight,
+//   ArrowRight,
+//   Cube,
+// } from "@phosphor-icons/react";
+// import { Link } from "react-router-dom";
 import { BtnDefNative, BtnDef, BtnDefNativeNoLink } from "../components/BtnDef";
 import { DisplaySomething } from "../components/DisplaySomething.jsx";
 import { PortArc } from "../components/PortArc.jsx";
@@ -33,6 +33,7 @@ import { PortArc } from "../components/PortArc.jsx";
 const Home = ({ footer, selected }) => {
   const [position, setPosition] = useState({ x: 0 });
   const [activeLinkIndex, setActiveLinkIndex] = useState(null);
+  const [display, setDisplay] = useState(false);
   const openDisplay = (index) => {
     setActiveLinkIndex(index);
   };
@@ -147,20 +148,6 @@ const Home = ({ footer, selected }) => {
       Url: "https://kelvinohemeng.vercel.app/",
     },
   ];
-  // useEffect(() => {
-  //   const handleMouseMove = (event) => {
-  //     const slideImage = imgRef.current;
-
-  //     const x = (event.clientX * 500) / window.innerHeight + "px";
-
-  //     slideImage.style.left = x;
-  //     slideImage.style.transform = `translate(${x},)`;
-  //   };
-  //   window.addEventListener("mousemove", handleMouseMove);
-  //   return () => {
-  //     window.removeEventListener("mousemove", handleMouseMove);
-  //   };
-  // }, []);
   useEffect(() => {
     // const nav = document.querySelectorAll(".body-nav");
     const sections = document.querySelectorAll(".show-sections");
@@ -192,7 +179,7 @@ const Home = ({ footer, selected }) => {
     // });
   }, []);
   useEffect(() => {
-    const scrubUp = document.querySelectorAll(".ddp-text");
+    // const scrubUp = document.querySelectorAll(".ddp-text");
     const scrollWhat = document.querySelectorAll(".scrolls-what");
     // scrubUp.forEach((srubb) => {
     //   gsap.to(srubb, {
@@ -208,18 +195,31 @@ const Home = ({ footer, selected }) => {
     //   });
     // });
     scrollWhat.forEach((what) => {
-      gsap.from(what, {
-        // opacity: 0,
-        x: -500,
-        opacity: 0,
-        scrollTrigger: {
-          trigger: what,
-          start: "top center",
-          end: "bottom center",
-          // markers: true,
-          scrub: 1,
+      gsap.fromTo(
+        what,
+        {
+          x: -500,
+          opacity: 0,
+          scrollTrigger: {
+            trigger: what,
+            start: "top center",
+            end: "bottom center",
+            // markers: true,
+            scrub: 1,
+          },
         },
-      });
+        {
+          x: 0,
+          opacity: 1,
+          scrollTrigger: {
+            trigger: what,
+            start: "top center",
+            end: "bottom center",
+            // markers: true,
+            scrub: 1,
+          },
+        }
+      );
     });
     // vanilla tilt code
     VanillaTilt.init(ref1.current, {
@@ -274,6 +274,9 @@ const Home = ({ footer, selected }) => {
     registerVideo("#bound-three", "#bound-three video");
     // registerVideo("#bound-four", "#bound-four video");
   });
+  const toggleDisplay = () => {
+    setDisplay(!display);
+  };
   return (
     <>
       <motion.div
@@ -282,122 +285,17 @@ const Home = ({ footer, selected }) => {
         exit={{ opacity: 0 }}
         className="relative"
       >
-        {/* <section className=" w-full h-full home-bg"> */}
-        {/* <div className=" container mx-auto px-4 py-10 pt-40 w-full flex flex-col md:justify-end ">
-            <Reveal repeat trigger={<div className=" text-center" />}>
-              <Tween
-                from={{ y: "200px", opacity: "0" }}
-                stagger={0.1}
-                wrapper={<div className="overflow-hidden px-2" />}
-              >
-                <SplitChars
-                  wrapper={
-                    <h1
-                      className=" text-[16vw] md:text-[16vw] tracking-[0rem] md:tracking-[-0.2rem] md:leading-[20rem] text-white"
-                      style={{
-                        display: "inline-block",
-                        fontWeight: "600",
-                      }}
-                    />
-                  }
-                >
-                  Designbox
-                </SplitChars>
-              </Tween>
-              <div>
-                <h3 className=" text-xl md:text-[2vw]  uppercase font-bold">
-                  Frontend Web Developer / Designer
-                </h3>
-              </div>
-              <div className=" flex justify-center my-10 opacity-80">
-                <BtnDefNative linkTo="#next" pointDown>
-                  keep scrolling
-                </BtnDefNative>
-              </div>
-            </Reveal>
-          </div> */}
-        {/* <div className=" pt-[20vh] mx-auto md:pt-0 " id="next"> */}
-        {/* <div className="flex flex-col md:flex-row justify-center h-full  md:h-[90vh] max-w-[90vw]  bg-[#dcd9d60d]">
-                <div className="left-abt flex flex-col gap-8 justify-between flex-1 p-4">
-                  <ScrollTrigger
-                    start="-200px center"
-                    end="800px center"
-                    scrub={1.5}
-                  >
-                    <Tween
-                      from={{ y: "50px", opacity: "0" }}
-                      stagger={0.2}
-                      duration={3.5}
-                      ease="back.out(1.7)"
-                      wrapper={
-                        <div
-                          style={{
-                            maxWidth: "80%",
-                          }}
-                        />
-                      }
-                    >
-                      <SplitWords
-                        delimiter=" "
-                        wrapper={
-                          <div
-                            style={{
-                              display: "inline-flex",
-                              overflow: "hidden",
-                              padding: "5px",
-                              color: "white",
-                            }}
-                            className="ab-tag lg:text-[2rem]"
-                          />
-                        }
-                      >
-                        Hi, I am kelvin, I build brands and website with the
-                        vision of the future
-                      </SplitWords>
-                    </Tween>
-                  </ScrollTrigger>
-                  <div className=" flex flex-col md:flex-row gap-5">
-                    <BtnDef linkTo="/about" showIcon>
-                      Read more
-                    </BtnDef>
-                    <BtnDef
-                      linkTo="https://bit.ly/resume-kelvin"
-                      showIcon
-                      target
-                    >
-                      Download resume
-                    </BtnDef>
-                  </div>
-                </div>
-                <div className="prof-img h-full flex-1 ">
-                  <Image
-                    className=" w-full h-full object-cover"
-                    quality="50"
-                    publicId="https://res.cloudinary.com/base-data/image/upload/q_50/v1693450299/images/about-img.jpg"
-                  />
-                </div>
-              </div> */}
-        {/* <GsapScrollZoom>
-
-              <div className=" h-screen">
-                <h1 className=" text-[16vw] md:text-[16vw] tracking-[0rem] md:tracking-[-0.2rem] md:leading-[20rem] text-white">
-                  DESIGNBOX
-                </h1>
-              </div>
-            </GsapScrollZoom> */}
-        {/* </div> */}
-        {/* </section> */}
         <section className="">
-          <div className="container relative mx-auto px4 h-screen text-center flex flex-col justify-center">
+          <div className="container relative mx-auto px-2 md:px-8 h-screen text-center flex flex-col justify-center">
             <div>
               <img
                 src="https://res.cloudinary.com/base-data/image/upload/q_50/v1693450299/images/about-img.png"
                 alt=""
-                className="block md:hidden px-4 max-w-full aspect-[3/2] object-cover object-top grayscale land-images"
+                className="block md:hidden px-4 md:px-8 max-w-full aspect-[3/2] object-cover object-top grayscale land-images"
               />
             </div>
             <div className=" w-full relative -space-y-10">
-              <h1 className=" z-10 relative text-[8vw] leading-[6rem] md:leading-[15rem] md:text-[10vw] tracking-[0rem] md:tracking-[-0.2rem]  text-white">
+              <h1 className=" z-10 relative  leading-[6rem] text-[2.5rem] md:leading-[15rem] md:text-[8rem] tracking-[0rem] md:tracking-[-0.2rem]  text-white">
                 <em
                   style={{ fontStyle: "normal" }}
                   className=" bg-[#bfea88] text-[#111111]"
@@ -406,7 +304,7 @@ const Home = ({ footer, selected }) => {
                 </em>{" "}
                 Developer
               </h1>
-              <h1 className=" z-10 relative text-[8vw] leading-[6rem] md:leading-[15rem] md:text-[10vw] tracking-[0rem] md:tracking-[-0.2rem]   text-white">
+              <h1 className=" z-10 relative  leading-[6rem] text-[2.5rem]  md:leading-[15rem] md:text-[8rem] tracking-[0rem] md:tracking-[-0.2rem]   text-white">
                 <em
                   className=" font-normal normal text-[#bfea88]"
                   style={{ fontStyle: "normal" }}
@@ -423,7 +321,8 @@ const Home = ({ footer, selected }) => {
             </div>
             <div className=" space-y-10 flex flex-col items-center">
               <p className="heading-tags-alt relative text-center max-w-[80%] md:max-w-[50%] cursor-pointer text-white md:leading-relaxed">
-                Hi, I am kelvin a graphic designer and frontend developer
+                Hi, I am kelvin a <em>designer</em> with a developer's mind, and
+                a <em>developer</em> with an artist's soul.
                 <br /> <br className="block md:hidden" />
                 {/* with design and code */}
               </p>
@@ -438,38 +337,235 @@ const Home = ({ footer, selected }) => {
             </div>
           </div>
         </section>
-        {/* <section className=" global-padding">
-          <ScrollTrigger start="-200px center" end="800px center" scrub={1.5}>
-            <div className="relative overflow-hidden h-[50vh]">
-              <Tween
-                to={{
-                  x: "-80%",
-                }}
-                wrapper={
+
+        {/* //experimental */}
+        {/* <section className=" w-screen h-full flex items-center justify-center">
+          <div className="container mx-auto px-4 md:px-8 h-full  relative overflow-hidden">
+            <div className="flex items-center justify-center relative aspect-video w-full bg-[url('/assets/skis.png')] bg-center bg-contain bg-no-repeat z-[999] bg-bg-black rounded-lg ">
+              <div className="absolute w-full h-full z-[9999]  flex flex-col gap-11">
+                <div className=" pl-20 flex gap-4 items-center py-[0.5px]">
                   <div
-                    className="absolute scroll-text  p-2 text-[18vw] md:text-[12vw]"
-                    style={{
-                      width: "max-content",
-                      display: "flex",
-                      gap: "50px",
-                      fontWeight: "600",
-                      paddingBlock: "30px",
-                    }}
-                  />
-                }
-              >
-                <h1 className="text-center">Designer Developer</h1>
-                <h1 className="text-center">Designer Developer</h1>
-                <h1 className="text-center">Designer Developer</h1>
-                <h1 className="text-center">Designer Developer</h1>
-              </Tween>
+                    onClick={toggleDisplay}
+                    className={` mt-0 cursor-pointer pl-[8px] m-1 min-w-[180px] rounded-md ${
+                      display ? "bg-[#445569] text-bg-black" : "bg-[#2a3440]"
+                    }`}
+                  >
+                    <h3>Web Development</h3>
+                  </div>
+                  <div
+                    onClick={toggleDisplay}
+                    className={` mt-0 cursor-pointer pl-[8px] m-1 min-w-[180px] rounded-md ${
+                      !display ? "bg-[#445569] text-bg-black" : "bg-[#2a3440]"
+                    }`}
+                  >
+                    <h3>Graphic Design</h3>
+                  </div>
+                </div>
+                <div className=" w-full h-full bg-gray-600">
+                  <div className="container mx-auto p-4">
+                    {display ? (
+                      <div className=" flex">
+                        <div className=" flex-1 ">
+                          <h2 className=" text-[5rem] uppercase">
+                            kelvin the developer
+                          </h2>
+                          <div className=" w-full h-[0.3px] my-10 bg-white"></div>
+                          <div className=" flex flex-col space-y-8">
+                            <div className=" text-white ">
+                              <h4 className=" text-[2rem] font-bold">
+                                Web Developer/Designer | iamadinkra(internship)
+                              </h4>
+                              <span>
+                                September 2022 August 2023 / Accra, Ghana
+                              </span>
+                              <br />
+                              <br />
+                              <ul className=" list-disc pl-8 space-y-5">
+                                <li>
+                                  Designed and developed a full website with
+                                  routing functionalities, API calls to retrieve
+                                  data for project section, User experience,
+                                  dynamic routing for the project section and
+                                  also used Cloudinary to house all the images
+                                  for the various projects to reduce load on the
+                                  website+
+                                </li>
+                                <li>
+                                  Rebranded the company from iamadinkra to
+                                  kaizen av projects, providing a logo, brand
+                                  manual and other deliverable assets+
+                                </li>
+                                <li>
+                                  Designed and Developed a leaderboard for an
+                                  NFL South Africa event, which will house over
+                                  1000 entries+
+                                </li>
+                                <li>
+                                  Implemented API calls for various event
+                                  categories from google sheet using the app
+                                  script extension.
+                                </li>
+                              </ul>
+                            </div>
+                            <div className=" w-full h-[0.3px] my-10 bg-white"></div>
+
+                            <div className=" flex gap-8">
+                              <ul className=" max-w-[180px]">
+                                <li>
+                                  <h4 className=" text-[1.2rem] text-white font-bold">
+                                    Web development and Programing Language
+                                  </h4>
+                                </li>
+                                <br />
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript/TypeScript</li>
+                                <li>Advanced JavaScript Concept</li>
+                                <li>C#</li>
+                              </ul>
+                              <ul className=" max-w-[180px]">
+                                <li>
+                                  <h4 className=" text-[1.2rem] text-white font-bold">
+                                    Website
+                                  </h4>
+                                </li>
+                                <br />
+                                <li>Awwwards</li>
+                                <li>Typescale</li>
+                                <li>Lapa Ninja</li>
+                                <li>Landingfolio</li>
+                              </ul>
+                              <ul className="  max-w-[180px]">
+                                <li>
+                                  <h4 className=" text-[1.2rem] text-white font-bold">
+                                    Frameworks and libraries
+                                  </h4>
+                                </li>
+                                <br />
+                                <li>Framer Motion</li>
+                                <li>GSAP</li>
+                                <li>Three Js</li>
+                                <li>ReactJs</li>
+                                <li>NextJs</li>
+                                <li>LocomotiveScrollJs</li>
+                              </ul>
+                              <ul className="  max-w-[180px]">
+                                <li>
+                                  <h4 className=" text-[1.2rem] text-white font-bold">
+                                    Tools
+                                  </h4>
+                                </li>
+                                <br />
+                                <li>VS code</li>
+                                <li>Git/Github</li>
+                                <li>Parcel/Webpack</li>
+                                <li>NPM</li>
+                              </ul>
+                            </div>
+                            <div className=" flex gap-4">
+                              <BtnDefNative linkTo="https://bit.ly/resume-kelvin">
+                                See full resume
+                              </BtnDefNative>
+                              <BtnDefNative linkTo="#projects">
+                                Recent projects
+                              </BtnDefNative>
+                            </div>
+                          </div>
+                        </div>
+                        <div className=" flex-1 p-8 overflow-hidden">
+                          <img
+                            src="/assets/05.jpg"
+                            className=" w-full aspect-square object-center object-contain"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className=" flex">
+                        <div className=" flex-1 ">
+                          <h2 className=" text-[5rem] uppercase">
+                            kelvin the Designer
+                          </h2>
+                          <div className=" w-full h-[0.3px] my-10 bg-white"></div>
+                          <div className=" flex flex-col space-y-8">
+                            <div className=" text-white ">
+                              <h4 className=" text-[2rem] font-bold">
+                                BA in Graphic Design @ University of Education
+                                Winneba
+                              </h4>
+                              <span>2024 expected, Winneba, Ghana</span>
+                              <br />
+                            </div>
+                            <div className=" w-full h-[0.3px] my-10 bg-white"></div>
+
+                            <div className=" flex gap-8">
+                              <ul className=" max-w-[180px]">
+                                <li>
+                                  <h4 className=" text-[1.2rem] text-white font-bold">
+                                    Fields
+                                  </h4>
+                                </li>
+                                <br />
+                                <li>Logo Design</li>
+                                <li>Brand design</li>
+                                <li>Poster/Flyer</li>
+                                <li>Animation(2D, 3D, Infographics)</li>
+                                <li>Book/Page Design</li>
+                              </ul>
+                              <ul className=" max-w-[180px]">
+                                <li>
+                                  <h4 className=" text-[1.2rem] text-white font-bold">
+                                    Website
+                                  </h4>
+                                </li>
+                                <br />
+                                <li>Dribbble</li>
+                                <li>Pinterest</li>
+                                <li>Savve</li>
+                                <li>Behance</li>
+                              </ul>
+                              <ul className="  max-w-[180px]">
+                                <li>
+                                  <h4 className=" text-[1.2rem] text-white font-bold">
+                                    Tools
+                                  </h4>
+                                </li>
+                                <br />
+                                <li>Adobe Creative Suite</li>
+                                <li>Figma</li>
+                                <li>Blender</li>
+                                <li>Design Thinking/Principles/Elements</li>
+                              </ul>
+                            </div>
+                            <div className=" flex gap-4">
+                              <BtnDefNative linkTo="https://bit.ly/resume-kelvin">
+                                See full resume
+                              </BtnDefNative>
+                              <BtnDefNative linkTo="#projects">
+                                Recent projects
+                              </BtnDefNative>
+                            </div>
+                          </div>
+                        </div>
+                        <div className=" flex-1 p-8 overflow-hidden">
+                          <img
+                            src="/assets/05.jpg"
+                            className=" w-full aspect-square object-center object-contain"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
-          </ScrollTrigger>
+          </div>
         </section> */}
 
         <section className=" global-padding hidden md:block">
           <div id="bound-three" className="scroll-bound">
-            <div className="content container mx-auto px-4 flex-col md:flex-row md:justify-between md:flex-end">
+            <div className="content container mx-auto px-4 md:px-8 pl-[8rem] flex-col md:flex-row md:justify-between md:flex-end">
               <div className="vid flex justify-start">
                 <video
                   className=" object-cover w-screen h-full grayscale-[1]"
@@ -497,7 +593,7 @@ const Home = ({ footer, selected }) => {
           </div>
         </section>
         <section className=" global-padding block md:hidden">
-          <div className="content container space-y-5 mx-auto px-4 flex-col md:flex-row md:justify-between md:flex-end">
+          <div className="content container space-y-5 mx-auto px-4 md:px-8 flex-col md:flex-row md:justify-between md:flex-end">
             <div className="vid flex justify-start">
               <video
                 className=" object-cover w-screen h-full grayscale-[1]"
@@ -524,13 +620,13 @@ const Home = ({ footer, selected }) => {
             </div>
           </div>
         </section>
-        <div className="container mx-auto px-4 w-full bg-white h-[0.1px] bg-opacity-50"></div>
+        <div className="container mx-auto px-4 md:px-8 w-full bg-white h-[0.1px] bg-opacity-50"></div>
         {/* services section */}
         <section className=" global-padding">
-          <div className="container flex flex-col md:flex-row mx-auto px-4 gap-20 ">
+          <div className="container flex flex-col md:flex-row mx-auto px-4 md:px-8 gap-20 ">
             <div className=" flex-1 flex flex-col justify-between md:items-end md:order-last relative">
               <div className="relative h-full">
-                <h1 className="scroll-text sticky top-0 py-[5vh] text-[18vw] mx-2 md:text-[15vw] tracking-[0rem] md:tracking-[-0.2rem]">
+                <h1 className="scroll-text sticky top-0 py-[5vh] text-[5rem] mx-2 md:text-[10rem] tracking-[0rem] md:tracking-[-0.2rem]">
                   Skills
                 </h1>
               </div>
@@ -539,263 +635,55 @@ const Home = ({ footer, selected }) => {
               </BtnDefNative>
             </div>
             <div className=" flex-1 w-full text-white">
-              <h2 className=" text-white text-5xl py-5 scrolls-what border-y-[1px] border-white border-opacity-25 uppercase">
+              <h2 className=" text-white text-5xl py-5 scrolls-what border-white border-opacity-25 uppercase">
                 HTML
               </h2>
-              <h2 className=" text-white text-5xl py-5 scrolls-what border-y-[1px] border-white border-opacity-25 uppercase">
+              <h2 className=" text-white text-5xl py-5 scrolls-what border-white border-opacity-25 uppercase">
                 CSS
               </h2>
-              <h2 className=" text-white text-5xl py-5 scrolls-what border-y-[1px] border-white border-opacity-25 uppercase">
+              <h2 className=" text-white text-5xl py-5 scrolls-what border-white border-opacity-25 uppercase">
                 SASS
               </h2>
-              <h2 className=" text-white text-5xl py-5 scrolls-what border-y-[1px] border-white border-opacity-25 uppercase">
+              <h2 className=" text-white text-5xl py-5 scrolls-what border-white border-opacity-25 uppercase">
                 Tailwind CSS
               </h2>
-              <h2 className=" text-white text-5xl py-5 scrolls-what border-y-[1px] border-white border-opacity-25 uppercase">
+              <h2 className=" text-white text-5xl py-5 scrolls-what border-white border-opacity-25 uppercase">
                 JavaScript
               </h2>
-              <h2 className=" text-white text-5xl py-5 scrolls-what border-y-[1px] border-white border-opacity-25 uppercase">
+              <h2 className=" text-white text-5xl py-5 scrolls-what border-white border-opacity-25 uppercase">
                 React
               </h2>
-              <h2 className=" text-white text-5xl py-5 scrolls-what border-y-[1px] border-white border-opacity-25 uppercase">
+              <h2 className=" text-white text-5xl py-5 scrolls-what border-white border-opacity-25 uppercase">
                 GSAP
               </h2>
-              <h2 className=" text-white text-5xl py-5 scrolls-what border-y-[1px] border-white border-opacity-25 uppercase">
+              <h2 className=" text-white text-5xl py-5 scrolls-what border-white border-opacity-25 uppercase">
                 Framer motion
               </h2>
-              <h2 className=" text-white text-5xl py-5 scrolls-what border-y-[1px] border-white border-opacity-25 uppercase">
+              <h2 className=" text-white text-5xl py-5 scrolls-what border-white border-opacity-25 uppercase">
                 ThreeJs
               </h2>
-              <h2 className=" text-white text-5xl py-5 scrolls-what border-y-[1px] border-white border-opacity-25 uppercase">
+              <h2 className=" text-white text-5xl py-5 scrolls-what border-white border-opacity-25 uppercase">
                 CMS
               </h2>
-              <h2 className=" text-white text-5xl py-5 scrolls-what border-y-[1px] border-white border-opacity-25 uppercase">
+              <h2 className=" text-white text-5xl py-5 scrolls-what border-white border-opacity-25 uppercase">
                 Animation
               </h2>
-              <h2 className=" text-white text-5xl py-5 scrolls-what border-y-[1px] border-white border-opacity-25 uppercase">
+              <h2 className=" text-white text-5xl py-5 scrolls-what border-white border-opacity-25 uppercase">
                 Motion Graphhics
               </h2>
-              <h2 className=" text-white text-5xl py-5 scrolls-what border-y-[1px] border-white border-opacity-25 uppercase">
+              <h2 className=" text-white text-5xl py-5 scrolls-what border-white border-opacity-25 uppercase">
                 Graphic Design
               </h2>
             </div>
           </div>
         </section>
-        {/* project section */}
-        {/* <div
-          className=" h-full global-padding container mx-auto px-4"
-          id="projects"
-        >
-          <GsapScrollXPin>
-            {selected.map((item, index) => (
-              <div
-                className="images-box p-2 
-              "
-              >
-                <Link
-                  key={index}
-                  to={`/projects/${item.title}`}
-                  className=" relative box w-[80vw] h-[80vh] flex flex-col md:flex-row items-start  md:justify-stretch md:items-end  aspect-square  overflow-hidden"
-                >
-                  <Image
-                    className=" flex-1 w-full h-full aspect-square"
-                    publicId={item.imageUrl}
-                    quality={50}
-                    style={{ objectFit: "cover" }}
-                    alt=""
-                  />
-                  <div className="flex-1 flex flex-col p-10">
-                    <Reveal
-                      trigger={
-                        <div className="  flex flex-col md:block items-start justify-end md:justify-between h-full  space-y-2" />
-                      }
-                    >
-                      <Tween
-                        from={{ y: "200px" }}
-                        stagger={0.1}
-                        ease="circIn"
-                        wrapper={<div className=" overflow-hidden" />}
-                      >
-                        <SplitWords
-                          wrapper={
-                            <div
-                              className="tag title text-6xl text-center  "
-                              style={{ display: "inline-block" }}
-                            />
-                          }
-                        >
-                          {item.title}
-                        </SplitWords>
-                      </Tween>
-                      <div className="wid-tags">
-                        {item.category.map((cat, index) => (
-                          <span key={index}>{cat}</span>
-                        ))}
-                      </div>
-                      <Tween
-                        from={{ y: "200px" }}
-                        stagger={0.1}
-                        ease="circIn"
-                        wrapper={<div />}
-                      >
-                        <BtnDef showIcon linkTo={`/projects/${item.title}`}>
-                          explore project
-                        </BtnDef>
-                      </Tween>
-                    </Reveal>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </GsapScrollXPin>
-          <Reveal trigger={<div className=" text-left" />}>
-            <Tween
-              from={{ y: "200px", opacity: "0" }}
-              stagger={0.1}
-              wrapper={<div className="overflow-hidden px-2" />}
-            >
-              <SplitWords
-                wrapper={
-                  <h1
-                    className=" max-w-max  text-[18vw] mx-2 md:text-[18vw] tracking-[0rem] md:tracking-[-0.2rem] text-white"
-                    style={{
-                      fontWeight: "600",
-                      gap: "50px",
-                      display: "inline-block",
-                    }}
-                  />
-                }
-              >
-                Works
-              </SplitWords>
-            </Tween>
-          </Reveal>
-          <div className="space-y-20">
-            <div className="images-box overflow-hidden   ">
-              <Link
-                to={`/projects/${selected[0].title}`}
-                className=" relative box w-full h-fit flex flex-col md:flex-row items-start justify-center  md:justify-stretch md:items-end   overflow-hidden"
-              >
-                <div className=" flex-1 w-full overflow-hidden">
-                  <Image
-                    className="  aspect-square object-center"
-                    publicId={selected[0].imageUrl}
-                    quality={50}
-                    alt=""
-                  />
-                </div>
-                <div className=" flex-1 flex flex-col p-10">
-                  <Reveal
-                    trigger={
-                      <div className="  flex flex-col md:block items-start justify-end md:justify-between h-full  space-y-2" />
-                    }
-                  >
-                    <Tween
-                      from={{ y: "200px" }}
-                      stagger={0.1}
-                      ease="circIn"
-                      wrapper={<div className=" overflow-hidden" />}
-                    >
-                      <SplitWords
-                        wrapper={
-                          <h2
-                            className="tag title text-6xl text-center text-white  "
-                            style={{ display: "inline-block" }}
-                          />
-                        }
-                      >
-                        {selected[0].title}
-                      </SplitWords>
-                    </Tween>
-                    <div className="wid-tags">
-                      {selected[0].category.map((cat, index) => (
-                        <span key={index}>{cat}</span>
-                      ))}
-                    </div>
-                    <Tween
-                      from={{ y: "200px" }}
-                      stagger={0.1}
-                      ease="circIn"
-                      wrapper={<div />}
-                    >
-                      <BtnDef
-                        showIcon
-                        linkTo={`/projects/${selected[0].title}`}
-                      >
-                        explore project
-                      </BtnDef>
-                    </Tween>
-                  </Reveal>
-                </div>
-              </Link>
-            </div>
-            <div className="images-box overflow-hidden   ">
-              <Link
-                to={`/projects/${selected[1].title}`}
-                className=" relative box w-full h-fit flex flex-col md:flex-row items-start justify-center  md:justify-stretch md:items-end   overflow-hidden"
-              >
-                <div className=" flex-1 w-full overflow-hidden">
-                  <Image
-                    className="  aspect-square object-center"
-                    publicId={selected[1].imageUrl}
-                    quality={50}
-                    alt=""
-                  />
-                </div>
-                <div className=" flex-1 flex flex-col p-10">
-                  <Reveal
-                    trigger={
-                      <div className="  flex flex-col md:block items-start justify-end md:justify-between h-full  space-y-2" />
-                    }
-                  >
-                    <Tween
-                      from={{ y: "200px" }}
-                      stagger={0.1}
-                      ease="circIn"
-                      wrapper={<div className=" overflow-hidden" />}
-                    >
-                      <SplitWords
-                        wrapper={
-                          <h2
-                            className="tag title text-6xl text-center text-white  "
-                            style={{ display: "inline-block" }}
-                          />
-                        }
-                      >
-                        {selected[1].title}
-                      </SplitWords>
-                    </Tween>
-                    <div className="wid-tags">
-                      {selected[1].category.map((cat, index) => (
-                        <span key={index}>{cat}</span>
-                      ))}
-                    </div>
-                    <Tween
-                      from={{ y: "200px" }}
-                      stagger={0.1}
-                      ease="circIn"
-                      wrapper={<div />}
-                    >
-                      <BtnDef
-                        showIcon
-                        linkTo={`/projects/${selected[1].title}`}
-                      >
-                        explore project
-                      </BtnDef>
-                    </Tween>
-                  </Reveal>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </div> */}
 
         <section
           className=" relative bg-primary w-screen h-full py-[5rem] global-padding"
           id="projects"
         >
           <ScrollTrigger start="-600px center" end="900px center" scrub={1.5}>
-            <div className="relative h-full py-[0vh] md:py-[10vh] my-[10vh] overflow-hidden bg-[#bfea88] ">
+            <div className="relative h-full py-[2vh] md:py-[10vh] my-[10vh] overflow-hidden bg-[#bfea88] ">
               <Tween
                 to={{
                   x: "-80%",
@@ -820,7 +708,7 @@ const Home = ({ footer, selected }) => {
               </Tween>
             </div>
           </ScrollTrigger>
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-8">
             <div className=" w-full bg-white h-[0.1px] bg-opacity-50"></div>
 
             <div className="left-side grid md:grid-cols-2 relative">
@@ -829,7 +717,7 @@ const Home = ({ footer, selected }) => {
                   data-image={selected[0].imageUrl}
                   className="show-sections flex flex-col justify-center min-h-[50vh] space-y-3"
                 >
-                  <h1 className=" text-[15vw] md:text-[5vw] py-10 leading-[4rem] text-white">
+                  <h1 className=" text-[4rem] leading-[5rem] md:text-[5rem] py-10 md:leading-[5rem] text-white">
                     {selected[0].title}
                   </h1>
                   <div className="space-y-2">
@@ -855,7 +743,7 @@ const Home = ({ footer, selected }) => {
                   data-image={selected[1].imageUrl}
                   className="show-sections flex flex-col justify-center min-h-[50vh] space-y-3"
                 >
-                  <h1 className=" text-[15vw] md:text-[5vw] py-10 leading-[4rem] text-white">
+                  <h1 className=" text-[4rem] leading-[5rem] md:text-[5rem] py-10 md:leading-[4rem] text-white">
                     {selected[1].title}
                   </h1>
                   <div className="space-y-2">
@@ -881,7 +769,7 @@ const Home = ({ footer, selected }) => {
                   data-image={selected[2].imageUrl}
                   className="show-sections flex flex-col justify-center min-h-[50vh] space-y-3"
                 >
-                  <h1 className=" text-[15vw] md:text-[5vw] py-10 leading-[4rem] text-white">
+                  <h1 className=" text-[4rem] leading-[5rem] md:text-[5rem] py-10 md:leading-[4rem] text-white">
                     {selected[2].title}
                   </h1>
                   <div className="space-y-2">
@@ -907,7 +795,7 @@ const Home = ({ footer, selected }) => {
                   data-image={selected[3].imageUrl}
                   className="show-sections flex flex-col justify-center min-h-[50vh] space-y-3"
                 >
-                  <h1 className=" text-[15vw] md:text-[5vw] py-10 leading-[4rem] text-white">
+                  <h1 className=" text-[4rem] leading-[5rem] md:text-[5rem] py-10 md:leading-[4rem] text-white">
                     {selected[3].title}
                   </h1>
                   <div className="space-y-2">
@@ -931,143 +819,46 @@ const Home = ({ footer, selected }) => {
                 </div>
               </div>
               <div className="right-side absolute w-fit right-0 h-full opacity-50 md:opacity-100">
-                <div className="sticky top-[10%] w-[300px] md:w-[500px] pl-5">
-                  <div className="  show-images max-w-full aspect-square object-cover bg-center bg-cover bg-no-repeat  " />
+                <div className="sticky top-[10%] w-[300px] md:w-[500px] p-5 this">
+                  <div className="  show-images max-w-full aspect-square object-cover bg-center bg-cover bg-no-repeat " />
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* <section className=" global-padding hidden md:block">
-          <div id="bound-four" className="scroll-bound">
-            <div className="content container mx-auto px-4 flex-col md:flex-row-reverse md:justify-between md:flex-end">
-              <div className="vid flex justify-end ">
-                <video className=" object-cover " muted preload>
-                  <source src="https://res.cloudinary.com/base-data/video/upload/c_scale,q_40,w_736/v1693160126/0827_fhzd3a.mp4" />
-                </video>
-              </div>
-              <div className=" ddp flex flex-col gap-10 items-center  justify-end w-full h-full  ">
-                <div className=" ">
-                  <img
-                    ref={imgRef}
-                    src="https://i.pinimg.com/originals/e6/85/eb/e685ebb3543ecabc29c1126e54f15898.jpg"
-                    style={{ left: `${position.x}px` }}
+        <div className=" w-screen py-[10vh] overflow-hidden">
+          <ScrollTrigger start="-800px center" end="1000px center" scrub={1.5}>
+            <div className=" h-fit py-[2vh] md:py-[10vh] my-[10vh] -skew-y-12  bg-[#bfea88]">
+              <Tween
+                to={{
+                  x: "-80%",
+                }}
+                wrapper={
+                  <div
+                    className="scroll-text text-[18vw] mx-2 md:text-[15vw] tracking-[0rem] md:tracking-[-0.2rem] "
+                    style={{
+                      width: "max-content",
+                      display: "flex",
+                      gap: "50px",
+                      fontWeight: "600",
+                      paddingBlock: "10px",
+                    }}
                   />
-                  <img
-                    ref={imgRef}
-                    src="https://i.pinimg.com/originals/e6/85/eb/e685ebb3543ecabc29c1126e54f15898.jpg"
-                  />
-                  <div className="ddp-text space-y-5">
-                    <h3 className=" heading-tags-alt relative text-left   cursor-pointer text-white">
-                      What i mostly do in my free time, or when the meal is
-                      ready. <br />
-                      <em className=" text-xl">
-                        watching anime, playing video games, or learning
-                        something new
-                      </em>
-                    </h3>
-                    <div className=" flex flex-col md:flex-row gap-5">
-                      <BtnDefNative linkTo="#archieves" pointDown>
-                        Archives
-                      </BtnDefNative>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className=" global-padding block md:hidden">
-          <div className="content container space-y-5 mx-auto px-4 flex-col md:flex-row md:justify-between md:flex-end">
-            <div className="vid flex justify-start">
-              <video
-                className=" object-cover w-screen h-full grayscale-[1]"
-                muted
-                preload="auto"
-                autoPlay
-                loop
+                }
               >
-                <source src="https://res.cloudinary.com/base-data/video/upload/c_scale,q_40,w_736/v1693160126/0827_fhzd3a.mp4" />
-              </video>
+                <h1 className="">Playground</h1>
+                <h1 className="">Playground</h1>
+                <h1 className="">Playground</h1>
+                <h1 className="">Playground</h1>
+              </Tween>
             </div>
-            <div className=" ddp">
-              <div className="ddp-text space-y-5">
-                <h3 className=" heading-tags-alt relative text-left   cursor-pointer text-white">
-                  What i mostly do on my free time, or when the meal is ready.
-                  <br />
-                  <em className=" text-xl">
-                    watching anime, playing video games, or learning something
-                    new
-                  </em>
-                </h3>
-                <RevealNative className="cursor-pointer">
-                  <BtnDefNative linkTo="#archieves" pointDown>
-                    Archieves
-                  </BtnDefNative>
-                </RevealNative>
-              </div>
-            </div>
-          </div>
-        </section> */}
-
+          </ScrollTrigger>
+        </div>
         <div
-          className=" container relative mx-auto px-4  h-full flex flex-col items-center justify-stretch mt-[30vh]"
+          className=" container overflow-hidden relative mx-auto px-4 md:px-8  h-full flex flex-col items-center justify-stretch mt-[10vh]"
           id="archieves"
         >
-          <ScrollTrigger start="-600px center" end="900px center" scrub={1.5}>
-            <div className="relative h-full py-[0vh] md:py-[10vh] my-[10vh] skew-y-12 overflow-hidden bg-[#bfea88] opacity-50">
-              <Tween
-                to={{
-                  x: "-80%",
-                }}
-                wrapper={
-                  <div
-                    className="scroll-text text-[18vw] mx-2 md:text-[15vw] tracking-[0rem] md:tracking-[-0.2rem] "
-                    style={{
-                      width: "max-content",
-                      display: "flex",
-                      gap: "50px",
-                      fontWeight: "600",
-                      paddingBlock: "10px",
-                    }}
-                  />
-                }
-              >
-                <h1 className="">Playground</h1>
-                <h1 className="">Playground</h1>
-                <h1 className="">Playground</h1>
-                <h1 className="">Playground</h1>
-              </Tween>
-            </div>
-          </ScrollTrigger>
-          <ScrollTrigger start="-800px center" end="1000px center" scrub={1.5}>
-            <div className="absolute top-0 h-fit py-[0vh] md:py-[10vh] my-[10vh] -skew-y-12 overflow-hidden bg-[#bfea88]">
-              <Tween
-                to={{
-                  x: "-80%",
-                }}
-                wrapper={
-                  <div
-                    className="scroll-text text-[18vw] mx-2 md:text-[15vw] tracking-[0rem] md:tracking-[-0.2rem] "
-                    style={{
-                      width: "max-content",
-                      display: "flex",
-                      gap: "50px",
-                      fontWeight: "600",
-                      paddingBlock: "10px",
-                    }}
-                  />
-                }
-              >
-                <h1 className="">Playground</h1>
-                <h1 className="">Playground</h1>
-                <h1 className="">Playground</h1>
-                <h1 className="">Playground</h1>
-              </Tween>
-            </div>
-          </ScrollTrigger>
-
           {/* <Reveal trigger={<div className=" text-left" />}>
             <Tween
             from={{ y: "200px", opacity: "0" }}
@@ -1089,10 +880,10 @@ const Home = ({ footer, selected }) => {
                 Playground
               </SplitWords>
             </Tween>
-            <div className="flex justify-center pb-10">
-              <BtnDefNativeNoLink>click to view</BtnDefNativeNoLink>
-            </div>
           </Reveal> */}
+          <div className="flex justify-center pb-10">
+            <BtnDefNativeNoLink>click to view</BtnDefNativeNoLink>
+          </div>
           <div
             className=" flex flex-wrap items-center justify-around w-full gap-5 "
             id="archieve"
@@ -1117,7 +908,7 @@ const Home = ({ footer, selected }) => {
             />
           )}
         </div>
-        <section className="global-padding container mx-auto px-4">
+        <section className="global-padding container mx-auto px-4 md:px-8">
           <Reveal trigger={<div className=" text-center" />}>
             <Tween
               from={{ y: "200px", opacity: "0" }}

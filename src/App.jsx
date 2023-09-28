@@ -6,10 +6,12 @@ import { Navbar } from "./components/navbar";
 import { IconContext } from "@phosphor-icons/react";
 import AnimatedRoute from "./components/AnimatedRoute";
 import Preloader from "./components/Preloader";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   const dataFetch = () => {
     fetch("https://kelvinohemeng.github.io/api-endpoint/projectData.json")
       .then((response) => response.json())
@@ -21,6 +23,7 @@ function App() {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+        navigate("/404");
         setTimeout(() => {
           setIsLoading(false);
         }, 5000);

@@ -195,7 +195,7 @@ const About = ({ footer }) => {
                   path. 🛤️💼
                 </p>
               </div>
-              <div ref={imgRef} className=" absolute inset-0">
+              <div ref={imgRef} className=" absolute overflow-hidden inset-0">
                 <img
                   className="abss-ab pointer-events-none"
                   src="https://res.cloudinary.com/base-data/image/upload/v1693278556/portfolio%20images/impactyouthsports_3___B0oKsIhJFfN____wjpsgd.jpg"

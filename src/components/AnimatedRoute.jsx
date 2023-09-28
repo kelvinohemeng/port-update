@@ -14,6 +14,7 @@ import { AnimatePresence } from "framer-motion";
 import { CloudinaryContext } from "cloudinary-react";
 import cloudinaryConfig from "./cloudinaryConfig";
 import NavDisplay from "./NavDisplay";
+import { ErrorPage } from "../pages/ErrorPage";
 
 function AnimatedRoute({ projectData, selectedProjects }) {
   const location = useLocation();
@@ -41,6 +42,7 @@ function AnimatedRoute({ projectData, selectedProjects }) {
               />
             }
           />
+          <Route path="/404" element={<ErrorPage />} />
         </Routes>
       </AnimatePresence>
     </CloudinaryContext>
