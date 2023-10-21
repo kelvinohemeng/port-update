@@ -70,9 +70,13 @@ main {
   background-color: $background !important;
 }
 html {
-  min-height: 100vh;
   overflow-x: hidden;
   scroll-behavior: smooth;
+}
+.ico {
+  > svg {
+    width: 30px !important;
+  }
 }
 .show-images {
   position: relative;

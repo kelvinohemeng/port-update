@@ -2,7 +2,89 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
+export const GsapScrollZoomNew = ({ children, text, text1, btn, others }) => {
+  const ref = useRef(null);
+  const containerRef = useRef(null);
+  useEffect(() => {
+    // gsap
 
+    const element = ref.current;
+    const containerElement = containerRef.current;
+
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerElement,
+        pin: containerElement,
+        scrub: 2,
+        start: "center center",
+        end: "+=600px",
+        ease: "expo.out",
+        // markers: true,
+        pinSpacer: false,
+      },
+    });
+    document.querySelectorAll(".disappear").forEach((dis) => {
+      timeline.to(
+        dis,
+        {
+          opacity: 0,
+        },
+        "0"
+      );
+    });
+    timeline
+      .to(".wait", {
+        y: 60,
+      })
+      .fromTo(
+        element,
+        {
+          scale: 1,
+          opacity: 1,
+          // x: "0%",
+          backfaceVisibility: 1,
+        },
+        {
+          scale: 5,
+          opacity: 0,
+          // x: "-26%",
+          y: "-100px",
+          backfaceVisibility: 0,
+        }
+      );
+  }, []);
+  return (
+    <div className="w-full pin-container ">
+      <div
+        ref={containerRef}
+        className="  w-full h-full flex flex-col md:px-8 justify-center gap-14"
+      >
+        <div className="disappear flex justify-center">{others}</div>
+        <div
+          ref={ref}
+          className=" min-h-[40rem] rounded-[1.5rem] drop-shadow-2xl  relative flex flex-col gap-8 p-2 px-6 justify-center items-center"
+        >
+          <div className="wait">{children}</div>
+          {text1 ? <p className=" disappear">{text1}</p> : ""}
+          {text ? (
+            <div className="absolute -z-10 left-0 top-0 w-full h-full disappear">
+              {text}
+            </div>
+          ) : (
+            ""
+          )}
+          {btn ? (
+            <div className="absolute -z-10 right-0 top-0 w-full h-full disappear">
+              {btn}
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 export const GsapScrollZoom = ({ children }) => {
   const ref = useRef(null);
   const containerRef = useRef(null);

@@ -2,12 +2,12 @@ import React, { lazy } from "react";
 // import Home from "../pages/Home";
 // import About from "../pages/About";
 const Home = lazy(() => import("../pages/Home"));
+const HomeNew = lazy(() => import("../pages/HomeNew"));
 const About = lazy(() => import("../pages/About"));
-const ProjectPage = lazy(() => import("../pages/projectPage"));
-const ProjectDetails = lazy(() => import("../pages/ProjectDetails"));
+const ProjectDetailsNew = lazy(() => import("../pages/projectDetailsNew"));
+const FooterNew = lazy(() => import("./FooterNew"));
 const Footer = lazy(() => import("./Footer"));
 // import { Footer } from "./Footer";
-// import ProjectDetails from "../pages/projectDetails";
 // import ProjectPage from "../pages/projectPage";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
@@ -23,26 +23,29 @@ function AnimatedRoute({ projectData, selectedProjects }) {
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route
+            path="/"
+            element={<HomeNew selected={projectData} footer={<FooterNew />} />}
+          />
+          <Route
+            path="/projects/:projectId"
+            element={
+              <ProjectDetailsNew
+                projects={projectData}
+                footer={<FooterNew />}
+              />
+            }
+          />
+          {/* <Route
             exact
             path="/"
             element={<Home selected={selectedProjects} footer={<Footer />} />}
-          />
-          <Route path="/about" element={<About footer={<Footer />} />} />
+          /> */}
+          {/* <Route path="/about" element={<About footer={<Footer />} />} /> */}
           {/* <Route
             path="/projects"
             element={<ProjectPage projects={projectData} footer={<Footer />} />}
           /> */}
-          <Route
-            path="/projects/:projectId"
-            element={
-              <ProjectDetails
-                projects={projectData}
-                selected={selectedProjects}
-                footer={<Footer />}
-              />
-            }
-          />
-          <Route path="/404" element={<ErrorPage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </AnimatePresence>
     </CloudinaryContext>

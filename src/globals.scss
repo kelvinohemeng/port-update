@@ -6,3 +6,150 @@
 @import "tailwindcss/utilities";
 
 /* Your additional styles here */
+
+h1 {
+  font-size: clamp(3rem, 6vw, 5.653rem);
+  //   letter-spacing: -2px !important;
+}
+
+/* For h2 */
+h2 {
+  font-size: clamp(2rem, 4vw, 3.998rem) !important;
+}
+
+/* For h3 */
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.827rem);
+}
+
+/* For h4 */
+h4 {
+  font-size: clamp(1.8rem, 2vw, 1.999rem);
+}
+
+/* For h5 */
+
+h5 {
+  font-size: clamp(1.2rem, 1.5vw, 1.6rem) !important;
+  //   margin-bottom: 20px;
+}
+p {
+  font-size: clamp(0.9125rem, 1.5vw, 1.414rem) !important;
+  //   margin-bottom: 20px;
+}
+
+/* For small text */
+small,
+.text_small {
+  font-size: clamp(0.5rem, 1vw, 0.707rem) !important;
+}
+
+#gradient-canvas {
+  --gradient-color-1: #4cd4b0;
+  --gradient-color-2: #fffce6;
+  --gradient-color-3: #f24d16;
+  --gradient-color-4: #edd834;
+}
+
+.masked {
+  // text-transform: uppercase;
+  background: url("/assets/gra.webp");
+  background-size: cover;
+  -webkit-background-clip: text;
+  line-height: 120%;
+  -webkit-text-fill-color: white;
+}
+
+.masked > .element {
+  position: relative;
+  all: unset;
+  -webkit-text-fill-color: transparent;
+  transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275); /* easeOutBack */
+
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  .custom-hover {
+    transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275); /* easeOutBack */
+
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    line-height: 100%;
+    position: absolute;
+    height: fit-content !important;
+    width: max-content;
+    font-family: "inter", sans-serif !important;
+    font-size: clamp(0.9125rem, 1.5vw, 1.414rem) !important;
+    -webkit-text-fill-color: white;
+    padding: 15px;
+    border-radius: 5px;
+
+    &:nth-child(2) {
+      // left: 30%;
+      // top: -20%;
+      transform: rotate(30deg) scale(0);
+      background: rgb(63, 94, 251);
+      background: linear-gradient(
+        317deg,
+        rgba(63, 94, 251, 1) 0%,
+        rgba(252, 70, 107, 1) 100%
+      );
+    }
+    &:nth-child(3) {
+      left: 30%;
+      top: -20%;
+      transform: rotate(-30deg) scale(0);
+      background: rgb(34, 193, 195);
+      background: linear-gradient(
+        17deg,
+        rgba(34, 193, 195, 1) 0%,
+        rgba(253, 187, 45, 1) 100%
+      );
+    }
+    &:nth-child(4) {
+      left: 30%;
+      top: -20%;
+      transform: rotate(-30deg) scale(0);
+      background: rgb(238, 174, 202);
+      background: linear-gradient(
+        90deg,
+        rgba(238, 174, 202, 1) 0%,
+        rgba(148, 187, 233, 1) 100%
+      );
+    }
+  }
+  &:hover {
+    .custom-hover {
+      &:nth-child(2) {
+        // left: 30%;
+        // top: -20%;
+        transform: rotate(30deg) scale(1);
+        background: rgb(63, 94, 251);
+        background: linear-gradient(
+          317deg,
+          rgba(63, 94, 251, 1) 0%,
+          rgba(252, 70, 107, 1) 100%
+        );
+      }
+      &:nth-child(3) {
+        left: 30%;
+        top: -20%;
+        transform: rotate(-30deg) scale(1);
+        background: rgb(34, 193, 195);
+        background: linear-gradient(
+          17deg,
+          rgba(34, 193, 195, 1) 0%,
+          rgba(253, 187, 45, 1) 100%
+        );
+      }
+      &:nth-child(4) {
+        left: 10%;
+        top: 20%;
+        transform: rotate(20deg) scale(1);
+        background: rgb(238, 174, 202);
+        background: linear-gradient(
+          90deg,
+          rgba(238, 174, 202, 1) 0%,
+          rgba(148, 187, 233, 1) 100%
+        );
+      }
+    }
+  }
+}

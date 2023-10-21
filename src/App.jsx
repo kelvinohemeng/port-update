@@ -7,33 +7,27 @@ import { IconContext } from "@phosphor-icons/react";
 import AnimatedRoute from "./components/AnimatedRoute";
 import Preloader from "./components/Preloader";
 import { useNavigate } from "react-router-dom";
+import { Test } from "./components/Test";
 
 function App() {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const dataFetch = () => {
-    fetch("https://kelvinohemeng.github.io/api-endpoint/projectData.json")
+    fetch("https://kelvinohemeng.github.io/api-endpoint/newProjectData.json")
       .then((response) => response.json())
       .then((data) => {
         setProjects(data.projects);
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 5000);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        navigate("/404");
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 5000);
+        setIsLoading(true);
       });
   };
   useEffect(() => {
     dataFetch();
-
-    const intervalId = setInterval(dataFetch, 1 * 60 * 1000);
-
+    const intervalId = setInterval(dataFetch(), [1000]);
     return () => {
       clearInterval(intervalId);
     };
@@ -42,6 +36,9 @@ function App() {
     const locomotiveScroll = new LocomotiveScroll();
   }, []);
   return (
+    // <>
+    //   <Test />
+    // </>
     <>
       {isLoading ? (
         <Preloader />
@@ -59,7 +56,7 @@ function App() {
             quality="auto:good"
           >
             <Navbar />
-            <main className="w-full bg-white ">
+            <main className="w-full bg-[#181818] ">
               <AnimatedRoute
                 projectData={projects}
                 selectedProjects={projects}
