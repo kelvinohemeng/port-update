@@ -111,3 +111,9 @@ h3 {
     }
   }
 }
+
+.in-view {
+  position: sticky;
+  // top: 10vh;
+  transform-origin: center top;
+}

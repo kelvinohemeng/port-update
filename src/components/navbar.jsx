@@ -24,7 +24,7 @@ export const Navbar = ({}) => {
   const globalPadding = " py-[20vh]";
   return (
     <nav className=" nav-bar absolute w-full p-5 md:p-8 h-fit  z-[9999999]">
-      <div className=" relative container mx-auto flex items-center justify-between  w-[100%] h-full">
+      <div className=" relative container mx-auto flex items-center justify-between backdrop-blur-sm  w-[100%] border-[2px] shadow-[0px_-8px_52px_0px_#00000024] border-opacity-60 p-5 rounded-[1rem] h-full">
         <div className=" flex items-center gap-2">
           <Link to="/" className=" flex items-center gap-4">
             {/* <Image
@@ -33,12 +33,14 @@ export const Navbar = ({}) => {
               width={30}
               alt=""
             /> */}
-            <h1 className=" text-[1.4rem] text-white md:text-[2rem]">K.O</h1>
+            <h1 className=" text-[1.4rem] text-[#201e1e] md:text-[2rem]">
+              THE BOX
+            </h1>
           </Link>
         </div>
         <div className=" flex gap-2 md:gap-4">
           <BtnDef
-            linkTo="mailto:kelvinohemeng59@gmail.com"
+            linkTo="https://bit.ly/resume-kelvin"
             target
             className=" text-white bg-blue-800"
             customIcon={
@@ -53,7 +55,7 @@ export const Navbar = ({}) => {
               </svg>
             }
           >
-            Hire me
+            Resume
           </BtnDef>
         </div>
         {/* <div className=" flex items-center justify-center ">

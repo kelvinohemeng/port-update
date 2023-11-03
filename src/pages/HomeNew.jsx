@@ -25,6 +25,7 @@ import { BtnDefNative, BtnDef, BtnDefNativeNoLink } from "../components/BtnDef";
 import { DisplaySomething } from "../components/DisplaySomething.jsx";
 import { PortArc } from "../components/PortArc.jsx";
 import { GsapScrollZoomNew } from "../components/GsapScroll.jsx";
+import WorkItem from "../components/WorkItem.jsx";
 
 const Home = ({ footer, selected }) => {
   const [position, setPosition] = useState({ x: 0 });
@@ -386,89 +387,112 @@ const Home = ({ footer, selected }) => {
       >
         <section>
           <div
-            className={`${containerClass} h-[120vh] md:h-screen  flex flex-col md:flex-row justify-center md:items-center gap-12`}
+            className={`${containerClass} h-[120vh] md:h-[70vh] overflow-hidden pt-[20vh]  flex flex-col md:flex-row justify-center md:items-center gap-12`}
           >
-            <div className=" h-fit flex flex-col justify-center gap-4">
-              {" "}
-              <h5 className=" text-white bg-[#f9f9f9] w-fit h-fit bg-opacity-10 border-2 border-white border-opacity-40 rounded-[5px] px-5">
-                Hi ! I am kelvin
-              </h5>
-              <h1 className=" masked text-left relative text-white bg-clip-text text-transparent bg-[url('https://res.cloudinary.com/base-data/video/upload/v1697876211/images/test_bgq729.mp4')]">
-                Where{" "}
-                <span className=" relative element">
-                  <span className=" cursor-pointer ">design</span>
-                  <span className="absolute z-[9999] text-white custom-hover">
-                    abobe creative suite
+            <div className=" h-fit w-full flex flex-col md:flex-row justify-center items-center md:items-start gap-4">
+              <div className=" flex flex-col md:flex-row flex-1 order-last items-start w-full justify- gap-4">
+                <img
+                  src="/assets/me2.png"
+                  alt=""
+                  className=" max-w-[100px] md:max-w-[80px]  bg-[#201e1e] w-fit h-fit bg-opacity-10 border-2 border-[#201e1e] border-opacity-40 rounded-full"
+                />
+                <div className=" space-y-4">
+                  <h5 className=" text-white bg-blue-500 bg-center flex gap-2 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-4 py-2">
+                    <span>Hi!</span> <b>my name is kelvin Ohemeng</b>
+                    <span className=" text-[2rem]">🖐️</span>
+                  </h5>
+                  <h5 className=" text-white bg-blue-500 bg-center flex gap-2 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-4 py-2">
+                    I am a web developer and graphic designer based in Ghana. I
+                    specialize in both field, Branding, logo design, Ui/Ux, Web
+                    development, Web application developoment, mobile
+                    development and many more.
+                  </h5>
+                  <h5 className=" text-white bg-[#201e1e] bg-center flex gap-2 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-4 py-2">
+                    <a href="             mailto:kelvinohemeng59@gmail.com">
+                      Grab a coffee with me{" "}
+                      <b>let us work on your next big project</b>
+                    </a>
+                  </h5>
+                  <div className="flex gap-4 items-center">
+                    <BtnDef
+                      linkTo="mailto:kelvinohemeng59@gmail.com"
+                      target
+                      showIconCoffee
+                      className=" bg-gray-800 text-white flex items-center gap-2 "
+                    >
+                      Let's grab a coffee
+                    </BtnDef>
+                    <BtnDef
+                      linkTo="https://bit.ly/resume-kelvin"
+                      target
+                      className=" text-white bg-gray-800"
+                      customIcon={
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="32"
+                          height="32"
+                          fill="#000000"
+                          viewBox="0 0 256 256"
+                        >
+                          <path d="M128,136v64a8,8,0,0,1-16,0V155.32L45.66,221.66a8,8,0,0,1-11.32-11.32L100.68,144H56a8,8,0,0,1,0-16h64A8,8,0,0,1,128,136ZM208,32H80A16,16,0,0,0,64,48V96a8,8,0,0,0,16,0V48H208V176H160a8,8,0,0,0,0,16h48a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Z"></path>
+                        </svg>
+                      }
+                    >
+                      Resume
+                    </BtnDef>
+                  </div>
+                </div>
+              </div>
+
+              <div className=" flex-1 flex flex-col w-full py-10">
+                <h2 className=" font-bold opacity-50">
+                  <span className=" text-[2rem] md:text-[3rem]">
+                    - the box :
                   </span>
-                  <span className="absolute z-[9999] text-white custom-hover">
-                    3d animations
-                  </span>
-                  <span className="absolute z-[9999] text-white custom-hover">
-                    Branding, logo, identity design
-                  </span>
-                </span>{" "}
-                <br /> and{" "}
-                <span className=" cursor-pointer element">
-                  <span>code</span>
-                  <span className="absolute z-[9999] text-white custom-hover">
-                    VS code
-                  </span>
-                  <span className="absolute z-[9999] text-white custom-hover">
-                    web development
-                  </span>
-                  <span className="absolute z-[9999] text-white custom-hover">
-                    UI development
-                  </span>
-                </span>{" "}
-                meet
-              </h1>
-              <p className="text-white text-justify max-w-[90%] md:max-w-[80%] opacity-60">
-                I am a web developer and graphic designer based in Ghana. I
-                specialize in both field, Branding, logo design, Ui/Ux, Web
-                development, Web application developoment, mobile development
-                and many more.
-              </p>
-              <BtnDef
-                linkTo="mailto:kelvinohemeng59@gmail.com"
-                target
-                showIconCoffee
-                className=" bg-blue-800 text-white flex items-center gap-2 mt-4 md:mt-8"
-              >
-                Let's grab a coffee
-              </BtnDef>
-            </div>
-            <div className="order-first md:order-last">
-              <img
-                src="/assets/me2.png"
-                alt=""
-                className=" max-w-[100px] md:max-w-[400px]  bg-[#f9f9f9] w-fit h-fit bg-opacity-10 border-2 border-white border-opacity-40 rounded-full"
-              />
+                </h2>
+                <h1 className=" masked text-left relative text-[#201e1e] bg-clip-text text-transparent bg-[url('https://res.cloudinary.com/base-data/video/upload/v1697876211/images/test_bgq729.mp4')]">
+                  Where{" "}
+                  <span className=" relative element">
+                    <span className=" cursor-pointer ">design</span>
+                    <span className="absolute z-[9999] text-white custom-hover">
+                      abobe creative suite
+                    </span>
+                    <span className="absolute z-[9999] text-white custom-hover">
+                      3d animations
+                    </span>
+                    <span className="absolute z-[9999] text-white custom-hover">
+                      Branding, logo, identity design
+                    </span>
+                  </span>{" "}
+                  <br /> and{" "}
+                  <span className=" cursor-pointer element">
+                    <span>code</span>
+                    <span className="absolute z-[9999] text-white custom-hover">
+                      VS code
+                    </span>
+                    <span className="absolute z-[9999] text-white custom-hover">
+                      web development
+                    </span>
+                    <span className="absolute z-[9999] text-white custom-hover">
+                      UI development
+                    </span>
+                  </span>{" "}
+                  meet
+                </h1>
+                <p className="text-[#201e1e] text-left max-w-[90%] md:max-w-[50%] opacity-50">
+                  <i>*hover on the design or code to trigger animation*</i>
+                </p>
+              </div>
             </div>
           </div>
         </section>
-        <section className={`w-full py-[20vh] `} id="#about">
+        <div className="container mx-auto px-4">
+          <div className="w-full bg-black h-[1.5px] opacity-20"></div>
+        </div>
+        {/* <section className={`w-full py-[20vh] `} id="#about">
           <div
             className={`${containerClass} h-full md:flex-row flex-col flex gap-8 relative`}
           >
-            {/* <div className="space-y-20  relative">
-              <GsapScrollZoomNew
-                text1={
-                  <p
-                    className={`${mediumText} text-center text-white text-opacity-50 animate-bounce`}
-                  >
-                    keep scrolling
-                  </p>
-                }
-              >
-                <div>
-                  <h1 className={`${bigText} text-white text-center `}>
-                    where <em className="text-[hsl(234,59%,60%)]">design</em>{" "}
-                    and
-                    <em className="text-[hsl(234,59%,60%)]">code</em> meet
-                  </h1>
-                </div>
-              </GsapScrollZoomNew>
-            </div> */}
             <div className={` md:sticky top-[10rem] w-fit h-fit space-y-8 `}>
               <img
                 src="/assets/me-sticker.png"
@@ -844,23 +868,19 @@ const Home = ({ footer, selected }) => {
               </div>
             </div>
           </div>
-          {/* <canvas
-              className=" absolute w-full h-full"
-              id="gradient-canvas"
-              data-js-darken-top
-              data-transition-in
-            /> */}
-        </section>
+        </section> */}
 
         <section id="selected" className=" md:fade-section">
           <div
             className={`${containerClass} flex flex-col  gap-14 ${globalPadding}`}
           >
             <div className="flex flex-col md:flex-row gap-8 justify-between w-full pb-[0vh]">
-              <h1 className={`${bigText} text-white text-center md:text-left`}>
+              <h1
+                className={`${bigText} text-[#201e1e] text-center md:text-left`}
+              >
                 Selected <br /> works
               </h1>
-              <div className=" rounded-[1.25rem] bg-[hsl(234,59%,40%)] text-white p-[1.5rem] md:p-[3rem] space-y-4">
+              <div className=" rounded-[1.25rem] bg-blue-800 text-white p-[1.5rem] md:p-[3rem] space-y-4">
                 <h4 className=" text-[1.875rem] max-w-md">
                   A showcase of my most recent professional work for clients.
                 </h4>
@@ -868,20 +888,20 @@ const Home = ({ footer, selected }) => {
             </div>
 
             <div className=" flex justify-center md:justify-end">
-              <div className=" space-x-4 w-fit flex p-2 rounded-lg border-2 border-white border-opacity-60 bg-white bg-opacity-5">
+              <div className=" space-x-4 w-fit flex p-2 rounded-lg border-2 border-[#201e1e] border-opacity-60 bg-opacity-5">
                 <button
                   onClick={() => setDisplay("development")}
-                  className={` text-white px-4 py-2 ${
+                  className={`  px-4 py-2 ${
                     display === "development"
-                      ? "bg-[hsl(234,59%,60%)]"
-                      : " opacity-50"
+                      ? "bg-[hsl(234,59%,60%)] text-white"
+                      : " opacity-50 text-[#201e1e]"
                   } border-white rounded-lg flex items-center gap-2`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
                     height="20"
-                    fill="#ffffff"
+                    fill={display === "development" ? "#ffffff" : "#201e1e"}
                     viewBox="0 0 256 256"
                   >
                     <path d="M230.91,172A8,8,0,0,1,228,182.91l-96,56a8,8,0,0,1-8.06,0l-96-56A8,8,0,0,1,36,169.09l92,53.65,92-53.65A8,8,0,0,1,230.91,172ZM220,121.09l-92,53.65L36,121.09A8,8,0,0,0,28,134.91l96,56a8,8,0,0,0,8.06,0l96-56A8,8,0,1,0,220,121.09ZM24,80a8,8,0,0,1,4-6.91l96-56a8,8,0,0,1,8.06,0l96,56a8,8,0,0,1,0,13.82l-96,56a8,8,0,0,1-8.06,0l-96-56A8,8,0,0,1,24,80Zm23.88,0L128,126.74,208.12,80,128,33.26Z"></path>
@@ -890,27 +910,27 @@ const Home = ({ footer, selected }) => {
                 </button>
                 <button
                   onClick={() => setDisplay("visuals")}
-                  className={` text-white px-4 py-2 ${
+                  className={`  px-4 py-2  ${
                     display === "visuals"
-                      ? "bg-[hsl(234,59%,60%)]"
-                      : " opacity-50"
+                      ? "bg-[hsl(234,59%,60%)] text-white"
+                      : " opacity-50 text-[#201e1e] animate-bounce"
                   } border-white rounded-lg flex items-center gap-2`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
                     height="20"
-                    fill="#ffffff"
+                    fill={display === "visuals" ? "#ffffff" : "#201e1e"}
                     viewBox="0 0 256 256"
                   >
                     <path d="M120,56v48a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40h48A16,16,0,0,1,120,56Zm80-16H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm-96,96H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm96,0H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Z"></path>
                   </svg>
-                  <span>Visuals</span>
+                  <span>Playground</span>
                 </button>
               </div>
             </div>
 
-            <div>
+            <div className=" space-y-8">
               {display === "visuals" ? (
                 <div className=" grid grid-cols-2 md:grid-cols-4 w-full min-h-[100vh] gap-4  md:gap-8 cursor-pointer">
                   {archieveLinks.map((archieves, index) => (
@@ -931,84 +951,12 @@ const Home = ({ footer, selected }) => {
                   )}
                 </div>
               ) : (
-                <div className=" space-y-[45px] h-full">
+                <div className="  h-full">
                   {selected.slice(0, 4).map((select, index) => (
-                    <div
-                      key={index}
-                      className={` text-white border-[0.05px] border-opacity-30  border-white card flex flex-col md:flex-row  p-[1.5rem] gap-[2rem] md:gap-[10rem] ${defRounded}`}
-                    >
-                      <div className="flex-1  flex flex-col justify-start gap-8 md:p-4">
-                        <div className="logo">
-                          {select.logo ? (
-                            <img
-                              src={select.logo}
-                              alt="logo-image"
-                              className=" w-[60px]"
-                            />
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div className=" ">
-                          <h3 className={``}>{select.title}</h3>
-                          <p className=" text-[hsl(234,59%,60%)]">
-                            {select.category}
-                          </p>
-                        </div>
-                        <div className="space-y-8">
-                          <p className=" opacity-60">{select.description}</p>
-                          {select && select.live && select.title && (
-                            <div className="flex gap-4">
-                              <BtnDef
-                                onClick={() =>
-                                  (window.location.href = `/projects/${select.title}`)
-                                }
-                              >
-                                Explore Project
-                              </BtnDef>
-                              <BtnDef
-                                className=" border-2 border-white bg-opacity-10 border-opacity-40"
-                                linkTo={select.live}
-                                target
-                                customIcon={
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="32"
-                                    height="32"
-                                    fill="#000000"
-                                    viewBox="0 0 256 256"
-                                  >
-                                    <path d="M128,136v64a8,8,0,0,1-16,0V155.32L45.66,221.66a8,8,0,0,1-11.32-11.32L100.68,144H56a8,8,0,0,1,0-16h64A8,8,0,0,1,128,136ZM208,32H80A16,16,0,0,0,64,48V96a8,8,0,0,0,16,0V48H208V176H160a8,8,0,0,0,0,16h48a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Z"></path>
-                                  </svg>
-                                }
-                              >
-                                live
-                              </BtnDef>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      <div
-                        className={`md:${defRounded} flex-1 w-full h-full overflow-hidden drop-shadow-lg`}
-                      >
-                        {/* {select.video ? (
-                      <video
-                        className=" h-full object-cover "
-                        autoPlay
-                        muted
-                        loop
-                        preload="true"
-                      >
-                        <source src={select.video} />
-                      </video>
-                    ) : ( */}
-                        <img
-                          className=" max-h-[350px] w-full  object-cover"
-                          src={select.imageUrl}
-                        />
-                        {/* )} */}
-                      </div>
-                    </div>
+                    <>
+                      <WorkItem index={index} select={select} />
+                      <div className=" h-[20vh]"></div>
+                    </>
                   ))}
                 </div>
               )}
@@ -1020,20 +968,20 @@ const Home = ({ footer, selected }) => {
           <div
             className={`${containerClass} min-h-[60vh] space-y-8 flex flex-col w-full items-center justify-center`}
           >
-            <h2 className={`${medText} text-white text-center`}>
+            <h2 className={`${medText} text-[#201e1e] text-center`}>
               Have a project in mind?
             </h2>
             <button
               onMouseEnter={() => setHovered(true)}
               onMouseLeave={() => setHovered(false)}
-              className=" py-5 md:py-8 px-10 border-2 border-white border-opacity-50 rounded-2xl text-white hover:bg-white hover:bg-opacity-10 duration-200 transition-all"
+              className=" py-5 md:py-8 px-10 border-2 border-[#201e1e] border-opacity-50 rounded-2xl text-[#201e1e] hover:bg-blue-600 hover:bg-opacity-10 duration-200 transition-all"
             >
               <a
                 href="mailto:kelvinohemeng59@gmail.com"
                 target="_blank"
                 className={`${bigText}`}
               >
-                {hovered ? "I am good" : "say hello !"}
+                {hovered ? "I am friendly" : "say hello !"}
               </a>
             </button>
           </div>

@@ -85,10 +85,10 @@ export const BtnDef = ({
       to={linkTo}
       onClick={onClick}
       target={target ? "_blank" : ""}
-      className={`abt-btn bg-[#ecebeb]  ${className} ${
+      className={`abt-btn  ${className} ${
         className
           ? `${className}`
-          : " text-black hover:bg-[hsl(234,59%,44%)] hover:text-white"
+          : " text-black bg-[#ecebeb] hover:bg-[hsl(234,59%,44%)] hover:text-white"
       }`}
       // onClick={pageRefresh}
     >

@@ -51,18 +51,10 @@ function App() {
             mirrored: false,
           }}
         >
-          <CloudinaryContext
-            cloudName={cloudinaryConfig.cloudName}
-            quality="auto:good"
-          >
-            <Navbar />
-            <main className="w-full bg-[#181818] ">
-              <AnimatedRoute
-                projectData={projects}
-                selectedProjects={projects}
-              />
-            </main>
-          </CloudinaryContext>
+          <Navbar />
+          <main className="w-full bg-[#eeeeee] ">
+            <AnimatedRoute projectData={projects} selectedProjects={projects} />
+          </main>
         </IconContext.Provider>
       )}
     </>

@@ -15,7 +15,7 @@ const FooterNew = () => {
       <div
         className={`${containerClass} ${globalPadding} flex flex-col gap-12 w-full`}
       >
-        <div className="flex flex-col md:flex-row gap-8 justify-between items-center text-white">
+        <div className="flex flex-col md:flex-row gap-8 justify-between items-center text-[#201e1e]">
           <div className="">
             <a
               href="https://calendly.com/kelvinohemeng59/contra-client"
@@ -32,7 +32,7 @@ const FooterNew = () => {
                 <a
                   href="https://www.linkedin.com/in/kelvinohemeng/"
                   target="_blank"
-                  className={`p-[.88rem] bg-black bg-opacity-30 ${defRounded} hover:bg-opacity-70 duration-200 `}
+                  className={`p-[.88rem] bg-[#201e1e]  ${defRounded} hover:bg-opacity-70 duration-200 `}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +64,7 @@ const FooterNew = () => {
                 <a
                   href="https://twitter.com/K_DesignBox"
                   target="_blank"
-                  className={`p-[.88rem] bg-black bg-opacity-30 ${defRounded} hover:bg-opacity-70 duration-200 `}
+                  className={`p-[.88rem] bg-[#201e1e]  ${defRounded} hover:bg-opacity-70 duration-200 `}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +84,7 @@ const FooterNew = () => {
                 <a
                   href="https://github.com/kelvinohemeng"
                   target="_blank"
-                  className={`p-[.88rem] bg-black bg-opacity-30 ${defRounded} hover:bg-opacity-70 duration-200 `}
+                  className={`p-[.88rem] bg-[#201e1e]  ${defRounded} hover:bg-opacity-70 duration-200 `}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +105,7 @@ const FooterNew = () => {
             </div>
           </div>
         </div>
-        <div className=" self-center md:self-start text-white flex flex-col md:flex-row items-center space-y-2  justify-between w-full mt-8 opacity-60">
+        <div className=" self-center md:self-start text-[#201e1e] flex flex-col md:flex-row items-center space-y-2  justify-between w-full mt-8 opacity-60">
           <p>Designed and developed by me</p>
           <p> © 2023 All rights reserved.</p>
         </div>

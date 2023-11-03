@@ -9,17 +9,17 @@ export const DisplaySomething = ({ toDisplay, reverse, context, linkTo }) => {
       onClick={reverse}
     >
       <div className="relative h-full container mx-auto px-4 flex items-center justify-center">
-        <div className="text-white  flex flex-col md:flex-row p-3 md:p-5 gap-4 md:max-w-[900px]">
+        <div className="text-white flex flex-col p-3 md:p-5 gap-4 md:max-w-[900px]">
           <div className="flex-1">
             {toDisplay[0].image ? (
               <Image
-                className=" w-full aspect-square  h-full object-cover"
+                className=" w-full md:max-w-[400px] aspect-square h-full object-cover"
                 quality="50"
                 publicId={toDisplay[0].image}
               />
             ) : (
               <Video
-                className=" w-full aspect-video bg-black h-full object-cover"
+                className=" w-full md:max-w-[400px] aspect-video bg-black h-full object-cover"
                 controls
                 autoPlay
                 quality="50"
