@@ -88,15 +88,12 @@ export const BtnDef = ({
       className={`abt-btn  ${className} ${
         className
           ? `${className}`
-          : " text-black bg-[#ecebeb] hover:bg-[hsl(234,59%,44%)] hover:text-white"
+          : " text-black bg-[#ffffff] hover:bg-[hsl(234,59%,44%)] hover:text-white"
       }`}
       // onClick={pageRefresh}
     >
-      <div className="main-text-btn">
-        <div>
-          <div>{children}</div>
-          <div>{children}</div>
-        </div>
+      <div className=" flex justify-center w-full">
+        <span className=" text-[1.5rem] text-center">{children}</span>
       </div>
       {showIcon ? (
         <ArrowElbowDownRight size={22} weight="fill" className=" order-first" />

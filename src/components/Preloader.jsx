@@ -43,9 +43,14 @@ const Preloader = () => {
   }, []);
 
   return (
-    <div className="preloader flex flex-col">
-      <div className="loading-bar absolute invisible"></div>
+    <div className="preloader flex flex-col relative h-screen">
+      <div className="loading-bar absolute bg-red-black h-[3px]"></div>
       <h1 className="progress text-[16vw]">{progress}%</h1>
+      <img
+        src="/assets/load.png"
+        className=" max-w-sm md:max-w-md absolute bottom-[-10px] right-0"
+        alt=""
+      />
     </div>
   );
 };

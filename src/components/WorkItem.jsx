@@ -1,83 +1,87 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import { BtnDef } from "./BtnDef";
 import { Link } from "react-router-dom";
+import gsap from "gsap";
 // import "./WorkItem.css"; // Create this CSS file for styling
 
-const WorkItem = ({ select, top, index }) => {
+const WorkItem = ({ select, ref, index }) => {
   const [topValue, setTopValue] = useState("");
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-  });
-
-  useEffect(() => {
-    if (select.id === 1) {
-      setTopValue("5vh");
-    } else if (select.id === 2) {
-      setTopValue("10vh");
-    } else if (select.id === 3) {
-      setTopValue("15vh");
-    } else if (select.id === 4) {
-      setTopValue("20vh");
-    }
-  }, []);
 
   return (
-    <Link to={select.live} key={index} className="">
-      <div
-        ref={ref}
-        style={{ top: `${inView ? topValue : "10vh"}` }}
-        className={`w-full h-[90vh] md:h-[70vh] bg-[hsl(0,11%,96%)]  border-blue-600 rounded-[1.5rem] overflow-hidden ${
-          inView ? "in-view shadow-[0px_-8px_52px_0px_#00000024]" : ""
-        }`}
+    <div
+      className={` 2xl:min-w-[300px] md:h-[35rem] flex gap-5 relative group`}
+    >
+      <Link
+        to={select.live}
+        target="_blank"
+        className="  flex flex-row flex-wrap md:flex-col justify-between p-5 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-[1rem] items-start gap-8"
       >
-        <div className=" w-full h-full flex flex-col md:flex-row">
-          <div className="flex-1 flex h-full flex-col justify-between gap-8 p-5 md:p-10">
-            <div>
-              {" "}
-              {select.logo ? (
-                <img src={select.logo} alt="logo-image" className=" w-[60px]" />
-              ) : (
-                ""
-              )}
-              <div className=" ">
-                <h3 className={``}>{select.title}</h3>
-                <p className=" text-black flex flex-wrap gap-2">
-                  {select.category.split("|").map((cat, index) => (
-                    <span className=" px-2 text-[1rem] border-2 border-black rounded-full">
-                      {cat}
-                    </span>
-                  ))}
-                </p>
-              </div>
-            </div>
-            <div className=" space-y-8">
-              {" "}
-              <p className=" max-w-lg">{select.description}</p>
-              <div className="flex gap-4">
-                <BtnDef
-                  className="bg-black text-white"
-                  linkTo={select.live}
-                  //   onClick={() =>
-                  //     (window.location.href = `/projects/${select.title}`)
-                  //   }
+        <div>
+          {select.logo ? (
+            <img src={select.logo} alt="logo-image" className=" w-[60px]" />
+          ) : (
+            ""
+          )}
+          <div className="space-y-4">
+            <h3 className={`text-gray-800 leading-[3rem] font-bold`}>
+              {select.title}
+            </h3>
+            <p className=" text-gray-500 flex flex-wrap gap-2">
+              {select.category.split("|").map((cat, index) => (
+                <span
+                  key={index}
+                  className=" px-2 text-[1rem] border-2 border-gray-500 rounded-full"
                 >
-                  Explore Live Project
-                </BtnDef>
-              </div>
-            </div>
-          </div>
-          <div
-            className={`flex-1 w-full h-full overflow-hidden drop-shadow-lg`}
-          >
-            <img
-              className=" h-full w-full  object-cover"
-              src={select.imageUrl}
-            />
+                  {cat}
+                </span>
+              ))}
+            </p>
           </div>
         </div>
-      </div>
-    </Link>
+        <div className="space-y-8">
+          <p className=" max-w-lg text-gray-500">{select.description}</p>
+          <div className="flex gap-4 flex-col">
+            {/* <BtnDef
+                  className="bg-black text-black"
+                  // linkTo={select.live}
+                  onClick={() =>
+                    (window.location.href = `/projects/${select.title}`)
+                  }
+                >
+                  Case Study
+                </BtnDef> */}
+            {/* <BtnDef
+              className="bg-black w-full text-white"
+              linkTo={select.live}
+              // customIcon={
+              //   <svg
+              //     xmlns="http://www.w3.org/2000/svg"
+              //     width="32"
+              //     height="32"
+              //     viewBox="0 0 256 256"
+              //     fill="black"
+              //   >
+              //     <path d="M128,136v64a8,8,0,0,1-16,0V155.32L45.66,221.66a8,8,0,0,1-11.32-11.32L100.68,144H56a8,8,0,0,1,0-16h64A8,8,0,0,1,128,136ZM208,32H80A16,16,0,0,0,64,48V96a8,8,0,0,0,16,0V48H208V176H160a8,8,0,0,0,0,16h48a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Z"></path>
+              //   </svg>
+              // }
+            >
+              Live project
+            </BtnDef> */}
+          </div>
+        </div>
+      </Link>
+
+      {/* <div
+        style={{
+          background: `url("${select.imageUrl}")`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+        className={`absolute -right-[15rem] h-[300px] w-full rounded-[1rem]  pointer-events-none`}
+      ></div> */}
+    </div>
   );
 };
 

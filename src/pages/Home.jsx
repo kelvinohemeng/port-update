@@ -721,11 +721,11 @@ const Home = ({ footer, selected }) => {
                     {selected[0].title}
                   </h1>
                   <div className="space-y-2">
-                    <div className="wid-tags">
+                    {/* <div className="wid-tags">
                       {selected[0].category.map((cat, index) => (
                         <span key={index}>{cat}</span>
                       ))}
-                    </div>
+                    </div> */}
                     <div className=" flex gap-3">
                       <BtnDef
                         showIcon
@@ -747,11 +747,11 @@ const Home = ({ footer, selected }) => {
                     {selected[1].title}
                   </h1>
                   <div className="space-y-2">
-                    <div className="wid-tags">
+                    {/* <div className="wid-tags">
                       {selected[1].category.map((cat, index) => (
                         <span key={index}>{cat}</span>
                       ))}
-                    </div>
+                    </div> */}
                     <div className=" flex gap-3">
                       <BtnDef
                         showIcon
@@ -773,11 +773,11 @@ const Home = ({ footer, selected }) => {
                     {selected[2].title}
                   </h1>
                   <div className="space-y-2">
-                    <div className="wid-tags">
+                    {/* <div className="wid-tags">
                       {selected[2].category.map((cat, index) => (
                         <span key={index}>{cat}</span>
                       ))}
-                    </div>
+                    </div> */}
                     <div className=" flex gap-3">
                       <BtnDef
                         showIcon
@@ -799,11 +799,11 @@ const Home = ({ footer, selected }) => {
                     {selected[3].title}
                   </h1>
                   <div className="space-y-2">
-                    <div className="wid-tags">
+                    {/* <div className="wid-tags">
                       {selected[3].category.map((cat, index) => (
                         <span key={index}>{cat}</span>
                       ))}
-                    </div>
+                    </div> */}
                     <div className=" flex gap-3">
                       <BtnDef
                         showIcon

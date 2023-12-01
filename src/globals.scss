@@ -6,7 +6,6 @@
 @import "tailwindcss/utilities";
 
 /* Your additional styles here */
-
 h1 {
   font-size: clamp(3rem, 6vw, 5.653rem);
   //   letter-spacing: -2px !important;
@@ -51,16 +50,21 @@ small,
   --gradient-color-4: #edd834;
 }
 
+.small-em {
+  font-size: 1.5rem !important;
+}
 .masked {
   // text-transform: uppercase;
-  background: url("/assets/gra.webp");
-  background-size: cover;
-  -webkit-background-clip: text;
-  line-height: 120%;
-  -webkit-text-fill-color: #201e1e;
+  line-height: 90%;
+  -webkit-text-fill-color: #ffffff;
 }
 
 .masked > .element {
+  .cursor-zoom-in {
+    background: url("/assets/gra.webp");
+    background-size: cover;
+    -webkit-background-clip: text;
+  }
   position: relative;
   all: unset;
   -webkit-text-fill-color: transparent;
@@ -69,14 +73,14 @@ small,
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   .custom-hover {
     transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275); /* easeOutBack */
-
     transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     line-height: 100%;
+    letter-spacing: -0.06rem;
     position: absolute;
     height: fit-content !important;
     width: max-content;
     font-family: "inter", sans-serif !important;
-    font-size: clamp(0.9125rem, 1.5vw, 1.414rem) !important;
+    font-size: 1.5rem !important;
     -webkit-text-fill-color: white;
     padding: 15px;
     border-radius: 5px;

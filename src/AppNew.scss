@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Open+Sans:wght@400;600;700;800&family=Paytone+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;800&family=Montserrat:wght@400;500;600&family=Poppins:wght@300;500;400;600&display=swap");
 // font-family: "Dela Gothic One", cursive;
 // font-family: "Open Sans", sans-serif;
 // font-family: "Paytone One", sans-serif;
@@ -23,7 +24,49 @@ $display-font1: "Dela Gothic One", cursive;
 h1,
 h2,
 h3 {
-  font-family: Font;
+  font-family: "Inter", sans-serif;
+  font-weight: 500 !important;
+  span,
+  div,
+  a,
+  em,
+  b {
+    font-family: "Inter", sans-serif;
+    font-weight: 500 !important;
+  }
+}
+
+.em {
+  position: relative;
+  padding: 8px 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-style: normal;
+  z-index: 10;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #8862f3;
+    border-radius: 10px;
+    transform: rotate(-2deg);
+    z-index: -1;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #4621a9;
+    border-radius: 8px;
+    transform: rotate(2deg);
+    z-index: -1;
+  }
 }
 
 .abt-btn {
@@ -36,20 +79,11 @@ h3 {
   align-items: center;
   gap: 0px;
   // overflow: hidden !important;
+  transition: all ease-out 300ms;
   svg {
     position: relative;
     z-index: 10;
     fill: white;
-  }
-
-  &::after {
-    position: absolute;
-    content: "";
-    inset: 0;
-    top: 0;
-    // background: black;
-    transition: 300ms ease-out;
-    border-radius: 5px;
   }
   // &::before {
   //   position: absolute;
@@ -63,35 +97,12 @@ h3 {
   // }
 
   .main-text-btn {
-    position: relative;
-    z-index: 100;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-    div {
-      transition: 300ms ease-out;
-      display: flex;
-      gap: 9px;
-      flex-direction: column;
-      font-size: 1.5rem;
-    }
+    font-size: 1.5rem;
   }
 
   &:hover {
-    .main-text-btn {
-      div {
-        transform: translateY(-40%);
-      }
-    }
     &::before {
-      position: absolute;
-      content: "";
-      inset: 0;
-      top: 0;
-      transform: rotate(5deg);
-      transition: 300ms ease-out;
-      border-radius: 5px;
+      transform: scale(1.05, 1.2);
     }
   }
   @media screen and (max-width: 450px) {
@@ -116,4 +127,29 @@ h3 {
   position: sticky;
   // top: 10vh;
   transform-origin: center top;
+}
+
+.animate {
+  animation: animateIt forwards 800ms;
+}
+.reverse-animate {
+  animation: animate-reverse forwards 800ms;
+}
+
+@keyframes animateIt {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.5);
+  }
+}
+
+@keyframes animate-reverse {
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+  }
 }

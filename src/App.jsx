@@ -7,7 +7,6 @@ import { IconContext } from "@phosphor-icons/react";
 import AnimatedRoute from "./components/AnimatedRoute";
 import Preloader from "./components/Preloader";
 import { useNavigate } from "react-router-dom";
-import { Test } from "./components/Test";
 
 function App() {
   const [projects, setProjects] = useState([]);
@@ -36,9 +35,6 @@ function App() {
     const locomotiveScroll = new LocomotiveScroll();
   }, []);
   return (
-    // <>
-    //   <Test />
-    // </>
     <>
       {isLoading ? (
         <Preloader />
@@ -51,8 +47,8 @@ function App() {
             mirrored: false,
           }}
         >
-          <Navbar />
-          <main className="w-full bg-[#eeeeee] ">
+          {/* <Navbar /> */}
+          <main className="w-full bg-[#19191a]">
             <AnimatedRoute projectData={projects} selectedProjects={projects} />
           </main>
         </IconContext.Provider>

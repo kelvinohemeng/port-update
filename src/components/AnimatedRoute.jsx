@@ -1,7 +1,7 @@
 import React, { lazy } from "react";
 // import Home from "../pages/Home";
 // import About from "../pages/About";
-const Home = lazy(() => import("../pages/Home"));
+const Three = lazy(() => import("../pages/three"));
 const HomeNew = lazy(() => import("../pages/HomeNew"));
 const About = lazy(() => import("../pages/About"));
 const ProjectDetailsNew = lazy(() => import("../pages/projectDetailsNew"));
@@ -15,6 +15,7 @@ import { CloudinaryContext } from "cloudinary-react";
 import cloudinaryConfig from "./cloudinaryConfig";
 import NavDisplay from "./NavDisplay";
 import { ErrorPage } from "../pages/ErrorPage";
+import { NewTest, SideBarNavComponent } from "../components/Test";
 
 function AnimatedRoute({ projectData, selectedProjects }) {
   const location = useLocation();
@@ -35,11 +36,9 @@ function AnimatedRoute({ projectData, selectedProjects }) {
               />
             }
           />
-          {/* <Route
-            exact
-            path="/"
-            element={<Home selected={selectedProjects} footer={<Footer />} />}
-          /> */}
+          {/* <Route path="/three" element={<Three />} /> */}
+          <Route path="/test" element={<NewTest />} />
+          <Route path="/nav test" element={<SideBarNavComponent />} />
           {/* <Route path="/about" element={<About footer={<Footer />} />} /> */}
           {/* <Route
             path="/projects"

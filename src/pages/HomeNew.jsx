@@ -30,6 +30,8 @@ import WorkItem from "../components/WorkItem.jsx";
 const Home = ({ footer, selected }) => {
   const [position, setPosition] = useState({ x: 0 });
   const [activeLinkIndex, setActiveLinkIndex] = useState(null);
+  const workItemRef = useRef(null);
+
   const [hovered, setHovered] = useState(false);
   const [display, setDisplay] = useState("development");
   const openDisplay = (index) => {
@@ -154,6 +156,7 @@ const Home = ({ footer, selected }) => {
       ],
     },
   ];
+
   const archieveLinks = [
     {
       imageUrl:
@@ -331,6 +334,7 @@ const Home = ({ footer, selected }) => {
       link: "https://www.tiktok.com/@kelvinsdesignbox/video/7228587619255422214?is_from_webapp=1&sender_device=pc",
     },
   ];
+
   const portArc = [
     {
       imageUrl:
@@ -352,24 +356,43 @@ const Home = ({ footer, selected }) => {
     },
   ];
 
+  // useEffect(() => {
+  //   // moving gradient
+  //   const gradient = new Gradient();
+  //   gradient.initGradient("#gradient-canvas");
+  //   const sections = document.querySelector(".fade-section");
+  //   gsap.from(".fade-section", {
+  //     opacity: 0,
+  //     duration: 0.5,
+  //     scrollTrigger: {
+  //       trigger: ".fade-section",
+  //       scrub: 2,
+  //       start: "top center",
+  //       end: "10% center",
+  //       ease: "expo.out",
+  //       // markers: true,
+  //     },
+  //   });
+  // }, []);
+
   useEffect(() => {
-    // moving gradient
-    const gradient = new Gradient();
-    gradient.initGradient("#gradient-canvas");
-    const sections = document.querySelector(".fade-section");
-    gsap.from(".fade-section", {
+    const animateIn = document.querySelectorAll(".work-animate");
+
+    gsap.from(animateIn, {
+      y: 100,
       opacity: 0,
-      duration: 0.5,
+      duration: 0.8,
+      stagger: 0.2,
+      transformOrigin: "left bottom",
+      ease: "elastic.out(0.45,0.3)",
       scrollTrigger: {
-        trigger: ".fade-section",
-        scrub: 2,
-        start: "top center",
-        end: "10% center",
-        ease: "expo.out",
+        trigger: animateIn,
+        start: "60% bottom",
         // markers: true,
       },
     });
   }, []);
+
   const containerClass = "container mx-auto md:px-8 px-4";
   const mediumText = "text-[1.843rem]";
   const medText = "text-[1.873rem]";
@@ -385,110 +408,252 @@ const Home = ({ footer, selected }) => {
         exit={{ opacity: 0 }}
         className="relative"
       >
-        <section>
+        <section className=" w-full pb-[20vh]">
           <div
-            className={`${containerClass} h-[120vh] md:h-[70vh] overflow-hidden pt-[20vh]  flex flex-col md:flex-row justify-center md:items-center gap-12`}
+            className={`${containerClass} h-full pt-[20vh] w-full flex flex-col items-center gap-10`}
           >
-            <div className=" h-fit w-full flex flex-col md:flex-row justify-center items-center md:items-start gap-4">
-              <div className=" flex flex-col md:flex-row flex-1 order-last items-start w-full justify- gap-4">
-                <img
-                  src="/assets/me2.png"
-                  alt=""
-                  className=" max-w-[100px] md:max-w-[80px]  bg-[#201e1e] w-fit h-fit bg-opacity-10 border-2 border-[#201e1e] border-opacity-40 rounded-full"
-                />
-                <div className=" space-y-4">
-                  <h5 className=" text-white bg-blue-500 bg-center flex gap-2 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-4 py-2">
-                    <span>Hi!</span> <b>my name is kelvin Ohemeng</b>
-                    <span className=" text-[2rem]">🖐️</span>
-                  </h5>
-                  <h5 className=" text-white bg-blue-500 bg-center flex gap-2 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-4 py-2">
-                    I am a web developer and graphic designer based in Ghana. I
-                    specialize in both field, Branding, logo design, Ui/Ux, Web
-                    development, Web application developoment, mobile
-                    development and many more.
-                  </h5>
-                  <h5 className=" text-white bg-[#201e1e] bg-center flex gap-2 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-4 py-2">
-                    <a href="             mailto:kelvinohemeng59@gmail.com">
-                      Grab a coffee with me{" "}
-                      <b>let us work on your next big project</b>
-                    </a>
-                  </h5>
-                  <div className="flex gap-4 items-center">
-                    <BtnDef
-                      linkTo="mailto:kelvinohemeng59@gmail.com"
-                      target
-                      showIconCoffee
-                      className=" bg-gray-800 text-white flex items-center gap-2 "
-                    >
-                      Let's grab a coffee
-                    </BtnDef>
-                    <BtnDef
-                      linkTo="https://bit.ly/resume-kelvin"
-                      target
-                      className=" text-white bg-gray-800"
-                      customIcon={
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="32"
-                          height="32"
-                          fill="#000000"
-                          viewBox="0 0 256 256"
-                        >
-                          <path d="M128,136v64a8,8,0,0,1-16,0V155.32L45.66,221.66a8,8,0,0,1-11.32-11.32L100.68,144H56a8,8,0,0,1,0-16h64A8,8,0,0,1,128,136ZM208,32H80A16,16,0,0,0,64,48V96a8,8,0,0,0,16,0V48H208V176H160a8,8,0,0,0,0,16h48a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Z"></path>
-                        </svg>
-                      }
-                    >
-                      Resume
-                    </BtnDef>
+            <div className=" flex flex-col py-10  rounded-[1.5rem] w-full">
+              <h1 className=" masked pointer-events-none md:pointer-events-auto text-left relative text-[#201e1e] text-[12vw] md:text-[12vw] 2xl:text-[8vw] md:tracking-[-0.6rem] leading-[100%]">
+                Where{" "}
+                <span className=" relative element">
+                  <span className=" cursor-zoom-in ">design</span>
+                  <span className="absolute z-[9999] text-white custom-hover">
+                    abobe creative suite
+                  </span>
+                  <span className="absolute z-[9999] text-white custom-hover">
+                    3d animations
+                  </span>
+                  <span className="absolute z-[9999] text-white custom-hover">
+                    Branding, logo, identity design
+                  </span>
+                </span>{" "}
+                <br />
+                and{" "}
+                <span className=" element">
+                  <span className=" cursor-zoom-in">code</span>
+                  <span className="absolute z-[9999] text-white custom-hover">
+                    React
+                  </span>
+                  <span className="absolute z-[9999] text-white custom-hover">
+                    web development
+                  </span>
+                  <span className="absolute z-[9999] text-white custom-hover">
+                    UI development
+                  </span>
+                </span>{" "}
+                meet
+              </h1>
+            </div>
+
+            <div className=" w-full flex flex-col items-end">
+              <div className=" space-y-8">
+                <div className="flex justify-start w-full">
+                  <div className=" animate-in flex gap-2 relative md:gap-4 w-fit items-center px-3 py-1 rounded-full bg-green-400 h-fit">
+                    <div className="w-[15px] h-fit aspect-square rounded-full bg-green-600  flex items-center justify-center">
+                      <div className=" w-[10px] aspect-square bg-green-800 rounded-full"></div>
+                    </div>
+                    <span className=" text-green-800 font-medium">
+                      AVAILABLE FOR WORK
+                    </span>
                   </div>
                 </div>
-              </div>
-
-              <div className=" flex-1 flex flex-col w-full py-10">
-                <h2 className=" font-bold opacity-50">
-                  <span className=" text-[2rem] md:text-[3rem]">
-                    - the box :
+                <div>
+                  <span className=" text-green-400 text-[1.2rem]">
+                    Kelvin Ohemeng
                   </span>
-                </h2>
-                <h1 className=" masked text-left relative text-[#201e1e] bg-clip-text text-transparent bg-[url('https://res.cloudinary.com/base-data/video/upload/v1697876211/images/test_bgq729.mp4')]">
-                  Where{" "}
-                  <span className=" relative element">
-                    <span className=" cursor-pointer ">design</span>
-                    <span className="absolute z-[9999] text-white custom-hover">
-                      abobe creative suite
-                    </span>
-                    <span className="absolute z-[9999] text-white custom-hover">
-                      3d animations
-                    </span>
-                    <span className="absolute z-[9999] text-white custom-hover">
-                      Branding, logo, identity design
-                    </span>
-                  </span>{" "}
-                  <br /> and{" "}
-                  <span className=" cursor-pointer element">
-                    <span>code</span>
-                    <span className="absolute z-[9999] text-white custom-hover">
-                      VS code
-                    </span>
-                    <span className="absolute z-[9999] text-white custom-hover">
-                      web development
-                    </span>
-                    <span className="absolute z-[9999] text-white custom-hover">
-                      UI development
-                    </span>
-                  </span>{" "}
-                  meet
-                </h1>
-                <p className="text-[#201e1e] text-left max-w-[90%] md:max-w-[50%] opacity-50">
-                  <i>*hover on the design or code to trigger animation*</i>
-                </p>
+                  <h4 className=" text-[1.2rem] md:text-[2rem] text-white font-normal">
+                    Frontend Web Developer && Graphic Design{" "}
+                    <br className="hidden md:block" /> based in Ghana
+                  </h4>
+                </div>
+                <div className="flex gap-5 flex-col md:flex-row">
+                  <BtnDef
+                    linkTo="mailto:kelvinohemeng59@gmail.com"
+                    target
+                    className={
+                      "w-full text-black hover:text-white py-10 bg-gray-100 hover:bg-green-600"
+                    }
+                  >
+                    Get in touch
+                  </BtnDef>
+                  <BtnDef
+                    linkTo={"https://bit.ly/resume-kelvin"}
+                    target
+                    className={
+                      "w-full border-white border-[1px] bg-[#232323ec] border-opacity-40 text-white py-10"
+                    }
+                  >
+                    Resume
+                  </BtnDef>
+                </div>
               </div>
             </div>
           </div>
         </section>
-        <div className="container mx-auto px-4">
-          <div className="w-full bg-black h-[1.5px] opacity-20"></div>
-        </div>
+
+        {/* <section>
+          <div
+            className={`${containerClass} animate-in-trigger flex flex-col md:flex-row justify-between gap-10`}
+          >
+            <div className=" flex flex-col w-1/2 items-start min-h-full gap-4 border-[3px] rounded-[1.5rem] px-4 py-6">
+              <div className="flex flex-col md:flex-row items-start gap-8">
+                <div className="flex items-center gap-8">
+                  <img
+                    src="/assets/wave.png"
+                    alt=""
+                    className=" max-w-[100px] md:max-w-[120px] p-1  bg-[#201e1e] w-fit h-fit bg-opacity-10 border-2 border-[#201e1e] border-opacity-40 rounded-full"
+                  />
+                </div>
+                <div className=" space-y-4 flex flex-col items-start">
+                  <div className=" animate-in flex gap-2 relative md:gap-4 w-fit items-center px-3 py-1 rounded-full bg-green-400 h-fit">
+                    <div className="w-[15px] h-fit aspect-square rounded-full bg-green-600  flex items-center justify-center">
+                      <div className=" w-[10px] aspect-square bg-green-800 rounded-full"></div>
+                    </div>
+                    <span className=" text-green-800 font-bold">
+                      AVAILABLE FOR WORK
+                    </span>
+                  </div>
+
+                  <h5 className="animate-in text-white bg-blue-500 bg-center flex gap-2 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-4 py-2">
+                    <span>Hi there!</span> <b>I'm kelvin Ohemeng</b>
+                    <span className=" text-[2rem]">🖐️</span>
+                  </h5>
+
+                  <h5>
+                    I am a graphic designer who is passionate about the world of
+                    development and programming
+                  </h5>
+
+                  <h5 className="animate-in text-white bg-blue-500 bg-center text-left flex gap-2 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-4 py-2">
+                    This is my portfolio where I share my works and skills as a
+                    designer with a developers skill and vice versa
+                  </h5>
+
+                  <div className="animate-in flex gap-4 items-center">
+                    <div className="animate-in">
+                      {" "}
+                      <BtnDef
+                        linkTo="mailto:kelvinohemeng59@gmail.com"
+                        target
+                        customIcon={
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="32"
+                            height="32"
+                            fill="#000000"
+                            viewBox="0 0 256 256"
+                          >
+                            <path d="M128,136v64a8,8,0,0,1-16,0V155.32L45.66,221.66a8,8,0,0,1-11.32-11.32L100.68,144H56a8,8,0,0,1,0-16h64A8,8,0,0,1,128,136ZM208,32H80A16,16,0,0,0,64,48V96a8,8,0,0,0,16,0V48H208V176H160a8,8,0,0,0,0,16h48a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Z"></path>
+                          </svg>
+                        }
+                        className=" bg-gray-800 text-white flex items-center gap-2 "
+                      >
+                        Hire me
+                      </BtnDef>
+                    </div>
+                    <div className="animate-in">
+                      {" "}
+                      <BtnDef
+                        linkTo="https://bit.ly/resume-kelvin"
+                        target
+                        className=" text-white bg-gray-800"
+                        customIcon={
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="32"
+                            height="32"
+                            fill="#000000"
+                            viewBox="0 0 256 256"
+                          >
+                            <path d="M128,136v64a8,8,0,0,1-16,0V155.32L45.66,221.66a8,8,0,0,1-11.32-11.32L100.68,144H56a8,8,0,0,1,0-16h64A8,8,0,0,1,128,136ZM208,32H80A16,16,0,0,0,64,48V96a8,8,0,0,0,16,0V48H208V176H160a8,8,0,0,0,0,16h48a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Z"></path>
+                          </svg>
+                        }
+                      >
+                        Resume
+                      </BtnDef>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section> */}
+
+        {/* <section className=" mt-10">
+          <div className={`${containerClass}`}>
+            {" "}
+            <div className="animate-in-alt flex gap-4 flex-1 flex-col border-[3px] rounded-[1.5rem]">
+              <div className=" animate-in-alt flex flex-wrap gap-4 h-fit items-start bg-black bg-opacity-80 p-5 rounded-[1.5rem]">
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  Frontend Development
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  Website development
+                </h5>
+
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  Web Design
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  HTML
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  CSS/SASS
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  Tailwind Css
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  Javascript
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  TypeScript
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  ThreeJs
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  React
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  NextJs
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  Webflow
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  Wordpress
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  Webflow
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  Adobe Creative Suite
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  Figma
+                </h5>
+
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  Adobe XD
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  Blender
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  VFX Animations
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  3d Animations
+                </h5>
+                <h5 className=" small-em animate-in-alt text-black bg-white bg-center text-left flex gap-1 items-center w-fit h-fit  border-2 border-white overflow-hidden border-opacity-40 rounded-[.9rem] px-2 md:px-4 py-1">
+                  Branding
+                </h5>
+              </div>
+            </div>
+          </div>
+        </section> */}
+
         {/* <section className={`w-full py-[20vh] `} id="#about">
           <div
             className={`${containerClass} h-full md:flex-row flex-col flex gap-8 relative`}
@@ -870,67 +1035,62 @@ const Home = ({ footer, selected }) => {
           </div>
         </section> */}
 
-        <section id="selected" className=" md:fade-section">
+        <section id="projects" className="">
           <div
-            className={`${containerClass} flex flex-col  gap-14 ${globalPadding}`}
+            className={`${containerClass} flex flex-col  gap-10  rounded-[2rem] border-opacity-50 relative `}
           >
-            <div className="flex flex-col md:flex-row gap-8 justify-between w-full pb-[0vh]">
+            <div className="flex flex-co md:flex-row gap-8 justify-between w-full items-center">
               <h1
-                className={`${bigText} text-[#201e1e] text-center md:text-left`}
+                className={`${bigText} tracking-tighter text-[#ffffff] text-center md:text-left`}
               >
-                Selected <br /> works
+                Selected works
               </h1>
-              <div className=" rounded-[1.25rem] bg-blue-800 text-white p-[1.5rem] md:p-[3rem] space-y-4">
-                <h4 className=" text-[1.875rem] max-w-md">
-                  A showcase of my most recent professional work for clients.
-                </h4>
-              </div>
+
+              {/* <div className=" flex h-fit justify-start">
+                <div className=" space-x-4 w-fit flex p-2 rounded-lg border-2 border-[#ffffff] border-opacity-60 bg-opacity-5">
+                  <button
+                    onClick={() => setDisplay("development")}
+                    className={`  px-4 py-2 ${
+                      display === "development"
+                        ? "bg-[hsl(234,59%,60%)] text-white"
+                        : " opacity-50 text-[#ffffff]"
+                    } border-white rounded-lg flex items-center gap-2`}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      fill={display === "development" ? "#ffffff" : "#201e1e"}
+                      viewBox="0 0 256 256"
+                    >
+                      <path d="M230.91,172A8,8,0,0,1,228,182.91l-96,56a8,8,0,0,1-8.06,0l-96-56A8,8,0,0,1,36,169.09l92,53.65,92-53.65A8,8,0,0,1,230.91,172ZM220,121.09l-92,53.65L36,121.09A8,8,0,0,0,28,134.91l96,56a8,8,0,0,0,8.06,0l96-56A8,8,0,1,0,220,121.09ZM24,80a8,8,0,0,1,4-6.91l96-56a8,8,0,0,1,8.06,0l96,56a8,8,0,0,1,0,13.82l-96,56a8,8,0,0,1-8.06,0l-96-56A8,8,0,0,1,24,80Zm23.88,0L128,126.74,208.12,80,128,33.26Z"></path>
+                    </svg>
+                    <span>Projects</span>
+                  </button>
+                  <button
+                    onClick={() => setDisplay("visuals")}
+                    className={`  px-4 py-2  ${
+                      display === "visuals"
+                        ? "bg-[hsl(234,59%,60%)] text-white"
+                        : " opacity-50 text-[#ffffff] animate-bounce"
+                    } border-white rounded-lg flex items-center gap-2`}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      fill={display === "visuals" ? "#ffffff" : "#ffffff"}
+                      viewBox="0 0 256 256"
+                    >
+                      <path d="M120,56v48a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40h48A16,16,0,0,1,120,56Zm80-16H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm-96,96H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm96,0H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Z"></path>
+                    </svg>
+                    <span>Playground</span>
+                  </button>
+                </div>
+              </div> */}
             </div>
 
-            <div className=" flex justify-center md:justify-end">
-              <div className=" space-x-4 w-fit flex p-2 rounded-lg border-2 border-[#201e1e] border-opacity-60 bg-opacity-5">
-                <button
-                  onClick={() => setDisplay("development")}
-                  className={`  px-4 py-2 ${
-                    display === "development"
-                      ? "bg-[hsl(234,59%,60%)] text-white"
-                      : " opacity-50 text-[#201e1e]"
-                  } border-white rounded-lg flex items-center gap-2`}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill={display === "development" ? "#ffffff" : "#201e1e"}
-                    viewBox="0 0 256 256"
-                  >
-                    <path d="M230.91,172A8,8,0,0,1,228,182.91l-96,56a8,8,0,0,1-8.06,0l-96-56A8,8,0,0,1,36,169.09l92,53.65,92-53.65A8,8,0,0,1,230.91,172ZM220,121.09l-92,53.65L36,121.09A8,8,0,0,0,28,134.91l96,56a8,8,0,0,0,8.06,0l96-56A8,8,0,1,0,220,121.09ZM24,80a8,8,0,0,1,4-6.91l96-56a8,8,0,0,1,8.06,0l96,56a8,8,0,0,1,0,13.82l-96,56a8,8,0,0,1-8.06,0l-96-56A8,8,0,0,1,24,80Zm23.88,0L128,126.74,208.12,80,128,33.26Z"></path>
-                  </svg>
-                  <span>Projects</span>
-                </button>
-                <button
-                  onClick={() => setDisplay("visuals")}
-                  className={`  px-4 py-2  ${
-                    display === "visuals"
-                      ? "bg-[hsl(234,59%,60%)] text-white"
-                      : " opacity-50 text-[#201e1e] animate-bounce"
-                  } border-white rounded-lg flex items-center gap-2`}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill={display === "visuals" ? "#ffffff" : "#201e1e"}
-                    viewBox="0 0 256 256"
-                  >
-                    <path d="M120,56v48a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V56A16,16,0,0,1,56,40h48A16,16,0,0,1,120,56Zm80-16H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm-96,96H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm96,0H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Z"></path>
-                  </svg>
-                  <span>Playground</span>
-                </button>
-              </div>
-            </div>
-
-            <div className=" space-y-8">
+            <div className=" space-y-8 ">
               {display === "visuals" ? (
                 <div className=" grid grid-cols-2 md:grid-cols-4 w-full min-h-[100vh] gap-4  md:gap-8 cursor-pointer">
                   {archieveLinks.map((archieves, index) => (
@@ -951,11 +1111,13 @@ const Home = ({ footer, selected }) => {
                   )}
                 </div>
               ) : (
-                <div className="  h-full">
+                <div className="  h-full grid grid-cols-fluid gap-4">
                   {selected.slice(0, 4).map((select, index) => (
                     <>
-                      <WorkItem index={index} select={select} />
-                      <div className=" h-[20vh]"></div>
+                      <div className="work-animate h-full">
+                        <WorkItem index={index} select={select} />
+                      </div>
+                      {/* <div className=" h-[20vh]"></div> */}
                     </>
                   ))}
                 </div>
@@ -964,31 +1126,67 @@ const Home = ({ footer, selected }) => {
           </div>
         </section>
 
-        <section className=" h-full">
+        <section className=" h-full ">
+          <div className={`${containerClass} h-full`}></div>
+        </section>
+
+        <section id="about">
           <div
-            className={`${containerClass} min-h-[60vh] space-y-8 flex flex-col w-full items-center justify-center`}
+            className={`${containerClass} flex justify-around py-[20vh] flex-col md:flex-row gap-10`}
           >
-            <h2 className={`${medText} text-[#201e1e] text-center`}>
-              Have a project in mind?
-            </h2>
-            <button
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
-              className=" py-5 md:py-8 px-10 border-2 border-[#201e1e] border-opacity-50 rounded-2xl text-[#201e1e] hover:bg-blue-600 hover:bg-opacity-10 duration-200 transition-all"
-            >
-              <a
-                href="mailto:kelvinohemeng59@gmail.com"
-                target="_blank"
-                className={`${bigText}`}
-              >
-                {hovered ? "I am friendly" : "say hello !"}
-              </a>
-            </button>
+            <div className=" text-white">
+              <h2 className=" py-5">Hello 👋</h2>
+              <p className="font-normal tracking-wide md:tracking-tight text-white text-[1.5rem] max-w-lg">
+                I am kelvin and I am glad that you are here. I am a creative
+                proffesional specialised in{" "}
+                <span className="bg-green-500">Frontend Web Development</span>{" "}
+                and <span className="bg-green-500">Graphic Design</span> with
+                more than 3+ years of experience in both fields. I am passionate
+                about the feild of coding and programming and I am willing to do
+                anything to get the job done.
+                <br /> <br /> Outside of design and development, you'll find
+                that I am a huge gamer🎮. I also enjoy playing basketball🏀 and
+                also have interest in other things
+              </p>
+            </div>
+            <div>
+              <img
+                className="md:max-w-[350px]  object-cover"
+                src="https://res.cloudinary.com/base-data/image/upload/v1700740147/images/m3_wwdjt2.jpg"
+                alt=""
+              />
+            </div>
           </div>
         </section>
 
-        <section className=" h-full ">
-          <div className={`${containerClass} h-full`}></div>
+        <section>
+          <div
+            className={`${containerClass} flex flex-col justify-around py-[20vh]  gap-10`}
+          >
+            <h1 className=" masked text-left relative text-[#201e1e] text-[16vw] md:text-[12vw] 2xl:text-[7.5vw] md:tracking-[-.6rem] leading-[100%] text-transparent bg-[url('https://res.cloudinary.com/base-data/video/upload/v1697876211/images/test_bgq729.mp4')]">
+              Lets work together
+            </h1>
+            <div className="flex gap-5 flex-col md:flex-row">
+              <BtnDef
+                linkTo={"mailto:kelvinohemeng59@gmail.com"}
+                target
+                className={
+                  "w-full text-black hover:text-white py-10 bg-gray-100 hover:bg-green-600"
+                }
+              >
+                Get in touch
+              </BtnDef>
+              <BtnDef
+                linkTo={"https://bit.ly/resume-kelvin"}
+                target
+                className={
+                  "w-full border-white border-[1px] bg-[#232323ec] border-opacity-40 text-white py-10"
+                }
+              >
+                Resume
+              </BtnDef>
+            </div>
+          </div>
         </section>
       </motion.div>
       {footer}

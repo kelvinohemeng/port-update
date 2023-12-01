@@ -48,7 +48,6 @@ export const DisplaySomething = ({ toDisplay, reverse, context, linkTo }) => {
                   }
                   className=" bg-blue-800"
                 >
-                  {" "}
                   visit original
                 </BtnDef>
               </div>
