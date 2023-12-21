@@ -1,23 +1,38 @@
 import React, { useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { BtnDef } from "./BtnDef";
+import { SplitTextAnim } from "./SplitTextAnim";
 
 const FooterNew = () => {
-  const containerClass = "container mx-auto md:px-8 px-4";
-  const mediumText = "text-[1.843rem]";
-  const medText = "text-[1.873rem]";
-  const bigText = "text-[2.5rem] md:text-[5.13975rem] leading-[95%]";
-  const bg = "bg-[#e8e8ea]";
-  const defRounded = " rounded-[1.25rem]";
-  const globalPadding = " py-[20vh]";
   return (
     <footer>
-      <div className={`${containerClass} ${globalPadding} flex w-full`}>
-        <div className="  flex flex-col text-white items-center space-y-2  justify-between w-full mt-8 opacity-60">
-          <p>Designed and developed by me</p>
-          <p> © 2023 All rights reserved.</p>
+      <section className="my-[10vh] container mx-auto">
+        <div className=" min-h-[40rem] flex flex-col justify-around">
+          <div className="flex justify-center md:justify-between items-stretch flex-wrap gap-8">
+            <h1 className=" tracking-tighter flex flex-col leading-[100%] justify-center">
+              <SplitTextAnim
+                className={" text-[35px] md:text-[60px] i-font "}
+                text="Let's work together!"
+              />
+            </h1>
+            <a
+              href="mailto:kelvinohemeng59@gmail.com"
+              className=" md:px-8 py-4 bg-bg-black text-white text-[40px] rounded-full w-full md:max-w-[500px] min-h-full grid place-items-center"
+            >
+              <button>Get in touch</button>
+            </a>
+          </div>
+          <div className="flex flex-col text-center md:text-left gap-[40px]">
+            <div>
+              <p>kelvin Ohemeng</p>
+              <span className="text-xl opacity-80">
+                Multidiciplinary Developer
+              </span>
+            </div>
+            <span className="text-[18px] opacity-50">
+              Designed and developed by me
+            </span>
+          </div>
         </div>
-      </div>
+      </section>
     </footer>
   );
 };

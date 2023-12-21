@@ -2,13 +2,7 @@ import { useState, useEffect, useRef } from "react";
 // import Image from "next/image";
 // import { RevealNative } from "../components/Reveal.jsx";
 import { Image, Video } from "cloudinary-react";
-import {
-  Tween,
-  SplitWords,
-  // SplitChars,
-  Reveal,
-  ScrollTrigger,
-} from "react-gsap";
+
 import { Gradient } from "../components/Gradient.js";
 import { motion } from "framer-motion";
 import transition from "../components/transition.jsx";

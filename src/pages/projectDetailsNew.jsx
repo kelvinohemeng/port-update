@@ -1,12 +1,12 @@
 import transition from "../components/transition";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Image } from "cloudinary-react";
-import { BtnDef, BtnDefNative } from "../components/BtnDef";
+import { BtnDef, BtnDefFollow, BtnDefNative } from "../components/BtnDef";
 import { motion } from "framer-motion";
-import { Tween, Reveal, ScrollTrigger } from "react-gsap";
+import { SplitTextAnim } from "../components/SplitTextAnim";
 
-const ProjectDetailsNew = ({ projects, footer }) => {
+const ProjectDetailsNew = ({ navbar, projects, footer }) => {
   const navigate = useNavigate();
   const params = useParams();
   const projectId = params.projectId;
@@ -17,167 +17,163 @@ const ProjectDetailsNew = ({ projects, footer }) => {
     (project) => project.title === projectId
   );
 
-  const goToNextProject = () => {
-    const nextIndex = (currentIndex + 1) % projects.length;
-    const nextProject = projects[nextIndex];
-    // Replace the URL to navigate to the next project
-    window.location.href = `/projects/${nextProject.title}`;
-    // navigate(`/projects/${nextProject.title}`);
-  };
-
-  const goToPreviousProject = () => {
-    const previousIndex =
-      (currentIndex - 1 + projects.length) % projects.length;
-    const previousProject = projects[previousIndex];
-    // Replace the URL to navigate to the previous project
-    window.location.href = `/projects/${previousProject.title}`;
-    // navigate(`/projects/${previousProject.title}`);
-  };
-
-  const containerClass = "container mx-auto md:px-8 px-4";
-  const mediumText = "text-[1.843rem]";
-  const medText = "text-[1.873rem]";
-  const bigText = "text-[2.5rem] md:text-[5.13975rem] leading-[95%]";
-  const bg = "bg-[#e8e8ea]";
-  const defRounded = " rounded-[1.25rem]";
-  const globalPadding = " py-[20vh]";
-
   if (!project) {
-    useEffect(() => {
-      navigate("/404");
-    }, []);
+    // useEffect(() => {
+    //   navigate("/404");
+    // }, []);\
+    <p>page not found</p>;
   } else {
     return (
       <>
+        {navbar}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className={` grid grid-cols-1 md:grid-cols-2 ${containerClass}`}
+          className={` container mx-auto`}
         >
-          {/* <motion.div
+          <motion.div
             initial={{ y: "0%" }}
             animate={{ y: "100%" }}
             transition={{ delay: 2, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className={` fixed inset-0 bg-[#1a1b1b] pr-10 z-[99999999] flex items-start justify-start`}
+            className={` fixed inset-0 bg-[#ffffff] pr-10 z-[99999999] flex items-start justify-start`}
           >
-            <div className=" overflow-hidden w-full h-fit py-3 ">
-              <div className={`${containerClass} w-full relative`}>
-                <motion.h1
-                  initial={{ y: "0%" }}
-                  animate={{ y: "110%" }}
-                  transition={{
-                    delay: 1.5,
-                    duration: 1,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className={`${bigText} md:text-[5rem] text-white`}
-                >
-                  {project.title}
-                </motion.h1>
-              </div>
+            <div className=" overflow-hidden w-full h-full grid place-items-center py-3 ">
+              <motion.img
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 0 }}
+                transition={{
+                  delay: 1,
+                  duration: 1,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                src={project.logo}
+                alt=""
+                className="w-[50px]"
+              />
             </div>
-          </motion.div> */}
+          </motion.div>
 
           <div
-            className={`${containerClass} h-full flex items-center md:items-start relative mt-[20vh]`}
+            className={` h-full flex flex-col items-center md:items-start relative `}
           >
-            <div className=" text-white h-fit md:sticky top-[10rem] space-y-5 ">
-              <div className="flex  items-center justify-between">
-                <motion.h1
-                  initial={{ y: "150%%" }}
-                  animate={{ y: "0%" }}
-                  transition={{
-                    delay: 1.5,
-                    duration: 1,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className={bigText}
+            <div className=" my-8">
+              <BtnDefFollow linkTo="/projects" paddings>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  fill="white"
+                  viewBox="0 0 256 256"
                 >
-                  {project.title}
-                </motion.h1>
-                {/* <p className=" hidden md:block">keep scrolling</p> */}
-              </div>
-
-              <div className=" w-full flex flex-col justify-between  self-center">
-                <div className=" space-y-5">
-                  <p className="text-[hsl(234,59%,60%)] flex flex-col md:flex-row gap-3 md:gap-6">
-                    {project.category.split("|").map((cat, index) => (
-                      <span>{cat}</span>
-                    ))}
-                  </p>
-                  {project.description ? (
-                    <div className="description space-y-5 max-w-[60%] md:max-w-lg opacity-60">
-                      {project.description
-                        .split("\n\n")
-                        .map((paragraph, index) => (
-                          <p key={index}>{paragraph}</p>
+                  <path d="M220,128a4,4,0,0,1-4,4H49.66l65.17,65.17a4,4,0,0,1-5.66,5.66l-72-72a4,4,0,0,1,0-5.66l72-72a4,4,0,0,1,5.66,5.66L49.66,124H216A4,4,0,0,1,220,128Z"></path>
+                </svg>
+                Back to projects
+              </BtnDefFollow>
+            </div>
+            <header className=" w-full h-full">
+              <div className="flex flex-col md:flex-row gap-8 ">
+                <Link to={project.live && project.live}>
+                  <div className=" md:w-[25rem] h-full bg-bg-black rounded-lg flex flex-col">
+                    <div className="bg-red-6 h-full  p-5 flex flex-col justify-between items-start gap-4">
+                      <div className="flex gap-2 flex-wrap">
+                        {project.category.split("|").map((cat, index) => (
+                          <span
+                            className=" px-2 py-0 text-[12px] border-white text-white border-[.1px] rounded-full"
+                            key={index}
+                          >
+                            {cat}
+                          </span>
                         ))}
+                      </div>
+                      <div className=" space-y-5">
+                        <img src={project.logo} alt="" className="w-[50px]" />
+
+                        <h3
+                          className={
+                            " text-[30px] leading-[130%] p-font text-white"
+                          }
+                        >
+                          {project.title}
+                        </h3>
+                        {project.description && (
+                          <p className="leading-3 text-white opacity-60">
+                            <span className="text-[12px]">
+                              {" "}
+                              {project.description.split("\n\n")[0]}
+                            </span>
+                          </p>
+                        )}
+                      </div>
                     </div>
+                    <div className=" border-base-100 border-y border-opacity-40 px-5 py-5 flex justify-between items-center text-white">
+                      <div className="flex items-center">
+                        <span>
+                          {project.live ? "Live project" : "Coming Soon"}
+                        </span>
+                      </div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        fill="white"
+                        viewBox="0 0 256 256"
+                      >
+                        <path d="M220,104a4,4,0,0,1-8,0V49.66l-73.16,73.17a4,4,0,0,1-5.66-5.66L206.34,44H152a4,4,0,0,1,0-8h64a4,4,0,0,1,4,4Zm-36,28a4,4,0,0,0-4,4v72a4,4,0,0,1-4,4H48a4,4,0,0,1-4-4V80a4,4,0,0,1,4-4h72a4,4,0,0,0,0-8H48A12,12,0,0,0,36,80V208a12,12,0,0,0,12,12H176a12,12,0,0,0,12-12V136A4,4,0,0,0,184,132Z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* <button className=" bg-text-black w-max h-fit px-8 py-4 text-xl text-white rounded-full relative after:absolute after:inset-0 after:bg-light-purple after:z-[-20] after:rounded-full hover:after:translate-x-2 hover:after:translate-y-2 transition-all duration-150 after:transition">
+                    <a href={project.live}> {project.status}</a>
+                  </button> */}
+                <div className=" rounded-lg overflow-hidden w-full aspect-video">
+                  {project.video ? (
+                    <video
+                      className={` w-full h-full object-cover object-center`}
+                      autoPlay
+                      muted
+                      loop
+                    >
+                      <source src={project.video} />
+                    </video>
                   ) : (
-                    ""
+                    <img
+                      src={project.imageUrl}
+                      alt=""
+                      className=" w-full h-full object-center object-cover"
+                    />
                   )}
                 </div>
-                <div className="py-8">
-                  <div className=" flex gap-5">
-                    <BtnDef target linkTo={project.live}>
-                      {project.status == "online"
-                        ? "live website"
-                        : "not online yet"}
-                    </BtnDef>
-                    {/* <BtnDef linkTo={project.code}>GitHub</BtnDef> */}
-                  </div>
-                </div>
               </div>
-            </div>
+            </header>
           </div>
 
-          <div
-            className={`${containerClass} space-y-5 md:space-y-10 mt-[20vh]`}
-          >
-            {project.video ? (
-              <div className=" w-full ">
-                <video className={`w-full  ${defRounded}`} autoPlay muted loop>
-                  <source src={project.video} />
-                </video>
-              </div>
-            ) : (
-              ""
-            )}
-            <section className="global-padding w-full flex flex-col justify-center md:justify-between items-start gap-5 md:gap-10">
+          <div className={` my-[5vh]`}>
+            <div className={`py-5`}>
+              <h5>
+                <span className=" text-[18px]">- more imagery</span>
+              </h5>
+            </div>
+            <section className=" w-full grid md:grid-cols-3 gap-4 ">
               {project.images
                 ? project.images.map((image, index) => (
-                    <div
-                      key={index}
-                      className={`  flex flex-col items-center justify-center w-full h-fit bg-[#f9f9f9] bg-opacity-10 border-2 border-white border-opacity-40 ${defRounded} `}
-                    >
-                      <div className="p-4 images-box w-full flex justify-center">
-                        <Image
-                          key={index}
-                          className=" md:max-w-[100%] h-auto "
-                          publicId={image}
-                        />
-                      </div>
+                    <div key={index}>
+                      <Image
+                        key={index}
+                        className="w-full h-full aspect-square object-cover rounded-lg"
+                        publicId={image}
+                      />
                     </div>
                   ))
                 : ""}
             </section>
-            <div className=" flex  my-[10vh]">
-              {currentIndex > 0 && (
-                <BtnDef onClick={goToPreviousProject}>Prvevious project</BtnDef>
-              )}
-              {currentIndex < projects.length - 1 && (
-                <div className=" ml-auto">
-                  <BtnDef onClick={goToNextProject}>Next project</BtnDef>
-                </div>
-              )}
-            </div>
           </div>
         </motion.div>
-        {footer}
       </>
     );
   }
 };
 
-export default transition(ProjectDetailsNew);
+export default ProjectDetailsNew;

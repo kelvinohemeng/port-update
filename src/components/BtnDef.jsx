@@ -6,67 +6,67 @@ import {
   Coffee,
 } from "@phosphor-icons/react";
 import VanillaTilt from "vanilla-tilt";
+import { TweenMax } from "gsap/all";
+
 export const BtnDefFollow = ({
   children,
+  paddings,
   linkTo,
-  showIcon,
   target,
   onClick,
+  bg,
+  text,
 }) => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [size, setSize] = useState(10);
-  const updateCursorPosition = (e) => {
-    setPosition({ x: e.clientX, y: e.clientY });
-  };
-
   useEffect(() => {
-    document.addEventListener("mousemove", updateCursorPosition);
-    return () => {
-      document.removeEventListener("mousemove", updateCursorPosition);
-    };
+    var magnets = document.querySelectorAll(".magnetic");
+    var strength = 50;
+
+    magnets.forEach((magnet) => {
+      magnet.addEventListener("mousemove", moveMagnet);
+      magnet.addEventListener("mouseout", function (event) {
+        TweenMax.to(event.currentTarget, 1, {
+          x: 0,
+          y: 0,
+          ease: "power4.out",
+        });
+      });
+    });
+
+    function moveMagnet(event) {
+      var magnetButton = event.currentTarget;
+      var bounding = magnetButton.getBoundingClientRect();
+
+      //console.log(magnetButton, bounding)
+
+      TweenMax.to(magnetButton, 1, {
+        x:
+          ((event.clientX - bounding.left) / magnetButton.offsetWidth - 0.5) *
+          strength,
+        y:
+          ((event.clientY - bounding.top) / magnetButton.offsetHeight - 0.5) *
+          strength,
+        ease: "power4.out",
+      });
+
+      //magnetButton.style.transform = 'translate(' + (((( event.clientX - bounding.left)/(magnetButton.offsetWidth))) - 0.5) * strength + 'px,'+ (((( event.clientY - bounding.top)/(magnetButton.offsetHeight))) - 0.5) * strength + 'px)';
+    }
   }, []);
 
   return (
-    <div
-      className=" p-4 relative"
-      onMouseOver={() => setSize(100)}
-      onMouseLeave={() => setSize(10)}
-    >
-      {" "}
-      <Link
-        to={linkTo}
-        onClick={onClick}
-        target={target ? "_blank" : ""}
-        className="abt-btn relative overflow-hidden"
-
-        // onClick={pageRefresh}
-      >
-        <div className="main-text-btn">
-          <div>
-            <div>{children}</div>
-            <div>{children}</div>
-          </div>
-        </div>
-
-        {showIcon ? (
-          <ArrowElbowDownRight
-            size={22}
-            weight="fill"
-            className=" order-first"
-          />
-        ) : (
-          ""
-        )}
-        <div
-          className="cursor-follower"
-          style={{
-            width: `${size}px`,
-            left: position.x - size / 1,
-            top: position.y - size / 1,
-          }}
-        ></div>
-      </Link>
-    </div>
+    <Link to={linkTo} target={target && "_blank"} onClick={onClick && onClick}>
+      <div className="magnetic l-font">
+        <button
+          type="button"
+          className={` magnet-button flex items-center gap-1 ${
+            paddings && "px-5 py-2"
+          } ${bg ? bg : "bg-background"} ${
+            text ? text : "text-white"
+          } rounded-full`}
+        >
+          {children}
+        </button>
+      </div>
+    </Link>
   );
 };
 
