@@ -4,7 +4,7 @@ import { SplitTextAnim } from "./SplitTextAnim";
 const FooterNew = () => {
   return (
     <footer>
-      <section className="my-[10vh] container mx-auto">
+      <section className="my-[10vh] container mx-auto px-2">
         <div className=" min-h-[40rem] flex flex-col justify-around">
           <div className="flex justify-center md:justify-between items-stretch flex-wrap gap-8">
             <h1 className=" tracking-tighter flex flex-col leading-[100%] justify-center">
@@ -22,13 +22,14 @@ const FooterNew = () => {
           </div>
           <div className="flex flex-col text-center md:text-left gap-[40px]">
             <div>
-              <p>kelvin Ohemeng</p>
+              <p>Kelvin Ohemeng</p>
               <span className="text-xl opacity-80">
-                Multidiciplinary Developer
+                Multidisciplinary Developer
               </span>
             </div>
             <span className="text-[18px] opacity-50">
-              Designed and developed by me
+              <span>{`©️${new Date().getFullYear()}`}</span> Designed and
+              developed by me
             </span>
           </div>
         </div>

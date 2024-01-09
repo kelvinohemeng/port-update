@@ -14,7 +14,7 @@ import { AnimatePresence } from "framer-motion";
 import { CloudinaryContext } from "cloudinary-react";
 import cloudinaryConfig from "./cloudinaryConfig";
 import { ErrorPage } from "../pages/ErrorPage";
-import { NewTest, SideBarNavComponent } from "../components/Test";
+import { GsapBtn, NewTest, SideBarNavComponent } from "../components/Test";
 import BasicNav from "./BasicNav";
 // import ProjectPage from "../pages/projectPage";
 
@@ -22,7 +22,7 @@ function AnimatedRoute({ projects }) {
   const location = useLocation();
   return (
     <CloudinaryContext cloudName={cloudinaryConfig.cloudName}>
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial="false">
         <Routes location={location} key={location.pathname}>
           <Route
             path="/"
@@ -44,8 +44,9 @@ function AnimatedRoute({ projects }) {
               />
             }
           />
-          {/* <Route path="/test" element={<NewTest />} /> */}
-          {/* <Route path="/nav test" element={<SideBarNavComponent />} /> */}
+          <Route path="/gsapbtn" element={<GsapBtn />} />
+          <Route path="/test" element={<NewTest />} />
+          <Route path="/nav test" element={<SideBarNavComponent />} />
           {/* <Route path="*" element={<ErrorPage />} /> */}
         </Routes>
       </AnimatePresence>

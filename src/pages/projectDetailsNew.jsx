@@ -25,18 +25,17 @@ const ProjectDetailsNew = ({ navbar, projects, footer }) => {
   } else {
     return (
       <>
-        {navbar}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className={` container mx-auto`}
+          className={` container mx-auto px-4 md:px-2`}
         >
           <motion.div
             initial={{ y: "0%" }}
             animate={{ y: "100%" }}
             transition={{ delay: 2, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className={` fixed inset-0 bg-[#ffffff] pr-10 z-[99999999] flex items-start justify-start`}
+            className={` fixed inset-0 bg-[#ffffff] pr-10 z-[99999999] hidden md:flex items-start justify-start`}
           >
             <div className=" overflow-hidden w-full h-full grid place-items-center py-3 ">
               <motion.img
@@ -74,7 +73,7 @@ const ProjectDetailsNew = ({ navbar, projects, footer }) => {
             <header className=" w-full h-full">
               <div className="flex flex-col md:flex-row gap-8 ">
                 <Link to={project.live && project.live}>
-                  <div className=" md:w-[25rem] h-full bg-bg-black rounded-lg flex flex-col">
+                  <div className=" md:w-[25rem] h-full bg-background rounded-lg flex flex-col">
                     <div className="bg-red-6 h-full  p-5 flex flex-col justify-between items-start gap-4">
                       <div className="flex gap-2 flex-wrap">
                         {project.category.split("|").map((cat, index) => (
@@ -96,14 +95,20 @@ const ProjectDetailsNew = ({ navbar, projects, footer }) => {
                         >
                           {project.title}
                         </h3>
-                        {project.description && (
-                          <p className="leading-3 text-white opacity-60">
-                            <span className="text-[12px]">
+                        <div>
+                          {project.description && (
+                            <span className="text-[18px] text-white text-opacity-70 ">
                               {" "}
-                              {project.description.split("\n\n")[0]}
+                              {project.description
+                                .split("\n\n")
+                                .map((descri, i) => (
+                                  <span>
+                                    {descri} <br /> <br />
+                                  </span>
+                                ))}
                             </span>
-                          </p>
-                        )}
+                          )}
+                        </div>
                       </div>
                     </div>
                     <div className=" border-base-100 border-y border-opacity-40 px-5 py-5 flex justify-between items-center text-white">

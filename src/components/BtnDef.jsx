@@ -17,40 +17,40 @@ export const BtnDefFollow = ({
   bg,
   text,
 }) => {
-  useEffect(() => {
-    var magnets = document.querySelectorAll(".magnetic");
-    var strength = 50;
+  // useEffect(() => {
+  //   var magnets = document.querySelectorAll(".magnetic");
+  //   var strength = 50;
 
-    magnets.forEach((magnet) => {
-      magnet.addEventListener("mousemove", moveMagnet);
-      magnet.addEventListener("mouseout", function (event) {
-        TweenMax.to(event.currentTarget, 1, {
-          x: 0,
-          y: 0,
-          ease: "power4.out",
-        });
-      });
-    });
+  //   magnets.forEach((magnet) => {
+  //     magnet.addEventListener("mousemove", moveMagnet);
+  //     magnet.addEventListener("mouseout", function (event) {
+  //       TweenMax.to(event.currentTarget, 1, {
+  //         x: 0,
+  //         y: 0,
+  //         ease: "power4.out",
+  //       });
+  //     });
+  //   });
 
-    function moveMagnet(event) {
-      var magnetButton = event.currentTarget;
-      var bounding = magnetButton.getBoundingClientRect();
+  //   function moveMagnet(event) {
+  //     var magnetButton = event.currentTarget;
+  //     var bounding = magnetButton.getBoundingClientRect();
 
-      //console.log(magnetButton, bounding)
+  //     //console.log(magnetButton, bounding)
 
-      TweenMax.to(magnetButton, 1, {
-        x:
-          ((event.clientX - bounding.left) / magnetButton.offsetWidth - 0.5) *
-          strength,
-        y:
-          ((event.clientY - bounding.top) / magnetButton.offsetHeight - 0.5) *
-          strength,
-        ease: "power4.out",
-      });
+  //     TweenMax.to(magnetButton, 1, {
+  //       x:
+  //         ((event.clientX - bounding.left) / magnetButton.offsetWidth - 0.5) *
+  //         strength,
+  //       y:
+  //         ((event.clientY - bounding.top) / magnetButton.offsetHeight - 0.5) *
+  //         strength,
+  //       ease: "power4.out",
+  //     });
 
-      //magnetButton.style.transform = 'translate(' + (((( event.clientX - bounding.left)/(magnetButton.offsetWidth))) - 0.5) * strength + 'px,'+ (((( event.clientY - bounding.top)/(magnetButton.offsetHeight))) - 0.5) * strength + 'px)';
-    }
-  }, []);
+  //     //magnetButton.style.transform = 'translate(' + (((( event.clientX - bounding.left)/(magnetButton.offsetWidth))) - 0.5) * strength + 'px,'+ (((( event.clientY - bounding.top)/(magnetButton.offsetHeight))) - 0.5) * strength + 'px)';
+  //   }
+  // }, []);
 
   return (
     <Link to={linkTo} target={target && "_blank"} onClick={onClick && onClick}>
@@ -85,12 +85,7 @@ export const BtnDef = ({
       to={linkTo}
       onClick={onClick}
       target={target ? "_blank" : ""}
-      className={`abt-btn  ${className} ${
-        className
-          ? `${className}`
-          : " text-black bg-[#ffffff] hover:bg-[hsl(234,59%,44%)] hover:text-white"
-      }`}
-      // onClick={pageRefresh}
+      className={` ${className} ${className ? `${className}` : " text-black"}`}
     >
       <div className=" flex justify-center w-full">
         <span className=" text-[1.5rem] text-center">{children}</span>
@@ -109,6 +104,7 @@ export const BtnDef = ({
     </Link>
   );
 };
+
 export const BtnDefNative = ({
   children,
   linkTo,
@@ -142,6 +138,7 @@ export const BtnDefNative = ({
     </a>
   );
 };
+
 export const BtnDefNativeNavLink = ({
   children,
   linkTo,

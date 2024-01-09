@@ -1,10 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Container } from "./tailwindLib";
+import "../gsap.css";
 
 gsap.registerPlugin(ScrollTrigger);
+
+export const GsapBtn = () => {
+  const buttonRef = useRef(null);
+
+  function mouseMoveEvent(e) {
+    const { x, y } = buttonRef.current.getBoundingClientRect();
+    buttonRef.current.style.setProperty("--x", e.clientX - x);
+    buttonRef.current.style.setProperty("--y", e.clientY - y);
+  }
+
+  useEffect(() => {
+    if (buttonRef) {
+      buttonRef.current.addEventListener("mousemove", mouseMoveEvent);
+    }
+    // cleanup the code when the component unmounts
+    return () =>
+      buttonRef.current.removeEventListener("mousemove", mouseMoveEvent);
+  }, [buttonRef]);
+  return (
+    // container component is just a container class to center the button
+    <Container>
+      <button ref={buttonRef} className="gsap-btn">
+        <span>gsap button</span>
+      </button>
+    </Container>
+  );
+};
 
 export const NewTest = () => {
   const [changeContent, setChangeContent] = useState("");

@@ -12,6 +12,17 @@ $display-font1: "Dela Gothic One", cursive;
   animation: rotate 10s linear infinite;
 }
 
+//accordion
+.content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(1, 0, 1, 0);
+}
+.content.show {
+  max-height: 9999px;
+  transition: max-height 0.5s cubic-bezier(1, 0, 1, 0);
+}
+
 // sliding transiton animation thingy
 
 .slidein {
@@ -33,7 +44,7 @@ $display-font1: "Dela Gothic One", cursive;
   left: 0;
   width: 100%;
   height: 100%;
-  background: white;
+  background: black;
   transform-origin: bottom;
   z-index: 99999;
   display: flex;

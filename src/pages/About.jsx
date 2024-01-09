@@ -8,7 +8,7 @@ const About = ({ footer }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className=" text-bg-black container mx-auto"
+        className=" text-bg-black container mx-auto px-4 md:px-2"
       >
         <div className="flex flex-col md:flex-row h-full gap-10 md:gap-20">
           <div className="flex flex-col justify-between h-full md:min-h-[30rem] w-full">
@@ -16,15 +16,21 @@ const About = ({ footer }) => {
             <div className="space-y-8">
               <p className="max-w-[60rem]">
                 I am kelvin and I am glad that you are here. I am a creative
-                professionals specialized in Frontend Web Development and
-                Graphic Design with more than 3+ years of experience in both
-                fields. I am passionate about the field of coding and
-                programming and I am willing to do anything to get the job done.
-                Outside of design and development, you'll find that I am a huge
-                gamer🎮. I also enjoy playing basketball🏀 .
+                professional specialized in{" "}
+                <em className=" font-normal not-italic bg-primary bg-opacity-90 px-1 text-black">
+                  Frontend Web Development and Graphic Design
+                </em>{" "}
+                with{" "}
+                <em className=" font-normal not-italic bg-primary bg-opacity-90 px-1 text-black">
+                  more than a years of experience
+                </em>{" "}
+                in both fields, building, I am passionate about the field of
+                coding and programming and I am willing to do anything to get
+                the job done. Outside of design and development, you'll find
+                that I am a huge gamer🎮. I also enjoy playing basketball🏀 .
               </p>
               <div className="flex gap-4 md:items-center flex-col md:flex-row">
-                <div className="flex p-2 bg-background hover:bg-opacity-80 w-max font-medium text-text rounded-full px-8 items-center gap-2 group">
+                <div className="flex p-2 bg-background hover:bg-opacity-80 w-max font-medium text-text rounded-full px-4 items-center gap-2 group">
                   <a href="https://bit.ly/resume-kelvin" target="_blank">
                     Download Resume
                   </a>
@@ -97,11 +103,11 @@ const About = ({ footer }) => {
               </div>
             </div>
           </div>
-          <div className="order-first md:order-last">
+          <div className="order-first md:order-last self-end">
             <img
               src="https://res.cloudinary.com/base-data/image/upload/v1700740147/images/m3_wwdjt2.jpg"
               alt=""
-              className="max-w-[200px] rounded-full aspect-square md:aspect-auto object-cover rounded- md:rounded-none object-top md:max-w-[500px] z-[10]"
+              className="max-w-[200px]  aspect-[1/1.5] md:aspect-auto object-cover rounded- md:rounded-none object-top md:max-w-[500px] z-[10]"
             />
           </div>
         </div>

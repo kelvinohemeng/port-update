@@ -1,7 +1,5 @@
 import gsap from "gsap";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { BtnDefFollow } from "./BtnDef";
 
 export const MainNav = () => {
@@ -14,18 +12,6 @@ export const MainNav = () => {
       height: trigger ? 400 : 0,
       ease: "power4.out",
     });
-    tl.from(
-      ".links",
-      {
-        opacity: trigger ? 0 : 1,
-        x: trigger ? 100 : 0,
-        rotationY: trigger ? 45 : 0,
-        stagger: 0.2,
-        duration: 0.8,
-        ease: "circ.out",
-      },
-      0.5
-    );
     return () => {
       tl.kill();
     };
@@ -36,7 +22,7 @@ export const MainNav = () => {
   };
 
   return (
-    <div className=" fixed bottom-0 p-5 right-0 px-1 sm:m-5 w-full flex justify-center  mx-auto md:w-max z-[999999]">
+    <div className=" fixed bottom-0 p-5 right-0 px-1 sm:m-5 w-full flex justify-center  mx-auto md:w-max z-[9999]">
       <div
         className={` -z-[10] nav-cont absolute max-w-[90%] md:max-w-[99%] bottom-28 md:right-0 bg-primary opacity-0  p-5 rounded-[10px]`}
       >

@@ -12,8 +12,8 @@ export const SplitTextAnim = ({ text, className }) => {
     if (gsap && chars.length > 0) {
       gsap.from(chars, {
         y: -200,
-        duration: 0.6,
-        stagger: 0.09,
+        duration: 0.5,
+        stagger: 0.02,
         ease: "expo.out",
         scrollTrigger: {
           trigger: chars,
@@ -27,7 +27,7 @@ export const SplitTextAnim = ({ text, className }) => {
   }, [text]); // Add 'text' as a dependency to re-run the effect when the text changes
 
   return (
-    <div className="block">
+    <span className="block">
       <span className={className}>
         {/* Word splitting */}
         {text.split(" ").map((word, i) => (
@@ -50,7 +50,7 @@ export const SplitTextAnim = ({ text, className }) => {
           </span>
         ))}
       </span>
-    </div>
+    </span>
   );
 };
 
@@ -63,8 +63,8 @@ export const SplitWordAnim = ({ text, fontSize }) => {
     gsap.from(word, {
       // opacity: 0,
       y: -300,
-      duration: 1.2,
-      stagger: 0.09,
+      duration: 0.5,
+      stagger: 0.02,
       ease: "expo.out",
       scrollTrigger: {
         trigger: wordRef.current,
@@ -76,10 +76,10 @@ export const SplitWordAnim = ({ text, fontSize }) => {
   }, [text]); // Add 'text' as a dependency to re-run the effect when the text changes
 
   return (
-    <div className={`${fontSize} `}>
+    <span className={`${fontSize} `}>
       {/* Word splitting */}
       <span
-        className="block leading-[100%] relative tracking-tight"
+        className="block leading-[120%] relative tracking-tight"
         ref={wordRef}
       >
         {text.split(" ").map((word, i) => (
@@ -91,6 +91,6 @@ export const SplitWordAnim = ({ text, fontSize }) => {
           </span>
         ))}
       </span>
-    </div>
+    </span>
   );
 };
