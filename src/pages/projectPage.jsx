@@ -78,7 +78,7 @@ const ProjectPage = ({ projects, footer }) => {
   //framer motion variants
   const transitionVariants = {
     initial: { opacity: 0, y: 50 },
-    animate: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 1 } },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.5 } },
   };
 
   function isOdd(number) {
@@ -100,7 +100,7 @@ const ProjectPage = ({ projects, footer }) => {
                   All Projects
                 </h1>
                 <div className="pt-[2rem] flex justify-center">
-                  <div className="flex gap-[10px] flex-wrap justify-center max-w-[50%]">
+                  <div className="flex gap-[10px] flex-wrap justify-center md:max-w-[50%]">
                     <button>
                       <span
                         className={`px-4 py-1 text-[14px] border-background text-background border-[.1px] rounded-full ${
@@ -144,7 +144,11 @@ const ProjectPage = ({ projects, footer }) => {
                 <div className=" w-full relative min-h-[40rem]">
                   <div className="relative  h-full flex flex-wrap justify-center gap-8">
                     {" "}
-                    <AnimatePresence>
+                    <AnimatePresence
+                      mode="wait"
+                      initial="false"
+                      key={selectedCategory}
+                    >
                       {filteredProjects.length === 0 ? (
                         <motion.div
                           key="no_projects"
